@@ -6,7 +6,7 @@ void main() {
 }
 
 Future<void> makeRequest() async {
-  const path = '/examples.json';
+  const path = 'examples.json';
   final httpRequest = HttpRequest();
   httpRequest
     ..open('GET', path)
@@ -19,8 +19,7 @@ void requestComplete(HttpRequest request) {
   switch (request.status) {
     case 200:
       for (var obj in json.decode(request.responseText)) {
-        AnchorElement link =
-            AnchorElement(href: '/${obj['folder']}/index.html');
+        AnchorElement link = AnchorElement(href: '${obj['folder']}/index.html');
         link.text = obj['title'];
         link.className = 'list-group-item list-group-item-action';
         examples.children.add(link);
