@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Display a map</title>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
+    <script defer type="application/javascript" src="index.dart.js"></script>
+    <style type="text/css">
+        body {
+            margin: 20px;
+        }
+
+        #map {
+            height: 450px;
+        }
+
+        div.wrapper {
+            margin: 0 auto;
+            max-width: 800px;
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="wrapper">
+            <div id='map'></div>
+            <p>Example of the <a href="https://github.com/andrea689/mapbox-gl-dart">mapbox-gl-dart</a></p>
+        </div>
+    </div>
+</body>
+
+</html>

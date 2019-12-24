@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Create a draggable Marker</title>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
+    <script defer type="application/javascript" src="index.dart.js"></script>
+    <style type="text/css">
+        body {
+            margin: 20px;
+        }
+
+        #map {
+            height: 450px;
+        }
+
+        div.wrapper {
+            margin: 0 auto;
+            max-width: 800px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .coordinates {
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            position: absolute;
+            bottom: 40px;
+            left: 10px;
+            padding: 5px 10px;
+            margin: 0;
+            font-size: 11px;
+            line-height: 18px;
+            border-radius: 3px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="wrapper">
+            <div id='map'></div>
+            <pre id="coordinates" class="coordinates"></pre>
+            <p>Example of the <a href="https://github.com/andrea689/mapbox-gl-dart">mapbox-gl-dart</a></p>
+        </div>
+    </div>
+</body>
+
+</html>

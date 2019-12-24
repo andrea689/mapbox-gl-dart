@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Display a map",
+        "folder": "simple_map"
+    },
+    {
+        "title": "Create a draggable Marker",
+        "folder": "drag_a_marker"
+    },
+    {
+        "title": "Style circles with a data-driven property",
+        "folder": "data_driven_circle_colors"
+    },
+    {
+        "title": "Display a popup on click",
+        "folder": "popup_on_click"
+    },
+    {
+        "title": "Display a popup on hover",
+        "folder": "popup_on_hover"
+    }
+]
