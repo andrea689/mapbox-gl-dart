@@ -13,6 +13,7 @@ jobs:
       image:  google/dart:latest
     steps:
       - uses: actions/checkout@v1
+      - run: pub global activate webdev
       - run: pub get
       - run: pub global run webdev build --no-release --output example:build
       - run: |
