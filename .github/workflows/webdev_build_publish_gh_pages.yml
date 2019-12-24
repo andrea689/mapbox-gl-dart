@@ -1,0 +1,29 @@
+name: Deploy Examples
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: Webdev build and publish on GitHub Pages
+    env:
+      my_secret: ${{secrets.commit_secret}}
+    runs-on: ubuntu-latest
+    container:
+      image:  google/dart:latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: pub global activate webdev
+      - run: pub get
+      - run: webdev build --no-release --output example:build
+      - run: |
+          cd build
+          git init
+          git config --global user.email andr3a689@gmail.com
+          git config --global user.name "Andrea Valenzano"
+          git status
+          git remote add origin https://${{secrets.commit_secret}}@github.com/andrea689/mapbox-gl-dart.git
+          git checkout -b gh-pages
+          git add --all
+          git commit -m "update"
+          git push origin gh-pages -f
