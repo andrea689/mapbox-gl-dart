@@ -1,20 +1,18 @@
-@JS('mapboxgl')
 library mapboxgl.style.layers.layout;
 
-import 'package:js/js.dart';
-
 class Layout {
-  @JS('icon-image')
-  external set iconImage(String text);
-
-  @JS('icon-allow-overlap')
-  external set iconAllowOverlap(bool text);
+  String iconImage;
+  bool iconAllowOverlap;
 
   Layout({
-    String iconImage,
-    bool iconAllowOverlap,
-  }) {
-    this.iconImage = iconImage;
-    this.iconAllowOverlap = iconAllowOverlap;
+    this.iconImage,
+    this.iconAllowOverlap,
+  });
+
+  dynamic toDict() {
+    return {
+      'icon-image': iconImage,
+      'icon-allow-overlap': iconAllowOverlap,
+    };
   }
 }

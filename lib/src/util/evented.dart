@@ -4,14 +4,17 @@ library mapboxgl.util.evented;
 import 'package:js/js.dart';
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 
-typedef Listener = dynamic Function(dynamic object);
+typedef Listener = dynamic Function(Event object);
 
 @JS()
 @anonymous
 class Event {
   String type;
+  LngLat lngLat;
+  List<FeatureJsImpl> features;
 
-  external factory Event({String type, dynamic data});
+  external factory Event(
+      {String type, LngLat lngLat, List<FeatureJsImpl> features});
 }
 
 @JS()

@@ -1,3 +1,6 @@
+import 'dart:js';
+
+import 'package:js/js.dart';
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 
 void main() {
@@ -13,7 +16,7 @@ void main() {
     ),
   );
 
-  map.on('load', () {
+  map.on('load', allowInterop((_) {
     /* Sample feature from the `examples.8fgz4egr` tileset:
     {
       "type": "Feature",
@@ -34,13 +37,13 @@ void main() {
       sourceLayer: 'sf2010',
       paint: CirclePaint(
         // make circles larger as the user zooms from z12 to z22
-        circleRadius: StyleFunction(
-          base: 1.75,
-          stops: [
+        circleRadius: {
+          'base': 1.75,
+          'stops': [
             [12, 2],
             [22, 180]
           ],
-        ),
+        },
         // color circles by ethnicity, using a match expression
         // https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
         circleColor: [
@@ -59,6 +62,6 @@ void main() {
       ),
     );
 
-    map.addLayer(layer);
-  });
+    map.addLayer(layer.toJs());
+  }));
 }

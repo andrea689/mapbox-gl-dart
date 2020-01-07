@@ -1,46 +1,48 @@
-@JS('mapboxgl')
 library mapboxgl.style.layers.circle_layer;
 
-import 'package:js/js.dart';
+import 'package:js/js_util.dart';
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 
 class CircleLayer {
-  @JS('type')
-  external set _type(String t);
-  @JS('id')
-  external set _id(String t);
-  @JS('source')
-  external set _source(Source t);
-  @JS('paint')
-  external set _paint(dynamic t);
-  @JS('source-layer')
-  external set _sourceLayer(dynamic t);
+  String type;
+  String id;
+  Source source;
+  dynamic paint;
+  dynamic sourceLayer;
 
   CircleLayer({
-    String id,
-    Source source,
-    dynamic paint,
-    String sourceLayer,
+    this.id,
+    this.source,
+    this.paint,
+    this.sourceLayer,
   }) {
-    this._type = 'circle';
-    this._id = id;
-    this._source = source;
-    this._paint = paint;
-    this._sourceLayer = sourceLayer;
+    type = 'circle';
+  }
+
+  dynamic toJs() {
+    return jsify({
+      'id': id,
+      'type': type,
+      'source': source.toDict(),
+      'source-layer': sourceLayer,
+      'paint': paint.toDict(),
+    });
   }
 }
 
 class CirclePaint {
-  @JS('circle-radius')
-  external set _circleRadius(dynamic t);
-  @JS('circle-color')
-  external set _circleColor(dynamic t);
+  dynamic circleRadius;
+  dynamic circleColor;
 
   CirclePaint({
-    dynamic circleRadius,
-    dynamic circleColor,
-  }) {
-    this._circleRadius = circleRadius;
-    this._circleColor = circleColor;
+    this.circleRadius,
+    this.circleColor,
+  });
+
+  dynamic toDict() {
+    return {
+      'circle-radius': this.circleRadius,
+      'circle-color': this.circleColor,
+    };
   }
 }

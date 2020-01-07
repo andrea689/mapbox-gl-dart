@@ -1,51 +1,96 @@
-@JS('mapboxgl')
 library mapboxgl.style.sources.geojson_source;
 
-import 'package:js/js.dart';
+import 'package:js/js_util.dart';
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 
-@JS()
-@anonymous
 class GeoJsonSource implements Source {
-  external factory GeoJsonSource({
-    String type,
-    FeatureCollection data,
-  });
+  String type;
+  FeatureCollection data;
+
+  GeoJsonSource({
+    this.data,
+  }) {
+    this.type = 'geojson';
+  }
+
+  @override
+  toDict() {
+    return {
+      'type': type,
+      'data': data.toDict(),
+    };
+  }
+
+  @override
+  toJs() {
+    return jsify(toDict());
+  }
 }
 
-@JS()
-@anonymous
 class FeatureCollection {
-  external factory FeatureCollection({
-    String type,
-    List<Feature> features,
-  });
+  String type;
+  List<Feature> features;
+  FeatureCollection({
+    this.features,
+  }) {
+    this.type = 'FeatureCollection';
+  }
+
+  dynamic toDict() {
+    return {
+      'type': type,
+      'features': features.map((f) => f.toDict()).toList(),
+    };
+  }
 }
 
-@JS()
-@anonymous
 class Feature {
-  external factory Feature({
-    String type,
-    Properties properties,
-    Geometry geometry,
-  });
+  String type;
+  Properties properties;
+  Geometry geometry;
+  String source;
+  Feature({
+    this.properties,
+    this.geometry,
+  }) {
+    this.type = 'Feature';
+  }
+
+  dynamic toDict() {
+    return {
+      'type': type,
+      'properties': properties.toDict(),
+      'geometry': geometry.toDict(),
+    };
+  }
 }
 
-@JS()
-@anonymous
 class Geometry {
-  external factory Geometry({
-    String type,
-    List<num> coordinates,
+  String type;
+  List<num> coordinates;
+  Geometry({
+    this.type,
+    this.coordinates,
   });
+  dynamic toDict() {
+    return {
+      'type': type,
+      'coordinates': coordinates,
+    };
+  }
 }
 
-@JS()
-@anonymous
 class Properties {
-  external factory Properties({
-    String description,
-    String icon,
+  String description;
+  String icon;
+  Properties({
+    this.icon,
+    this.description,
   });
+  dynamic toDict() {
+    return {
+      'icon': icon,
+      'description': description,
+    };
+  }
 }
