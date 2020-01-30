@@ -1,7 +1,0 @@
-{
-    "dart.flutterSdkPaths": [
-        "fvm"
-    ],
-    "editor.formatOnSave": true,
-    "editor.formatOnType": true
-}
