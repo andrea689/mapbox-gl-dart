@@ -42,11 +42,15 @@ class FeatureCollection {
       'features': features.map((f) => f.toDict()).toList(),
     };
   }
+
+  toJs() {
+    return jsify(toDict());
+  }
 }
 
 class Feature {
   String type;
-  Properties properties;
+  Map<String, dynamic> properties;
   Geometry geometry;
   String source;
   Feature({
@@ -59,7 +63,7 @@ class Feature {
   dynamic toDict() {
     return {
       'type': type,
-      'properties': properties.toDict(),
+      'properties': properties,
       'geometry': geometry.toDict(),
     };
   }
@@ -67,7 +71,7 @@ class Feature {
 
 class Geometry {
   String type;
-  List<num> coordinates;
+  List<dynamic> coordinates;
   Geometry({
     this.type,
     this.coordinates,
@@ -76,21 +80,6 @@ class Geometry {
     return {
       'type': type,
       'coordinates': coordinates,
-    };
-  }
-}
-
-class Properties {
-  String description;
-  String icon;
-  Properties({
-    this.icon,
-    this.description,
-  });
-  dynamic toDict() {
-    return {
-      'icon': icon,
-      'description': description,
     };
   }
 }

@@ -11,3 +11,9 @@ build/
 
 # Directory created by dartdoc
 doc/api/
+
+# Visual Studio Code related
+.classpath
+.project
+.settings/
+.vscode/

@@ -380,8 +380,7 @@ class MapboxMap extends Camera {
   ///  @see [Get features under the mouse pointer](https://www.mapbox.com/mapbox-gl-js/example/queryrenderedfeatures/)
   ///  @see [Highlight features within a bounding box](https://www.mapbox.com/mapbox-gl-js/example/using-box-queryrenderedfeatures/)
   ///  @see [Filter features within map view](https://www.mapbox.com/mapbox-gl-js/example/filter-features-within-map-view/)
-  external List<dynamic> queryRenderedFeatures(dynamic geometry,
-      [dynamic options]);
+  external List<dynamic> queryRenderedFeatures(dynamic geometry, [dynamic options]);
 
   ///  Returns an array of [GeoJSON](http://geojson.org/)
   ///  [Feature objects](https://tools.ietf.org/html/rfc7946#section-3.2)
@@ -418,8 +417,7 @@ class MapboxMap extends Camera {
   ///  });
   ///
   ///  @see [Highlight features containing similar data](https://www.mapbox.com/mapbox-gl-js/example/query-similar-features/)
-  external List<dynamic> querySourceFeatures(
-      String sourceId, dynamic parameters);
+  external List<dynamic> querySourceFeatures(String sourceId, dynamic parameters);
 
   ///  Updates the map's Mapbox style object with a new value.
   ///
@@ -747,8 +745,7 @@ class MapboxMap extends Camera {
   ///
   ///  @example
   ///  map.setLayerZoomRange('my-layer', 2, 5);
-  external MapboxMap setLayerZoomRange(
-      String layerId, num minzoom, num maxzoom);
+  external MapboxMap setLayerZoomRange(String layerId, num minzoom, num maxzoom);
 
   ///  Sets the filter for the specified style layer.
   ///
@@ -765,8 +762,7 @@ class MapboxMap extends Camera {
   ///  @see [Filter features within map view](https://www.mapbox.com/mapbox-gl-js/example/filter-features-within-map-view/)
   ///  @see [Highlight features containing similar data](https://www.mapbox.com/mapbox-gl-js/example/query-similar-features/)
   ///  @see [Create a timeline animation](https://www.mapbox.com/mapbox-gl-js/example/timeline-animation/)
-  external MapboxMap setFilter(
-      String layerId, dynamic filter, StyleSetterOptions options);
+  external MapboxMap setFilter(String layerId, dynamic filter, [StyleSetterOptions options]);
 
   ///  Returns the filter applied to the specified style layer.
   ///
@@ -788,8 +784,7 @@ class MapboxMap extends Camera {
   ///  @see [Change a layer's color with buttons](https://www.mapbox.com/mapbox-gl-js/example/color-switcher/)
   ///  @see [Adjust a layer's opacity](https://www.mapbox.com/mapbox-gl-js/example/adjust-layer-opacity/)
   ///  @see [Create a draggable point](https://www.mapbox.com/mapbox-gl-js/example/drag-a-point/)
-  external setPaintProperty(
-      String layerId, String name, dynamic value, StyleSetterOptions options);
+  external setPaintProperty(String layerId, String name, dynamic value, [StyleSetterOptions options]);
 
   ///  Returns the value of a paint property in the specified style layer.
   ///
@@ -808,8 +803,7 @@ class MapboxMap extends Camera {
   ///  @returns {MapboxMap} `this`
   ///  @example
   ///  map.setLayoutProperty('my-layer', 'visibility', 'none');
-  external MapboxMap setLayoutProperty(
-      String layerId, String name, dynamic value, StyleSetterOptions options);
+  external MapboxMap setLayoutProperty(String layerId, String name, dynamic value, [StyleSetterOptions options]);
 
   ///  Returns the value of a layout property in the specified style layer.
   ///
@@ -1203,8 +1197,7 @@ class MapOptions {
   });
 }
 
-typedef RequestTransformFunction = RequestParameters Function(
-    String url, String resourceType);
+typedef RequestTransformFunction = RequestParameters Function(String url, String resourceType);
 
 @JS()
 @anonymous
