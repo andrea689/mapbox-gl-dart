@@ -11,13 +11,17 @@ class CircleLayerJsImpl {
       'id': circleLayer.id,
       'type': 'circle',
     };
-    if (circleLayer.source != null)
+    if (circleLayer.source != null) {
       dict['source'] = circleLayer.source is String
           ? circleLayer.source
           : circleLayer.source.dict;
-    if (circleLayer.sourceLayer != null)
+    }
+    if (circleLayer.sourceLayer != null) {
       dict['source-layer'] = circleLayer.sourceLayer;
-    if (circleLayer.paint != null) dict['paint'] = circleLayer.paint.dict;
+    }
+    if (circleLayer.paint != null) {
+      dict['paint'] = circleLayer.paint.dict;
+    }
     return dict;
   }
 }
@@ -27,10 +31,12 @@ class CirclePaintJsImpl {
 
   static toDict(CirclePaint circlePaint) {
     Map<String, dynamic> dict = {};
-    if (circlePaint.circleRadius != null)
+    if (circlePaint.circleRadius != null) {
       dict['circle-radius'] = circlePaint.circleRadius;
-    if (circlePaint.circleColor != null)
+    }
+    if (circlePaint.circleColor != null) {
       dict['circle-color'] = circlePaint.circleColor;
+    }
     return dict;
   }
 }

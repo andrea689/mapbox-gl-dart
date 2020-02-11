@@ -54,8 +54,9 @@ class Popup extends Evented {
 
   final PopupJsImpl jsObject;
   factory Popup([PopupOptions options]) {
-    if (options != null)
+    if (options != null) {
       return Popup.fromJsObject(PopupJsImpl(options.jsObject));
+    }
     return Popup.fromJsObject(PopupJsImpl());
   }
 

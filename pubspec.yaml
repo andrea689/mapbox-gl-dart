@@ -1,13 +1,13 @@
 name: mapbox_gl_dart
-version: 0.0.1
-description: Mapbox-gl wrapper for Dart
-author: Andrea Valenzano <andr3a689+github@gmail.com>
+version: 0.1.0
+description: Mapbox-gl wrapper for Dart. Library to use Mapbox GL JS in your web Dart projects.
 homepage: https://github.com/andrea689/mapbox-gl-dart/
 environment:
   sdk: '>=2.7.0-dev <3.0.0'
 
 dependencies:
   js: ^0.6.1
+  meta: ^1.1.8
 
 dev_dependencies:
   build_runner: '>=1.6.2 <2.0.0'

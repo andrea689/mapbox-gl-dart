@@ -11,8 +11,9 @@ class VectorSource extends Source<VectorSourceJsImpl> {
     String url,
     List<String> tiles,
   }) {
-    if (url != null && tiles != null)
+    if (url != null && tiles != null) {
       throw Exception('Specify only one between url and tiles');
+    }
     if (url != null) {
       return VectorSource.fromJsObject(VectorSourceJsImpl(
         type: 'vector',
@@ -34,8 +35,12 @@ class VectorSource extends Source<VectorSourceJsImpl> {
     Map<String, dynamic> dict = {
       'type': 'vector',
     };
-    if (url != null) dict['url'] = url;
-    if (tiles != null) dict['tiles'] = tiles;
+    if (url != null) {
+      dict['url'] = url;
+    }
+    if (tiles != null) {
+      dict['tiles'] = tiles;
+    }
     return dict;
   }
 }
