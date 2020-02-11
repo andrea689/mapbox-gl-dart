@@ -1,6 +1,3 @@
-import 'dart:js';
-
-import 'package:js/js.dart';
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 
 void main() {
@@ -16,7 +13,7 @@ void main() {
     ),
   );
 
-  map.on('load', allowInterop((_) {
+  map.on('load', (_) {
     /* Sample feature from the `examples.8fgz4egr` tileset:
     {
       "type": "Feature",
@@ -61,7 +58,6 @@ void main() {
         ],
       ),
     );
-
-    map.addLayer(layer.toJs());
-  }));
+    map.addLayer(layer);
+  });
 }

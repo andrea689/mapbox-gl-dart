@@ -1,13 +1,15 @@
 library mapboxgl.style.layers.symbol_layer;
 
-import 'package:js/js_util.dart';
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
+import 'package:mapbox_gl_dart/src/interop/interop.dart';
+import 'package:meta/meta.dart';
 
-class SymbolLayer {
+class SymbolLayer extends Layer {
   String id;
-  String type;
   String metadata;
-  Source source;
+
+  /// Source or String
+  dynamic source;
   String sourceLayer;
   num minZoom;
   num maxZoom;
@@ -16,7 +18,7 @@ class SymbolLayer {
   SymbolPaint paint;
 
   SymbolLayer({
-    this.id,
+    @required this.id,
     this.metadata,
     this.source,
     this.sourceLayer,
@@ -25,29 +27,13 @@ class SymbolLayer {
     this.filter,
     this.layout,
     this.paint,
-  }) {
-    this.type = 'symbol';
-  }
+  });
 
-  dynamic toDict() {
-    Map<String, dynamic> dict = {
-      'id': id,
-    };
-    if (type != null) dict['type'] = type;
-    if (metadata != null) dict['metadata'] = metadata;
-    if (source != null) dict['source'] = source.toDict();
-    if (sourceLayer != null) dict['source-layer'] = sourceLayer;
-    if (minZoom != null) dict['minzoom'] = minZoom;
-    if (maxZoom != null) dict['maxzoom'] = maxZoom;
-    if (filter != null) dict['filter'] = filter;
-    if (layout != null) dict['layout'] = layout.toDict();
-    if (paint != null) dict['paint'] = paint.toDict();
-    return dict;
-  }
+  @override
+  get jsObject => SymbolLayerJsImpl.toJs(this);
 
-  dynamic toJs() {
-    return jsify(toDict());
-  }
+  @override
+  get dict => SymbolLayerJsImpl.toDict(this);
 }
 
 class SymbolPaint {
@@ -83,26 +69,9 @@ class SymbolPaint {
     this.textTranslateAnchor,
   });
 
-  dynamic toDict() {
-    Map<String, dynamic> dict = {};
-    if (iconOpacity != null) dict['icon-opacity'] = iconOpacity;
-    if (iconColor != null) dict['icon-color'] = iconColor;
-    if (iconHaloColor != null) dict['icon-halo-color'] = iconHaloColor;
-    if (iconHaloWidth != null) dict['icon-halo-width'] = iconHaloWidth;
-    if (iconHaloBlur != null) dict['icon-halo-blur'] = iconHaloBlur;
-    if (iconTranslate != null) dict['icon-translate'] = iconTranslate;
-    if (iconTranslateAnchor != null)
-      dict['icon-translate-anchor'] = iconTranslateAnchor;
-    if (textOpacity != null) dict['text-opacity'] = textOpacity;
-    if (textColor != null) dict['text-color'] = textColor;
-    if (textHaloColor != null) dict['text-halo-color'] = textHaloColor;
-    if (textHaloWidth != null) dict['text-halo-width'] = textHaloWidth;
-    if (textHaloBlur != null) dict['text-halo-blur'] = textHaloBlur;
-    if (textTranslate != null) dict['text-translate'] = textTranslate;
-    if (textTranslateAnchor != null)
-      dict['text-translate-anchor'] = textTranslateAnchor;
-    return dict;
-  }
+  get jsObject => SymbolPaintJsImpl.toJs(this);
+
+  get dict => SymbolPaintJsImpl.toDict(this);
 }
 
 class SymbolLayout {
@@ -190,56 +159,7 @@ class SymbolLayout {
     this.visibility,
   });
 
-  dynamic toDict() {
-    Map<String, dynamic> dict = {};
-    if (symbolAvoidEdges != null) dict['symbol-avoid-edges'] = symbolAvoidEdges;
-    if (symbolSortKey != null) dict['symbol-sort-key'] = symbolSortKey;
-    if (symbolZOrder != null) dict['symbol-z-order'] = symbolZOrder;
-    if (iconAllowOverlap != null) dict['icon-allow-overlap'] = iconAllowOverlap;
-    if (iconIgnorePlacement != null)
-      dict['icon-ignore-placement'] = iconIgnorePlacement;
-    if (iconOptional != null) dict['icon-optional'] = iconOptional;
-    if (iconRotationAlignment != null)
-      dict['icon-rotation-alignment'] = iconRotationAlignment;
-    if (iconSize != null) dict['icon-size'] = iconSize;
-    if (iconTextFit != null) dict['icon-text-fit'] = iconTextFit;
-    if (iconFitPadding != null) dict['icon-fit-padding'] = iconFitPadding;
-    if (iconImage != null) dict['icon-image'] = iconImage;
-    if (iconRotate != null) dict['icon-rotate'] = iconRotate;
-    if (iconPadding != null) dict['icon-padding'] = iconPadding;
-    if (iconKeepUpright != null) dict['icon-keep-upright'] = iconKeepUpright;
-    if (iconOffset != null) dict['icon-offset'] = iconOffset;
-    if (iconAnchor != null) dict['icon-anchor'] = iconAnchor;
-    if (iconPitchAlignment != null)
-      dict['icon-pitch-alignment'] = iconPitchAlignment;
-    if (textPitchAlignment != null)
-      dict['text-pitch-alignment'] = textPitchAlignment;
-    if (textRotationAlignment != null)
-      dict['text-rotation-alignment'] = textRotationAlignment;
-    if (textField != null) dict['text-field'] = textField;
-    if (textFont != null) dict['text-font'] = textFont;
-    if (textSize != null) dict['text-size'] = textSize;
-    if (textMaxWidth != null) dict['text-max-width'] = textMaxWidth;
-    if (textLineHeight != null) dict['text-line-height'] = textLineHeight;
-    if (textLetterSpacing != null)
-      dict['text-letter-spacing'] = textLetterSpacing;
-    if (textJustify != null) dict['text-justify'] = textJustify;
-    if (textRadialOffset != null) dict['text-radial-offset'] = textRadialOffset;
-    if (textVariableAnchor != null)
-      dict['text-variable-anchor'] = textVariableAnchor;
-    if (textAnchor != null) dict['text-anchor'] = textAnchor;
-    if (textMaxAngle != null) dict['text-max-angle'] = textMaxAngle;
-    if (textWritingMode != null) dict['text-writing-mode'] = textWritingMode;
-    if (textRotate != null) dict['text-rotate'] = textRotate;
-    if (textPadding != null) dict['text-padding'] = textPadding;
-    if (textKeepUpright != null) dict['text-keep-upright'] = textKeepUpright;
-    if (textTransform != null) dict['text-transform'] = textTransform;
-    if (textOffset != null) dict['text-offset'] = textOffset;
-    if (textAllowOverlap != null) dict['text-allow-overlap'] = textAllowOverlap;
-    if (textIgnorePlacement != null)
-      dict['text-ignore-placement'] = textIgnorePlacement;
-    if (textOptional != null) dict['text-optional'] = textOptional;
-    if (visibility != null) dict['visibility'] = visibility;
-    return dict;
-  }
+  get jsObject => SymbolLayoutJsImpl.toJs(this);
+
+  get dict => SymbolLayoutJsImpl.toDict(this);
 }

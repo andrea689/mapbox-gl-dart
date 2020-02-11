@@ -1,34 +1,35 @@
-@JS('mapboxgl')
 library mapboxgl.ui.handler.box_zoom;
 
 import 'dart:html';
 
-import 'package:js/js.dart';
+import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
-@JS()
-@anonymous
-abstract class BoxZoomHandler {
+class BoxZoomHandler extends JsObjectWrapper<BoxZoomHandlerJsImpl> {
   ///  Returns a Boolean indicating whether the "box zoom" interaction is enabled.
   ///
   ///  @returns {boolean} `true` if the "box zoom" interaction is enabled.
-  external bool isEnabled();
+  bool isEnabled() => jsObject.isEnabled();
 
   ///  Returns a Boolean indicating whether the "box zoom" interaction is active, i.e. currently being used.
   ///
   ///  @returns {boolean} `true` if the "box zoom" interaction is active.
-  external bool isActive();
+  bool isActive() => jsObject.isActive();
 
   ///  Enables the "box zoom" interaction.
   ///
   ///  @example
   ///    map.boxZoom.enable();
-  external enable();
+  enable() => jsObject.enable();
 
   ///  Disables the "box zoom" interaction.
   ///
   ///  @example
   ///    map.boxZoom.disable();
-  external disable();
+  disable() => jsObject.disable();
 
-  external onMouseDown(MouseEvent e);
+  onMouseDown(MouseEvent e) => jsObject.onMouseDown(e);
+
+  /// Creates a new BoxZoomHandler from a [jsObject].
+  BoxZoomHandler.fromJsObject(BoxZoomHandlerJsImpl jsObject)
+      : super.fromJsObject(jsObject);
 }

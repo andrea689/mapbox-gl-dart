@@ -1,85 +1,26 @@
 library mapboxgl.style.sources.geojson_source;
 
-import 'package:js/js_util.dart';
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
+import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
-class GeoJsonSource implements Source {
-  String type;
-  FeatureCollection data;
+class GeoJsonSource extends Source<GeoJsonSourceJsImpl> {
+  FeatureCollection get data => FeatureCollection.fromJsObject(jsObject.data);
 
-  GeoJsonSource({
-    this.data,
-  }) {
-    this.type = 'geojson';
-  }
+  factory GeoJsonSource({
+    FeatureCollection data,
+  }) =>
+      GeoJsonSource.fromJsObject(GeoJsonSourceJsImpl(
+        type: 'geojson',
+        data: data.jsObject,
+      ));
 
-  @override
-  toDict() {
-    return {
-      'type': type,
-      'data': data.toDict(),
-    };
-  }
+  /// Creates a new GeoJsonSource from a [jsObject].
+  GeoJsonSource.fromJsObject(GeoJsonSourceJsImpl jsObject)
+      : super.fromJsObject(jsObject);
 
   @override
-  toJs() {
-    return jsify(toDict());
-  }
-}
-
-class FeatureCollection {
-  String type;
-  List<Feature> features;
-  FeatureCollection({
-    this.features,
-  }) {
-    this.type = 'FeatureCollection';
-  }
-
-  dynamic toDict() {
-    return {
-      'type': type,
-      'features': features.map((f) => f.toDict()).toList(),
-    };
-  }
-
-  toJs() {
-    return jsify(toDict());
-  }
-}
-
-class Feature {
-  String type;
-  Map<String, dynamic> properties;
-  Geometry geometry;
-  String source;
-  Feature({
-    this.properties,
-    this.geometry,
-  }) {
-    this.type = 'Feature';
-  }
-
-  dynamic toDict() {
-    return {
-      'type': type,
-      'properties': properties,
-      'geometry': geometry.toDict(),
-    };
-  }
-}
-
-class Geometry {
-  String type;
-  List<dynamic> coordinates;
-  Geometry({
-    this.type,
-    this.coordinates,
-  });
-  dynamic toDict() {
-    return {
-      'type': type,
-      'coordinates': coordinates,
-    };
-  }
+  get dict => {
+        'type': 'geojson',
+        'data': data.jsObject,
+      };
 }

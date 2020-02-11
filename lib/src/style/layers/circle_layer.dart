@@ -1,33 +1,29 @@
 library mapboxgl.style.layers.circle_layer;
 
-import 'package:js/js_util.dart';
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
+import 'package:mapbox_gl_dart/src/interop/interop.dart';
+import 'package:meta/meta.dart';
 
-class CircleLayer {
-  String type;
+class CircleLayer extends Layer {
   String id;
-  Source source;
-  dynamic paint;
+
+  /// Source or String
+  dynamic source;
+  CirclePaint paint;
   dynamic sourceLayer;
 
   CircleLayer({
-    this.id,
+    @required this.id,
     this.source,
     this.paint,
     this.sourceLayer,
-  }) {
-    type = 'circle';
-  }
+  });
 
-  dynamic toJs() {
-    return jsify({
-      'id': id,
-      'type': type,
-      'source': source.toDict(),
-      'source-layer': sourceLayer,
-      'paint': paint.toDict(),
-    });
-  }
+  @override
+  get jsObject => CircleLayerJsImpl.toJs(this);
+
+  @override
+  get dict => CircleLayerJsImpl.toDict(this);
 }
 
 class CirclePaint {
@@ -39,10 +35,7 @@ class CirclePaint {
     this.circleColor,
   });
 
-  dynamic toDict() {
-    return {
-      'circle-radius': this.circleRadius,
-      'circle-color': this.circleColor,
-    };
-  }
+  get jsObject => CirclePaintJsImpl.toJs(this);
+
+  get dict => CirclePaintJsImpl.toDict(this);
 }

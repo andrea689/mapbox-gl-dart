@@ -1,25 +1,26 @@
-@JS('mapboxgl')
 library mapboxgl.ui.handler.keyboard;
 
-import 'package:js/js.dart';
+import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
-@JS()
-@anonymous
-abstract class KeyboardHandler {
+class KeyboardHandler extends JsObjectWrapper<KeyboardHandlerJsImpl> {
   ///  Returns a Boolean indicating whether keyboard interaction is enabled.
   ///
   ///  @returns {boolean} `true` if keyboard interaction is enabled.
-  external bool isEnabled();
+  bool isEnabled() => jsObject.isEnabled();
 
   ///  Enables keyboard interaction.
   ///
   ///  @example
   ///  map.keyboard.enable();
-  external bool enable();
+  bool enable() => jsObject.enable();
 
   ///  Disables keyboard interaction.
   ///
   ///  @example
   ///  map.keyboard.disable();
-  external bool disable();
+  bool disable() => jsObject.disable();
+
+  /// Creates a new KeyboardHandler from a [jsObject].
+  KeyboardHandler.fromJsObject(KeyboardHandlerJsImpl jsObject)
+      : super.fromJsObject(jsObject);
 }

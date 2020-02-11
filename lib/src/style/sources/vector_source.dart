@@ -1,32 +1,41 @@
 library mapboxgl.style.sources.vector_source;
 
-import 'package:js/js_util.dart';
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
+import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
-class VectorSource implements Source {
-  String type;
-  String url;
-  List<String> tiles;
+class VectorSource extends Source<VectorSourceJsImpl> {
+  String get url => jsObject.url;
+  List<String> get tiles => jsObject.tiles;
 
-  VectorSource({
-    this.url,
-    this.tiles,
+  factory VectorSource({
+    String url,
+    List<String> tiles,
   }) {
-    this.type = 'vector';
+    if (url != null && tiles != null)
+      throw Exception('Specify only one between url and tiles');
+    if (url != null) {
+      return VectorSource.fromJsObject(VectorSourceJsImpl(
+        type: 'vector',
+        url: url,
+      ));
+    }
+    return VectorSource.fromJsObject(VectorSourceJsImpl(
+      type: 'vector',
+      tiles: tiles,
+    ));
   }
 
+  /// Creates a new VectorSource from a [jsObject].
+  VectorSource.fromJsObject(VectorSourceJsImpl jsObject)
+      : super.fromJsObject(jsObject);
+
   @override
-  toDict() {
+  get dict {
     Map<String, dynamic> dict = {
-      'type': type,
+      'type': 'vector',
     };
     if (url != null) dict['url'] = url;
     if (tiles != null) dict['tiles'] = tiles;
     return dict;
-  }
-
-  @override
-  toJs() {
-    return jsify(toDict());
   }
 }

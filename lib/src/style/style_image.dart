@@ -1,27 +1,31 @@
-@JS('mapboxgl')
 library mapboxgl.style.style_image;
 
-import 'package:js/js.dart';
-import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
+import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
-@JS()
-@anonymous
-abstract class StyleImage {
-  external dynamic get data;
-  external num get pixelRatio;
-  external bool get sdf;
-  external num get version;
-  external bool get hasRenderCallback;
-  external StyleImageInterface get userImage;
+class StyleImage extends JsObjectWrapper<StyleImageJsImpl> {
+  dynamic get data => jsObject.data;
+  num get pixelRatio => jsObject.pixelRatio;
+  bool get sdf => jsObject.sdf;
+  num get version => jsObject.version;
+  bool get hasRenderCallback => jsObject.hasRenderCallback;
+  StyleImageInterface get userImage =>
+      StyleImageInterface.fromJsObject(jsObject.userImage);
+
+  /// Creates a new EvaluationParameters from a [jsObject].
+  StyleImage.fromJsObject(StyleImageJsImpl jsObject)
+      : super.fromJsObject(jsObject);
 }
 
-@JS()
-@anonymous
-abstract class StyleImageInterface {
-  external num get width;
-  external num get height;
-  external dynamic get data;
-  external Function get render;
-  external Function(MapboxMap map, String id) get onAdd;
-  external Function get onRemove;
+class StyleImageInterface extends JsObjectWrapper<StyleImageInterfaceJsImpl> {
+  num get width => jsObject.width;
+  num get height => jsObject.height;
+  dynamic get data => jsObject.data;
+  Function get render => jsObject.render;
+  Function(MapboxMapJsImpl map, String id) get onAdd =>
+      jsObject.onAdd; //TODO: Remove JsImpl
+  Function get onRemove => jsObject.onRemove;
+
+  /// Creates a new EvaluationParameters from a [jsObject].
+  StyleImageInterface.fromJsObject(StyleImageInterfaceJsImpl jsObject)
+      : super.fromJsObject(jsObject);
 }

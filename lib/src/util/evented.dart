@@ -1,24 +1,38 @@
-@JS('mapboxgl')
 library mapboxgl.util.evented;
 
-import 'package:js/js.dart';
+import 'dart:html';
+import 'dart:js';
+
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
+import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
 typedef Listener = dynamic Function(Event object);
 
-@JS()
-@anonymous
-class Event {
-  String type;
-  LngLat lngLat;
-  List<FeatureJsImpl> features;
+class Event extends JsObjectWrapper<EventJsImpl> {
+  String get type => jsObject.type;
+  LngLat get lngLat => LngLat.fromJsObject(jsObject.lngLat);
+  List<Feature> get features =>
+      jsObject.features.map((dynamic f) => Feature.fromJsObject(f)).toList();
+  Point get point => jsObject.point;
 
-  external factory Event(
-      {String type, LngLat lngLat, List<FeatureJsImpl> features});
+  factory Event({
+    String type,
+    LngLat lngLat,
+    List<Feature> features,
+    Point point,
+  }) =>
+      Event.fromJsObject(EventJsImpl(
+        type: type,
+        lngLat: lngLat.jsObject,
+        features: features.map((dynamic f) => f.jsObject).toList(),
+        point: point,
+      ));
+
+  /// Creates a new Event from a [jsObject].
+  Event.fromJsObject(EventJsImpl jsObject) : super.fromJsObject(jsObject);
 }
 
-@JS()
-abstract class Evented {
+class Evented extends JsObjectWrapper<EventedJsImpl> {
   ///  Adds a listener to a specified event type.
   ///
   ///  @param {string} type The event type to add a listen for.
@@ -26,18 +40,46 @@ abstract class Evented {
   ///    The listener function is called with the data object passed to `fire`,
   ///    extended with `target` and `type` properties.
   ///  @returns {Object} `this`
-  //external on(String type, Listener listener);
-  external MapboxMap on(String type,
-      [dynamic layerIdOrListener, Listener listener]);
+  MapboxMap on(String type, [dynamic layerIdOrListener, Listener listener]) {
+    if (layerIdOrListener is Listener) {
+      return MapboxMap.fromJsObject(
+        jsObject.on(type, allowInterop(
+          (EventJsImpl object) {
+            layerIdOrListener(Event.fromJsObject(object));
+          },
+        )),
+      );
+    }
+    return MapboxMap.fromJsObject(
+        jsObject.on(type, layerIdOrListener, allowInterop(
+      (EventJsImpl object) {
+        listener(Event.fromJsObject(object));
+      },
+    )));
+  }
 
   ///  Removes a previously registered event listener.
   ///
   ///  @param {string} type The event type to remove listeners for.
   ///  @param {Function} listener The listener function to remove.
   ///  @returns {Object} `this`
-  //external off(String type, Listener listener);
-  external MapboxMap off(String type,
-      [dynamic layerIdOrListener, Listener listener]);
+  MapboxMap off(String type, [dynamic layerIdOrListener, Listener listener]) {
+    if (layerIdOrListener is Listener) {
+      return MapboxMap.fromJsObject(
+        jsObject.off(type, allowInterop(
+          (EventJsImpl object) {
+            layerIdOrListener(Event.fromJsObject(object));
+          },
+        )),
+      );
+    }
+    return MapboxMap.fromJsObject(
+        jsObject.off(type, layerIdOrListener, allowInterop(
+      (EventJsImpl object) {
+        listener(Event.fromJsObject(object));
+      },
+    )));
+  }
 
   ///  Adds a listener that will be called only once to a specified event type.
   ///
@@ -46,21 +88,31 @@ abstract class Evented {
   ///  @param {string} type The event type to listen for.
   ///  @param {Function} listener The function to be called when the event is fired the first time.
   ///  @returns {Object} `this`
-  external once(String type, Listener listener);
+  MapboxMap once(String type, Listener listener) =>
+      MapboxMap.fromJsObject(jsObject.once(type, allowInterop(
+        (EventJsImpl object) {
+          listener(Event.fromJsObject(object));
+        },
+      )));
 
-  external fire(Event event, [dynamic properties]);
+  fire(Event event, [dynamic properties]) =>
+      jsObject.fire(event.jsObject, properties);
 
   ///  Returns a true if this instance of Evented or any forwardeed instances of Evented have a listener for the specified type.
   ///
   ///  @param {string} type The event type
   ///  @returns {boolean} `true` if there is at least one registered listener for specified event type, `false` otherwise
   ///  @private
-  external listens(String type);
+  listens(String type) => jsObject.listens(type);
 
   ///  Bubble all events fired by this instance of Evented to this parent instance of Evented.
   ///
   ///  @private
   ///  @returns {Object} `this`
   ///  @private
-  external setEventedParent([Evented parent, dynamic data]);
+  setEventedParent([Evented parent, dynamic data]) =>
+      jsObject.setEventedParent(parent.jsObject, data);
+
+  /// Creates a new Evented from a [jsObject].
+  Evented.fromJsObject(EventedJsImpl jsObject) : super.fromJsObject(jsObject);
 }

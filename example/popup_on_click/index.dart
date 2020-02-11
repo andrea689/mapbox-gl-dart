@@ -1,4 +1,3 @@
-import 'package:js/js.dart';
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 
 void main() {
@@ -14,7 +13,7 @@ void main() {
     ),
   );
 
-  map.on('load', allowInterop((_) {
+  map.on('load', (_) {
     // Add a layer showing the places.
     var layer = SymbolLayer(
       id: 'places',
@@ -128,27 +127,27 @@ void main() {
         iconAllowOverlap: true,
       ),
     );
-    map.addLayer(layer.toJs());
+    map.addLayer(layer);
 
     // When a click event occurs on a feature in the places layer, open a popup at the
     // location of the feature, with description HTML from its properties.
-    map.on('click', 'places', allowInterop((e) {
+    map.on('click', 'places', (e) {
       var coordinates = e.features[0].geometry.coordinates;
-      var description = e.features[0].properties.description;
+      var description = e.features[0].properties['description'];
       Popup()
           .setLngLat(LngLat(coordinates[0], coordinates[1]))
           .setHTML(description)
           .addTo(map);
-    }));
+    });
 
     // Change the cursor to a pointer when the mouse is over the places layer.
-    map.on('mouseenter', 'places', allowInterop((_) {
+    map.on('mouseenter', 'places', (_) {
       map.getCanvas().style.cursor = 'pointer';
-    }));
+    });
 
     // Change it back to a pointer when it leaves.
-    map.on('mouseleave', 'places', allowInterop((_) {
+    map.on('mouseleave', 'places', (_) {
       map.getCanvas().style.cursor = '';
-    }));
-  }));
+    });
+  });
 }

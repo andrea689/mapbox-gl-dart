@@ -1,36 +1,37 @@
-@JS('mapboxgl')
 library mapboxgl.ui.handler.drag_pan;
 
 import 'dart:html';
 
-import 'package:js/js.dart';
+import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
-@JS()
-@anonymous
-abstract class DragPanHandler {
+class DragPanHandler extends JsObjectWrapper<DragPanHandlerJsImpl> {
   ///  Returns a Boolean indicating whether the "drag to pan" interaction is enabled.
   ///
   ///  @returns {boolean} `true` if the "drag to pan" interaction is enabled.
-  external bool isEnabled();
+  bool isEnabled() => jsObject.isEnabled();
 
   ///  Returns a Boolean indicating whether the "drag to pan" interaction is active, i.e. currently being used.
   ///
   ///  @returns {boolean} `true` if the "drag to pan" interaction is active.
-  external bool isActive();
+  bool isActive() => jsObject.isActive();
 
   ///  Enables the "drag to pan" interaction.
   ///
   ///  @example
   ///  map.dragPan.enable();
-  external enable();
+  enable() => jsObject.enable();
 
   ///  Disables the "drag to pan" interaction.
   ///
   ///  @example
   ///  map.dragPan.disable();
-  external disable();
+  disable() => jsObject.disable();
 
-  external onMouseDown(MouseEvent e);
+  onMouseDown(MouseEvent e) => jsObject.onMouseDown(e);
 
-  external onTouchStart(TouchEvent e);
+  onTouchStart(TouchEvent e) => jsObject.onTouchStart(e);
+
+  /// Creates a new DragPanHandler from a [jsObject].
+  DragPanHandler.fromJsObject(DragPanHandlerJsImpl jsObject)
+      : super.fromJsObject(jsObject);
 }

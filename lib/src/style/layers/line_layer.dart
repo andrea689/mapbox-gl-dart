@@ -1,12 +1,14 @@
 library mapboxgl.style.layers.line_layer;
 
-import 'package:js/js_util.dart';
+import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
+import 'package:mapbox_gl_dart/src/interop/interop.dart';
 import 'package:meta/meta.dart';
 
-class LineLayer {
-  String type;
+class LineLayer extends Layer {
   String id;
-  String source;
+
+  /// Source or String
+  dynamic source;
   String sourceLayer;
   LinePaint paint;
   LineLayout layout;
@@ -19,26 +21,13 @@ class LineLayer {
     this.paint,
     this.layout,
     this.filter,
-  }) {
-    type = 'line';
-  }
+  });
 
-  dynamic toDict() {
-    Map<String, dynamic> dict = {
-      'id': id,
-    };
-    if (type != null) dict['type'] = type;
-    if (source != null) dict['source'] = source;
-    if (sourceLayer != null) dict['source-layer'] = sourceLayer;
-    if (paint != null) dict['paint'] = paint.toDict();
-    if (layout != null) dict['layout'] = layout.toDict();
-    if (filter != null) dict['filter'] = filter;
-    return dict;
-  }
+  @override
+  get jsObject => LineLayerJsImpl.toJs(this);
 
-  dynamic toJs() {
-    return jsify(toDict());
-  }
+  @override
+  get dict => LineLayerJsImpl.toDict(this);
 }
 
 class LinePaint {
@@ -68,22 +57,9 @@ class LinePaint {
     this.lineGradient,
   });
 
-  dynamic toDict() {
-    Map<String, dynamic> dict = {};
-    if (lineOpacity != null) dict['line-opacity'] = lineOpacity;
-    if (lineColor != null) dict['line-color'] = lineColor;
-    if (lineTranslate != null) dict['line-translate'] = lineTranslate;
-    if (lineTranslateAnchor != null)
-      dict['line-translate-anchor'] = lineTranslateAnchor;
-    if (lineWidth != null) dict['line-width'] = lineWidth;
-    if (lineGapWidth != null) dict['line-gap-width'] = lineGapWidth;
-    if (lineOffset != null) dict['line-offset'] = lineOffset;
-    if (lineBlur != null) dict['line-blur'] = lineBlur;
-    if (lineDasharray != null) dict['line-dasharray'] = lineDasharray;
-    if (linePattern != null) dict['line-pattern'] = linePattern;
-    if (lineGradient != null) dict['line-gradient'] = lineGradient;
-    return dict;
-  }
+  get jsObject => LinePaintJsImpl.toJs(this);
+
+  get dict => LinePaintJsImpl.toDict(this);
 }
 
 class LineLayout {
@@ -103,14 +79,7 @@ class LineLayout {
     this.visibility,
   });
 
-  dynamic toDict() {
-    Map<String, dynamic> dict = {};
-    if (lineCap != null) dict['line-cap'] = lineCap;
-    if (lineJoin != null) dict['line-join'] = lineJoin;
-    if (lineMiterLimit != null) dict['line-miter-limit'] = lineMiterLimit;
-    if (lineRoundLimit != null) dict['line-round-limit'] = lineRoundLimit;
-    if (lineSortKey != null) dict['line-sort-key'] = lineSortKey;
-    if (visibility != null) dict['visibility'] = visibility;
-    return dict;
-  }
+  get jsObject => LineLayoutJsImpl.toJs(this);
+
+  get dict => LineLayoutJsImpl.toDict(this);
 }

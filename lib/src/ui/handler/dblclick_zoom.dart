@@ -1,35 +1,37 @@
-@JS('mapboxgl')
 library mapboxgl.ui.handler.dbclick_zoom;
 
-import 'package:js/js.dart';
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
+import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
-@JS()
-@anonymous
-abstract class DoubleClickZoomHandler {
+class DoubleClickZoomHandler
+    extends JsObjectWrapper<DoubleClickZoomHandlerJsImpl> {
   ///  Returns a Boolean indicating whether the "double click to zoom" interaction is enabled.
   ///
   ///  @returns {boolean} `true` if the "double click to zoom" interaction is enabled.
-  external bool isEnabled();
+  bool isEnabled() => jsObject.isEnabled();
 
   ///  Returns a Boolean indicating whether the "double click to zoom" interaction is active, i.e. currently being used.
   ///
   ///  @returns {boolean} `true` if the "double click to zoom" interaction is active.
-  external bool isActive();
+  bool isActive() => jsObject.isActive();
 
   ///  Enables the "double click to zoom" interaction.
   ///
   ///  @example
   ///  map.doubleClickZoom.enable();
-  external enable();
+  enable() => jsObject.enable();
 
   ///  Disables the "double click to zoom" interaction.
   ///
   ///  @example
   ///  map.doubleClickZoom.disable();
-  external disable();
+  disable() => jsObject.disable();
 
-  external onTouchStart(MapTouchEvent e);
+  onTouchStart(MapTouchEvent e) => jsObject.onTouchStart(e.jsObject);
 
-  external onDblClick(MapMouseEvent e);
+  onDblClick(MapMouseEvent e) => jsObject.onDblClick(e.jsObject);
+
+  /// Creates a new DoubleClickZoomHandler from a [jsObject].
+  DoubleClickZoomHandler.fromJsObject(DoubleClickZoomHandlerJsImpl jsObject)
+      : super.fromJsObject(jsObject);
 }

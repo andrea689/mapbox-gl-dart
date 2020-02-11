@@ -1,34 +1,35 @@
-@JS('mapboxgl')
 library mapboxgl.ui.handler.drag_rotate;
 
 import 'dart:html';
 
-import 'package:js/js.dart';
+import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
-@JS()
-@anonymous
-abstract class DragRotateHandler {
+class DragRotateHandler extends JsObjectWrapper<DragRotateHandlerJsImpl> {
   ///  Returns a Boolean indicating whether the "drag to rotate" interaction is enabled.
   ///
   ///  @returns {boolean} `true` if the "drag to rotate" interaction is enabled.
-  external bool isEnabled();
+  bool isEnabled() => jsObject.isEnabled();
 
   ///  Returns a Boolean indicating whether the "drag to rotate" interaction is active, i.e. currently being used.
   ///
   ///  @returns {boolean} `true` if the "drag to rotate" interaction is active.
-  external bool isActive();
+  bool isActive() => jsObject.isActive();
 
   ///  Enables the "drag to rotate" interaction.
   ///
   ///  @example
   ///  map.dragRotate.enable();
-  external enable();
+  enable() => jsObject.enable();
 
   ///  Disables the "drag to rotate" interaction.
   ///
   ///  @example
   ///  map.dragRotate.disable();
-  external disable();
+  disable() => jsObject.disable();
 
-  external onMouseDown(MouseEvent e);
+  onMouseDown(MouseEvent e) => jsObject.onMouseDown(e);
+
+  /// Creates a new DragPanHandler from a [jsObject].
+  DragRotateHandler.fromJsObject(DragRotateHandlerJsImpl jsObject)
+      : super.fromJsObject(jsObject);
 }

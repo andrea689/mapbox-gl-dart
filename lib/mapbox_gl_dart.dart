@@ -3,13 +3,13 @@
 /// Project: https://github.com/mapbox/mapbox-gl-js
 library mapboxgl;
 
+export 'src/geo/geojson.dart';
 export 'src/geo/lng_lat.dart';
 export 'src/geo/lng_lat_bounds.dart';
 export 'src/index.dart';
-export 'src/interop/geojson_interop.dart';
 export 'src/style/evaluation_parameters.dart';
 export 'src/style/layers/circle_layer.dart';
-export 'src/style/layers/layout.dart';
+export 'src/style/layers/layer.dart';
 export 'src/style/layers/line_layer.dart';
 export 'src/style/layers/symbol_layer.dart';
 export 'src/style/sources/geojson_source.dart';

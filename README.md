@@ -1,5 +1,7 @@
 # Mapbox-gl wrapper for Dart
 
+Library to use Mapbox GL JS from Dart. Working examples here: https://andrea689.github.io/mapbox-gl-dart/
+
 ## Using this package
 
 You must include [Mapbox GL JS](https://github.com/mapbox/mapbox-gl-js) into your `.html` file

@@ -1,9 +1,9 @@
-@JS('mapboxgl')
 library mapboxgl.ui.map;
 
 import 'dart:html';
-import 'package:js/js.dart';
+import 'package:js/js_util.dart';
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
+import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
 ///  The `MapboxMap` object represents the map on your page. It exposes methods
 ///  and properties that enable you to programmatically change the map,
@@ -35,41 +35,48 @@ import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 ///  );
 ///  ```
 ///  @see [Display a map](https://www.mapbox.com/mapbox-gl-js/examples/)
-@JS('Map')
 class MapboxMap extends Camera {
-  external factory MapboxMap(MapOptions options);
+  final MapboxMapJsImpl jsObject;
 
-  external Style get style;
-  external dynamic get painter;
+  factory MapboxMap(MapOptions options) =>
+      MapboxMap.fromJsObject(MapboxMapJsImpl(options.jsObject));
+
+  Style get style => Style.fromJsObject(jsObject.style);
+  dynamic get painter => jsObject.painter;
 
   ///  The map's {@link ScrollZoomHandler}, which implements zooming in and out with a scroll wheel or trackpad.
   ///  Find more details and examples using `scrollZoom` in the {@link ScrollZoomHandler} section.
-  external ScrollZoomHandler get scrollZoom;
+  ScrollZoomHandler get scrollZoom =>
+      ScrollZoomHandler.fromJsObject(jsObject.scrollZoom);
 
   ///  The map's {@link BoxZoomHandler}, which implements zooming using a drag gesture with the Shift key pressed.
   ///  Find more details and examples using `boxZoom` in the {@link BoxZoomHandler} section.
-  external BoxZoomHandler get boxZoom;
+  BoxZoomHandler get boxZoom => BoxZoomHandler.fromJsObject(jsObject.boxZoom);
 
   ///  The map's {@link DragRotateHandler}, which implements rotating the map while dragging with the right
   ///  mouse button or with the Control key pressed. Find more details and examples using `dragRotate`
   ///  in the {@link DragRotateHandler} section.
-  external DragRotateHandler get dragRotate;
+  DragRotateHandler get dragRotate =>
+      DragRotateHandler.fromJsObject(jsObject.dragRotate);
 
   ///  The map's {@link DragPanHandler}, which implements dragging the map with a mouse or touch gesture.
   ///  Find more details and examples using `dragPan` in the {@link DragPanHandler} section.
-  external DragPanHandler get dragPan;
+  DragPanHandler get dragPan => DragPanHandler.fromJsObject(jsObject.dragPan);
 
   ///  The map's {@link KeyboardHandler}, which allows the user to zoom, rotate, and pan the map using keyboard
   ///  shortcuts. Find more details and examples using `keyboard` in the {@link KeyboardHandler} section.
-  external KeyboardHandler get keyboard;
+  KeyboardHandler get keyboard =>
+      KeyboardHandler.fromJsObject(jsObject.keyboard);
 
   ///  The map's {@link DoubleClickZoomHandler}, which allows the user to zoom by double clicking.
   ///  Find more details and examples using `doubleClickZoom` in the {@link DoubleClickZoomHandler} section.
-  external DoubleClickZoomHandler get doubleClickZoom;
+  DoubleClickZoomHandler get doubleClickZoom =>
+      DoubleClickZoomHandler.fromJsObject(jsObject.doubleClickZoom);
 
   ///  The map's {@link TouchZoomRotateHandler}, which allows the user to zoom or rotate the map with touch gestures.
   ///  Find more details and examples using `touchZoomRotate` in the {@link TouchZoomRotateHandler} section.
-  external TouchZoomRotateHandler get touchZoomRotate;
+  TouchZoomRotateHandler get touchZoomRotate =>
+      TouchZoomRotateHandler.fromJsObject(jsObject.touchZoomRotate);
 
   ///  Adds an {@link IControl} to the map, calling `control.onAdd(this)`.
   ///
@@ -81,7 +88,8 @@ class MapboxMap extends Camera {
   ///  // Add zoom and rotation controls to the map.
   ///  map.addControl(new NavigationControl());
   ///  @see [Display map navigation controls](https://www.mapbox.com/mapbox-gl-js/example/navigation/)
-  external MapboxMap addControl(IControl control, [String position]);
+  MapboxMap addControl(IControl control, [String position]) =>
+      MapboxMap.fromJsObject(jsObject.addControl(control.jsObject, position));
 
   ///  Removes the control from the map.
   ///
@@ -94,7 +102,8 @@ class MapboxMap extends Camera {
   ///  map.addControl(navigation);
   ///  // Remove zoom and rotation controls from the map.
   ///  map.removeControl(navigation);
-  external MapboxMap removeControl(IControl control);
+  MapboxMap removeControl(IControl control) =>
+      MapboxMap.fromJsObject(jsObject.removeControl(control.jsObject));
 
   ///  Resizes the map according to the dimensions of its
   ///  `container` element.
@@ -112,18 +121,20 @@ class MapboxMap extends Camera {
   ///  // after being initially hidden with CSS.
   ///  var mapDiv = document.getElementById('map');
   ///  if (mapDiv.style.visibility === true) map.resize();
-  external MapboxMap resize([dynamic eventData]);
+  MapboxMap resize([dynamic eventData]) =>
+      MapboxMap.fromJsObject(jsObject.resize());
 
   ///  Returns the map's geographical bounds. When the bearing or pitch is non-zero, the visible region is not
   ///  an axis-aligned rectangle, and the result is the smallest bounds that encompasses the visible region.
   ///  @example
   ///  var bounds = map.getBounds();
-  external LngLatBounds getBounds();
+  LngLatBounds getBounds() => LngLatBounds.fromJsObject(jsObject.getBounds());
 
   ///  Returns the maximum geographical bounds the map is constrained to, or `null` if none set.
   ///  @example
   ///  var maxBounds = map.getMaxBounds();
-  external LngLatBounds getMaxBounds();
+  LngLatBounds getMaxBounds() =>
+      LngLatBounds.fromJsObject(jsObject.getMaxBounds());
 
   ///  Sets or clears the map's geographical bounds.
   ///
@@ -144,7 +155,8 @@ class MapboxMap extends Camera {
   ///  ];
   ///  // Set the map's max bounds.
   ///  map.setMaxBounds(bounds);
-  external MapboxMap setMaxBounds(LngLatBounds bounds);
+  MapboxMap setMaxBounds(LngLatBounds bounds) =>
+      MapboxMap.fromJsObject(jsObject.setMaxBounds(bounds.jsObject));
 
   ///  Sets or clears the map's minimum zoom level.
   ///  If the map's current zoom level is lower than the new minimum,
@@ -160,14 +172,15 @@ class MapboxMap extends Camera {
   ///  @returns {MapboxMap} `this`
   ///  @example
   ///  map.setMinZoom(12.25);
-  external MapboxMap setMinZoom([num minZoom]);
+  MapboxMap setMinZoom([num minZoom]) =>
+      MapboxMap.fromJsObject(jsObject.setMinZoom());
 
   ///  Returns the map's minimum allowable zoom level.
   ///
   ///  @returns {number} minZoom
   ///  @example
   ///  var minZoom = map.getMinZoom();
-  external num getMinZoom();
+  num getMinZoom() => jsObject.getMinZoom();
 
   ///  Sets or clears the map's maximum zoom level.
   ///  If the map's current zoom level is higher than the new maximum,
@@ -178,14 +191,15 @@ class MapboxMap extends Camera {
   ///  @returns {MapboxMap} `this`
   ///  @example
   ///  map.setMaxZoom(18.75);
-  external MapboxMap setMaxZoom([num maxZoom]);
+  MapboxMap setMaxZoom([num maxZoom]) =>
+      MapboxMap.fromJsObject(jsObject.setMaxZoom());
 
   ///  Returns the map's maximum allowable zoom level.
   ///
   ///  @returns {number} maxZoom
   ///  @example
   ///  var maxZoom = map.getMaxZoom();
-  external num getMaxZoom();
+  num getMaxZoom() => jsObject.getMaxZoom();
 
   ///  Sets or clears the map's minimum pitch.
   ///  If the map's current pitch is lower than the new minimum,
@@ -194,12 +208,13 @@ class MapboxMap extends Camera {
   ///  @param {number | null | undefined} minPitch The minimum pitch to set (0-60).
   ///    If `null` or `undefined` is provided, the function removes the current minimum pitch (i.e. sets it to 0).
   ///  @returns {MapboxMap} `this`
-  external MapboxMap setMinPitch([num minPitch]);
+  MapboxMap setMinPitch([num minPitch]) =>
+      MapboxMap.fromJsObject(jsObject.setMinPitch());
 
   ///  Returns the map's minimum allowable pitch.
   ///
   ///  @returns {number} minPitch
-  external num getMinPitch();
+  num getMinPitch() => jsObject.getMinPitch();
 
   ///  Sets or clears the map's maximum pitch.
   ///  If the map's current pitch is higher than the new maximum,
@@ -208,12 +223,13 @@ class MapboxMap extends Camera {
   ///  @param {number | null | undefined} maxPitch The maximum pitch to set.
   ///    If `null` or `undefined` is provided, the function removes the current maximum pitch (sets it to 60).
   ///  @returns {MapboxMap} `this`
-  external MapboxMap setMaxPitch([num maxPitch]);
+  MapboxMap setMaxPitch([num maxPitch]) =>
+      MapboxMap.fromJsObject(jsObject.setMaxPitch());
 
   ///  Returns the map's maximum allowable pitch.
   ///
   ///  @returns {number} maxPitch
-  external num getMaxPitch();
+  num getMaxPitch() => jsObject.getMaxPitch();
 
   ///  Returns the state of `renderWorldCopies`. If `true`, multiple copies of the world will be rendered side by side beyond -180 and 180 degrees longitude. If set to `false`:
   ///  - When the map is zoomed out far enough that a single representation of the world does not fill the map's entire
@@ -224,7 +240,7 @@ class MapboxMap extends Camera {
   ///  @example
   ///  var worldCopiesRendered = map.getRenderWorldCopies();
   ///  @see [Render world copies](https://docs.mapbox.com/mapbox-gl-js/example/render-world-copies/)
-  external bool getRenderWorldCopies();
+  bool getRenderWorldCopies() => jsObject.getRenderWorldCopies();
 
   ///  Sets the state of `renderWorldCopies`.
   ///
@@ -239,7 +255,8 @@ class MapboxMap extends Camera {
   ///  @example
   ///  map.setRenderWorldCopies(true);
   ///  @see [Render world copies](https://docs.mapbox.com/mapbox-gl-js/example/render-world-copies/)
-  external MapboxMap setRenderWorldCopies([bool renderWorldCopies]);
+  MapboxMap setRenderWorldCopies([bool renderWorldCopies]) =>
+      MapboxMap.fromJsObject(jsObject.setRenderWorldCopies(renderWorldCopies));
 
   ///  Returns a {@link Point} representing pixel coordinates, relative to the map's `container`,
   ///  that correspond to the specified geographical location.
@@ -249,7 +266,7 @@ class MapboxMap extends Camera {
   ///  @example
   ///  var coordinate = [-122.420679, 37.772537];
   ///  var point = map.project(coordinate);
-  external Point project(LngLat lnglat);
+  Point project(LngLat lnglat) => jsObject.project(lnglat.jsObject);
 
   ///  Returns a {@link LngLat} representing geographical coordinates that correspond
   ///  to the specified pixel coordinates.
@@ -261,22 +278,23 @@ class MapboxMap extends Camera {
   ///    // When the map is clicked, get the geographic coordinate.
   ///    var coordinate = map.unproject(e.point);
   ///  });
-  external LngLat unproject(Point point);
+  LngLat unproject(Point point) =>
+      LngLat.fromJsObject(jsObject.unproject(point));
 
   ///  Returns true if the map is panning, zooming, rotating, or pitching due to a camera animation or user gesture.
   ///  @example
   ///  var isMoving = map.isMoving();
-  external bool isMoving();
+  bool isMoving() => jsObject.isMoving();
 
   ///  Returns true if the map is zooming due to a camera animation or user gesture.
   ///  @example
   ///  var isZooming = map.isZooming();
-  external bool isZooming();
+  bool isZooming() => jsObject.isZooming();
 
   ///  Returns true if the map is rotating due to a camera animation or user gesture.
   ///  @example
   ///  map.isRotating();
-  external bool isRotating();
+  bool isRotating() => jsObject.isRotating();
 
   ///  Adds a listener for events of a specified type occurring on features in a specified style layer.
   ///
@@ -292,7 +310,7 @@ class MapboxMap extends Camera {
   ///  @param {Function} listener The function to be called when the event is fired.
   ///  @returns {MapboxMap} `this`
   // Defined in evented.dart
-  //external MapboxMap on(String type, [dynamic layerIdOrListener, Listener listener]);
+  // MapboxMap on(String type, [dynamic layerIdOrListener, Listener listener]);
 
   ///  Removes an event listener for layer-specific events previously added with `MapboxMap#on`.
   ///
@@ -301,7 +319,7 @@ class MapboxMap extends Camera {
   ///  @param {Function} listener The function previously installed as a listener.
   ///  @returns {MapboxMap} `this`
   // Defined in evented.dart
-  //external MapboxMap off(String type, [dynamic layerIdOrListener, Listener listener]);
+  // MapboxMap off(String type, [dynamic layerIdOrListener, Listener listener]);
 
   ///  Returns an array of [GeoJSON](http://geojson.org/)
   ///  [Feature objects](https://tools.ietf.org/html/rfc7946#section-3.2)
@@ -380,7 +398,12 @@ class MapboxMap extends Camera {
   ///  @see [Get features under the mouse pointer](https://www.mapbox.com/mapbox-gl-js/example/queryrenderedfeatures/)
   ///  @see [Highlight features within a bounding box](https://www.mapbox.com/mapbox-gl-js/example/using-box-queryrenderedfeatures/)
   ///  @see [Filter features within map view](https://www.mapbox.com/mapbox-gl-js/example/filter-features-within-map-view/)
-  external List<dynamic> queryRenderedFeatures(dynamic geometry, [dynamic options]);
+  List<Feature> queryRenderedFeatures(dynamic geometry,
+          [Map<String, dynamic> options]) =>
+      jsObject
+          .queryRenderedFeatures(geometry, jsify(options))
+          .map((dynamic f) => Feature.fromJsObject(f))
+          .toList();
 
   ///  Returns an array of [GeoJSON](http://geojson.org/)
   ///  [Feature objects](https://tools.ietf.org/html/rfc7946#section-3.2)
@@ -417,7 +440,8 @@ class MapboxMap extends Camera {
   ///  });
   ///
   ///  @see [Highlight features containing similar data](https://www.mapbox.com/mapbox-gl-js/example/query-similar-features/)
-  external List<dynamic> querySourceFeatures(String sourceId, dynamic parameters);
+  List<dynamic> querySourceFeatures(String sourceId, dynamic parameters) =>
+      jsObject.querySourceFeatures(sourceId, parameters);
 
   ///  Updates the map's Mapbox style object with a new value.
   ///
@@ -444,7 +468,8 @@ class MapboxMap extends Camera {
   ///  map.setStyle("mapbox://styles/mapbox/streets-v11");
   ///
   ///  @see [Change a map's style](https://www.mapbox.com/mapbox-gl-js/example/setstyle/)
-  external MapboxMap setStyle(dynamic style, [dynamic options]);
+  MapboxMap setStyle(dynamic style, [dynamic options]) =>
+      MapboxMap.fromJsObject(jsObject.setStyle(style));
 
   ///  Returns the map's Mapbox style object, which can be used to recreate the map's style.
   ///
@@ -452,7 +477,7 @@ class MapboxMap extends Camera {
   ///
   ///  @example
   ///  var styleJson = map.getStyle();
-  external dynamic getStyle();
+  dynamic getStyle() => jsObject.getStyle();
 
   ///  Returns a Boolean indicating whether the map's style is fully loaded.
   ///
@@ -460,7 +485,7 @@ class MapboxMap extends Camera {
   ///
   ///  @example
   ///  var styleLoadStatus = map.isStyleLoaded();
-  external bool isStyleLoaded();
+  bool isStyleLoaded() => jsObject.isStyleLoaded();
 
   ///  Adds a source to the map's style.
   ///
@@ -493,7 +518,12 @@ class MapboxMap extends Camera {
   ///  @see Vector source: [Show and hide layers](https://docs.mapbox.com/mapbox-gl-js/example/toggle-layers/)
   ///  @see GeoJSON source: [Add live realtime data](https://docs.mapbox.com/mapbox-gl-js/example/live-geojson/)
   ///  @see Raster DEM source: [Add hillshading](https://docs.mapbox.com/mapbox-gl-js/example/hillshade/)
-  external MapboxMap addSource(String id, dynamic source);
+  MapboxMap addSource(String id, dynamic source) {
+    if (source is Source) {
+      return MapboxMap.fromJsObject(jsObject.addSource(id, source.jsObject));
+    }
+    return MapboxMap.fromJsObject(jsObject.addSource(id, jsify(source)));
+  }
 
   ///  Returns a Boolean indicating whether the source is loaded.
   ///
@@ -501,7 +531,7 @@ class MapboxMap extends Camera {
   ///  @returns {boolean} A Boolean indicating whether the source is loaded.
   ///  @example
   ///  var sourceLoaded = map.isSourceLoaded('bathymetry-data');
-  external bool isSourceLoaded(String id);
+  bool isSourceLoaded(String id) => jsObject.isSourceLoaded(id);
 
   ///  Returns a Boolean indicating whether all tiles in the viewport from all sources on
   ///  the style are loaded.
@@ -509,7 +539,7 @@ class MapboxMap extends Camera {
   ///  @returns {boolean} A Boolean indicating whether all tiles are loaded.
   ///  @example
   ///  var tilesLoaded = map.areTilesLoaded();
-  external bool areTilesLoaded();
+  bool areTilesLoaded() => jsObject.areTilesLoaded();
 
   ///  Adds a/// *custom source type**(#Custom Sources), making it available for use with
   ///  {@link MapboxMap#addSource}.
@@ -517,7 +547,8 @@ class MapboxMap extends Camera {
   ///  @param {string} name The name of the source type; source definition objects use this name in the `{type: ...}` field.
   ///  @param {Function} SourceType A {@link Source} constructor.
   ///  @param {Function} callback Called when the source type is ready or with an error argument if there is an error.
-  external addSourceType(String name, dynamic sourceType, Function callback);
+  addSourceType(String name, dynamic sourceType, Function callback) =>
+      jsObject.addSourceType(name, sourceType, callback);
 
   ///  Removes a source from the map's style.
   ///
@@ -525,7 +556,7 @@ class MapboxMap extends Camera {
   ///  @returns {MapboxMap} `this`
   ///  @example
   ///  map.removeSource('bathymetry-data');
-  external removeSource(String id);
+  removeSource(String id) => jsObject.removeSource(id);
 
   ///  Returns the source with the specified ID in the map's style.
   ///
@@ -537,7 +568,7 @@ class MapboxMap extends Camera {
   ///  @see [Create a draggable point](https://www.mapbox.com/mapbox-gl-js/example/drag-a-point/)
   ///  @see [Animate a point](https://www.mapbox.com/mapbox-gl-js/example/animate-point-along-line/)
   ///  @see [Add live realtime data](https://www.mapbox.com/mapbox-gl-js/example/live-geojson/)
-  external dynamic getSource(String id);
+  dynamic getSource(String id) => jsObject.getSource(id);
 
   ///  Add an image to the style. This image can be displayed on the map like any other icon in the style's
   ///  [sprite](https://docs.mapbox.com/help/glossary/sprite/) using the image's ID with
@@ -582,7 +613,8 @@ class MapboxMap extends Camera {
   ///
   ///  @see Use `HTMLImageElement`: [Add an icon to the map](https://www.mapbox.com/mapbox-gl-js/example/add-image/)
   ///  @see Use `ImageData`: [Add a generated icon to the map](https://www.mapbox.com/mapbox-gl-js/example/add-image-generated/)
-  external addImage(String id, dynamic image, dynamic options);
+  addImage(String id, dynamic image, dynamic options) =>
+      jsObject.addImage(id, image, options);
 
   ///  Update an existing image in a style. This image can be displayed on the map like any other icon in the style's
   ///  [sprite](https://docs.mapbox.com/help/glossary/sprite/) using the image's ID with
@@ -599,7 +631,7 @@ class MapboxMap extends Camera {
   ///  // If an image with the ID 'cat' already exists in the style's sprite,
   ///  // replace that image with a new image, 'other-cat-icon.png'.
   ///  if (map.hasImage('cat')) map.updateImage('cat', './other-cat-icon.png');
-  external updateImage(String id, dynamic image);
+  updateImage(String id, dynamic image) => jsObject.updateImage(id, image);
 
   ///  Check whether or not an image with a specific ID exists in the style. This checks both images
   ///  in the style's original [sprite](https://docs.mapbox.com/help/glossary/sprite/) and any images
@@ -612,7 +644,7 @@ class MapboxMap extends Camera {
   ///  // Check if an image with the ID 'cat' exists in
   ///  // the style's sprite.
   ///  var catIconExists = map.hasImage('cat');
-  external bool hasImage(String id);
+  bool hasImage(String id) => jsObject.hasImage(id);
 
   ///  Remove an image from a style. This can be an image from the style's original
   ///  [sprite](https://docs.mapbox.com/help/glossary/sprite/) or any images
@@ -624,7 +656,7 @@ class MapboxMap extends Camera {
   ///  // If an image with the ID 'cat' exists in
   ///  // the style's sprite, remove it.
   ///  if (map.hasImage('cat')) map.removeImage('cat');
-  external removeImage(String id);
+  removeImage(String id) => jsObject.removeImage(id);
 
   ///  Load an image from an external URL to be used with `MapboxMap#addImage`. External
   ///  domains must support [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS).
@@ -641,7 +673,7 @@ class MapboxMap extends Camera {
   ///  });
   ///
   ///  @see [Add an icon to the map](https://www.mapbox.com/mapbox-gl-js/example/add-image/)
-  external loadImage(String url, Function callback);
+  loadImage(String url, Function callback) => jsObject.loadImage(url, callback);
 
   //////
   ///  Returns an Array of strings containing the IDs of all images currently available in the map.
@@ -653,7 +685,7 @@ class MapboxMap extends Camera {
   ///  @example
   ///  var allImages = map.listImages();
   ///
-  external List<String> listImages();
+  List<String> listImages() => jsObject.listImages();
 
   ///  Adds a [Mapbox style layer](https://docs.mapbox.com/mapbox-gl-js/style-spec/#layers)
   ///  to the map's style.
@@ -689,7 +721,14 @@ class MapboxMap extends Camera {
   ///  @see [Create and style clusters](https://www.mapbox.com/mapbox-gl-js/example/cluster/)
   ///  @see [Add a vector tile source](https://www.mapbox.com/mapbox-gl-js/example/vector-source/)
   ///  @see [Add a WMS source](https://www.mapbox.com/mapbox-gl-js/example/wms/)
-  external MapboxMap addLayer(dynamic layer, [String beforeId]);
+  MapboxMap addLayer(dynamic layer, [String beforeId]) {
+    if (layer is Layer) {
+      return MapboxMap.fromJsObject(jsObject.addLayer(layer.jsObject));
+    }
+    return MapboxMap.fromJsObject(jsObject.addLayer(jsify(layer)));
+  }
+
+  //jsObject.addLayer(layer.jsObject ?? jsify(layer));
 
   ///  Moves a layer to a different z-position.
   ///
@@ -701,7 +740,8 @@ class MapboxMap extends Camera {
   ///  @example
   ///  // Move a layer with ID 'label' before the layer with ID 'waterways'.
   ///  map.moveLayer('label', 'waterways');
-  external MapboxMap moveLayer(String id, String beforeId);
+  MapboxMap moveLayer(String id, String beforeId) =>
+      MapboxMap.fromJsObject(jsObject.moveLayer(id, beforeId));
 
   ///  Removes the layer with the given ID from the map's style.
   ///
@@ -713,7 +753,7 @@ class MapboxMap extends Camera {
   ///  @example
   ///  // If a layer with ID 'state-data' exists, remove it.
   ///  if (map.getLayer('state-data')) map.removeLayer('state-data');
-  external removeLayer(String id);
+  removeLayer(String id) => jsObject.removeLayer(id);
 
   ///  Returns the layer with the specified ID in the map's style.
   ///
@@ -726,7 +766,7 @@ class MapboxMap extends Camera {
   ///
   ///  @see [Filter symbols by toggling a list](https://www.mapbox.com/mapbox-gl-js/example/filter-markers/)
   ///  @see [Filter symbols by text input](https://www.mapbox.com/mapbox-gl-js/example/filter-markers-by-input/)
-  external dynamic getLayer(String id);
+  dynamic getLayer(String id) => jsObject.getLayer(id);
 
   ///  Sets the zoom extent for the specified style layer. The zoom extent includes the
   ///  [minimum zoom level](https://docs.mapbox.com/mapbox-gl-js/style-spec/#layer-minzoom)
@@ -745,7 +785,9 @@ class MapboxMap extends Camera {
   ///
   ///  @example
   ///  map.setLayerZoomRange('my-layer', 2, 5);
-  external MapboxMap setLayerZoomRange(String layerId, num minzoom, num maxzoom);
+  MapboxMap setLayerZoomRange(String layerId, num minzoom, num maxzoom) =>
+      MapboxMap.fromJsObject(
+          jsObject.setLayerZoomRange(layerId, minzoom, maxzoom));
 
   ///  Sets the filter for the specified style layer.
   ///
@@ -762,13 +804,15 @@ class MapboxMap extends Camera {
   ///  @see [Filter features within map view](https://www.mapbox.com/mapbox-gl-js/example/filter-features-within-map-view/)
   ///  @see [Highlight features containing similar data](https://www.mapbox.com/mapbox-gl-js/example/query-similar-features/)
   ///  @see [Create a timeline animation](https://www.mapbox.com/mapbox-gl-js/example/timeline-animation/)
-  external MapboxMap setFilter(String layerId, dynamic filter, [StyleSetterOptions options]);
+  MapboxMap setFilter(String layerId, dynamic filter,
+          [StyleSetterOptions options]) =>
+      MapboxMap.fromJsObject(jsObject.setFilter(layerId, filter));
 
   ///  Returns the filter applied to the specified style layer.
   ///
   ///  @param {string} layerId The ID of the style layer whose filter to get.
   ///  @returns {Array} The layer's filter.
-  external List<dynamic> getFilter(String layerId);
+  List<dynamic> getFilter(String layerId) => jsObject.getFilter(layerId);
 
   ///  Sets the value of a paint property in the specified style layer.
   ///
@@ -784,14 +828,17 @@ class MapboxMap extends Camera {
   ///  @see [Change a layer's color with buttons](https://www.mapbox.com/mapbox-gl-js/example/color-switcher/)
   ///  @see [Adjust a layer's opacity](https://www.mapbox.com/mapbox-gl-js/example/adjust-layer-opacity/)
   ///  @see [Create a draggable point](https://www.mapbox.com/mapbox-gl-js/example/drag-a-point/)
-  external setPaintProperty(String layerId, String name, dynamic value, [StyleSetterOptions options]);
+  setPaintProperty(String layerId, String name, dynamic value,
+          [StyleSetterOptions options]) =>
+      jsObject.setPaintProperty(layerId, name, jsify(value));
 
   ///  Returns the value of a paint property in the specified style layer.
   ///
   ///  @param {string} layerId The ID of the layer to get the paint property from.
   ///  @param {string} name The name of a paint property to get.
   ///  @returns {*} The value of the specified paint property.
-  external dynamic getPaintProperty(String layerId, String name);
+  dynamic getPaintProperty(String layerId, String name) =>
+      jsObject.getPaintProperty(layerId, name);
 
   ///  Sets the value of a layout property in the specified style layer.
   ///
@@ -803,14 +850,17 @@ class MapboxMap extends Camera {
   ///  @returns {MapboxMap} `this`
   ///  @example
   ///  map.setLayoutProperty('my-layer', 'visibility', 'none');
-  external MapboxMap setLayoutProperty(String layerId, String name, dynamic value, [StyleSetterOptions options]);
+  MapboxMap setLayoutProperty(String layerId, String name, dynamic value,
+          [StyleSetterOptions options]) =>
+      MapboxMap.fromJsObject(jsObject.setLayoutProperty(layerId, name, value));
 
   ///  Returns the value of a layout property in the specified style layer.
   ///
   ///  @param {string} layerId The ID of the layer to get the layout property from.
   ///  @param {string} name The name of the layout property to get.
   ///  @returns {*} The value of the specified layout property.
-  external dynamic getLayoutProperty(String layerId, String name);
+  dynamic getLayoutProperty(String layerId, String name) =>
+      jsObject.getLayoutProperty(layerId, name);
 
   ///  Sets the any combination of light values.
   ///
@@ -818,12 +868,13 @@ class MapboxMap extends Camera {
   ///  @param {Object} [options]
   ///  @param {boolean} [options.validate=true] Whether to check if the filter conforms to the Mapbox GL Style Specification. Disabling validation is a performance optimization that should only be used if you have previously validated the values you will be passing to this function.
   ///  @returns {MapboxMap} `this`
-  external MapboxMap setLight(dynamic light, StyleSetterOptions options);
+  MapboxMap setLight(dynamic light, StyleSetterOptions options) =>
+      MapboxMap.fromJsObject(jsObject.setLight(light, options.jsObject));
 
   ///  Returns the value of the light object.
   ///
   ///  @returns {Object} light Light properties of the style.
-  external dynamic getLight();
+  dynamic getLight() => jsObject.getLight();
 
   ///  Sets the state of a feature. The `state` object is merged in with the existing state of the feature.
   ///  Features are identified by their `id` attribute, which must be an integer or a string that can be
@@ -841,7 +892,8 @@ class MapboxMap extends Camera {
   ///  feature ids, set the `generateId` option in the `GeoJSONSourceSpecification` to auto-assign them. This
   ///  option assigns ids based on a feature's index in the source data. If you change feature data using
   ///  `map.getSource('some id').setData(..)`, you may need to re-apply state taking into account updated `id` values.
-  external setFeatureState(dynamic feature, dynamic state);
+  setFeatureState(dynamic feature, dynamic state) =>
+      jsObject.setFeatureState(feature, state);
 
   ///  Removes feature state, setting it back to the default behavior. If only
   ///  source is specified, removes all states of that source. If
@@ -856,7 +908,8 @@ class MapboxMap extends Camera {
   ///  @param {string} `target.sourceLayer` (optional) /// For vector tile sources, the sourceLayer is
   ///   required.*
   ///  @param {string} key (optional) The key in the feature state to reset.
-  external removeFeatureState(dynamic target, [String key]);
+  removeFeatureState(dynamic target, [String key]) =>
+      jsObject.removeFeatureState(target);
 
   ///  Gets the state of a feature.
   ///  Features are identified by their `id` attribute, which must be an integer or a string that can be
@@ -870,12 +923,12 @@ class MapboxMap extends Camera {
   ///   required.*
   ///
   ///  @returns {Object} The state of the feature.
-  external dynamic getFeatureState(dynamic feature);
+  dynamic getFeatureState(dynamic feature) => jsObject.getFeatureState(feature);
 
   ///  Returns the map's containing HTML element.
   ///
   ///  @returns {HTMLElement} The map's container.
-  external HtmlElement getContainer();
+  HtmlElement getContainer() => jsObject.getContainer();
 
   ///  Returns the HTML element containing the map's `<canvas>` element.
   ///
@@ -888,7 +941,7 @@ class MapboxMap extends Camera {
   ///  @returns {HTMLElement} The container of the map's `<canvas>`.
   ///  @see [Create a draggable point](https://www.mapbox.com/mapbox-gl-js/example/drag-a-point/)
   ///  @see [Highlight features within a bounding box](https://www.mapbox.com/mapbox-gl-js/example/using-box-queryrenderedfeatures/)
-  external HtmlElement getCanvasContainer();
+  HtmlElement getCanvasContainer() => jsObject.getCanvasContainer();
 
   ///  Returns the map's `<canvas>` element.
   ///
@@ -896,7 +949,7 @@ class MapboxMap extends Camera {
   ///  @see [Measure distances](https://www.mapbox.com/mapbox-gl-js/example/measure/)
   ///  @see [Display a popup on hover](https://www.mapbox.com/mapbox-gl-js/example/popup-on-hover/)
   ///  @see [Center the map on a clicked symbol](https://www.mapbox.com/mapbox-gl-js/example/center-on-symbol/)
-  external CanvasElement getCanvas();
+  CanvasElement getCanvas() => jsObject.getCanvas();
 
   ///  Returns a Boolean indicating whether the map is fully loaded.
   ///
@@ -905,7 +958,7 @@ class MapboxMap extends Camera {
   ///  has not yet fully loaded.
   ///
   ///  @returns {boolean} A Boolean indicating whether the map is fully loaded.
-  external bool loaded();
+  bool loaded() => jsObject.loaded();
 
   ///  Clean up and release all internal resources associated with this map.
   ///
@@ -914,12 +967,12 @@ class MapboxMap extends Camera {
   ///  Use this method when you are done using the map and wish to ensure that it no
   ///  longer consumes browser resources. Afterwards, you must not call any other
   ///  methods on the map.
-  external remove();
+  remove() => jsObject.remove();
 
   ///  Trigger the rendering of a single frame. Use this method with custom layers to
   ///  repaint the map when the layer changes. Calling this multiple times before the
   ///  next frame is rendered will still result in only a single frame being rendered.
-  external triggerRepaint();
+  triggerRepaint() => jsObject.triggerRepaint();
 
   ///  Gets and sets a Boolean indicating whether the map will render an outline
   ///  around each tile and the tile ID. These tile boundaries are useful for
@@ -932,8 +985,8 @@ class MapboxMap extends Camera {
   ///  @type {boolean}
   ///  @instance
   ///  @memberof MapboxMap
-  external bool get showTileBoundaries;
-  external set showTileBoundaries(bool value);
+  bool get showTileBoundaries => jsObject.showTileBoundaries;
+  set showTileBoundaries(bool value) => jsObject.showTileBoundaries;
 
   ///  Gets and sets a Boolean indicating whether the map will render boxes
   ///  around all symbols in the data source, revealing which symbols
@@ -944,8 +997,8 @@ class MapboxMap extends Camera {
   ///  @type {boolean}
   ///  @instance
   ///  @memberof MapboxMap
-  external bool get showCollisionBoxes;
-  external set showCollisionBoxes(bool value);
+  bool get showCollisionBoxes => jsObject.showCollisionBoxes;
+  set showCollisionBoxes(bool value) => jsObject.showCollisionBoxes;
 
   ///  Gets and sets a Boolean indicating whether the map should color-code
   ///  each fragment to show how many times it has been shaded.
@@ -957,8 +1010,8 @@ class MapboxMap extends Camera {
   ///  @type {boolean}
   ///  @instance
   ///  @memberof MapboxMap
-  external bool get showOverdrawInspector;
-  external set showOverdrawInspector(bool value);
+  bool get showOverdrawInspector => jsObject.showOverdrawInspector;
+  set showOverdrawInspector(bool value) => jsObject.showOverdrawInspector;
 
   ///  Gets and sets a Boolean indicating whether the map will
   ///  continuously repaint. This information is useful for analyzing performance.
@@ -967,12 +1020,12 @@ class MapboxMap extends Camera {
   ///  @type {boolean}
   ///  @instance
   ///  @memberof MapboxMap
-  external bool get repaint;
-  external set repaint(bool value);
+  bool get repaint => jsObject.repaint;
+  set repaint(bool value) => jsObject.repaint;
 
   /// show vertices
-  external bool get vertices;
-  external set vertices(bool value);
+  bool get vertices => jsObject.vertices;
+  set vertices(bool value) => jsObject.vertices;
 
   ///  The version of Mapbox GL JS in use as specified in package.json, CHANGELOG.md, and the GitHub release.
   ///
@@ -980,78 +1033,80 @@ class MapboxMap extends Camera {
   ///  @instance
   ///  @memberof MapboxMap
   ///  @var {string} version
-  external String get version;
+  String get version => jsObject.version;
+
+  /// Creates a new MapboxMap from a [jsObject].
+  MapboxMap.fromJsObject(this.jsObject) : super.fromJsObject(jsObject);
 }
 
-@JS()
-@anonymous
-class MapOptions {
+class MapOptions extends JsObjectWrapper<MapOptionsJsImpl> {
   /// If `true`, the map's position (zoom, center latitude, center longitude, bearing, and pitch) will be synced with the hash fragment of the page's URL.
   /// For example, `http://path/to/my/page.html#2.59/39.26/53.07/-24.1/60`.
   /// An additional string may optionally be provided to indicate a parameter-styled hash,
   /// e.g. http://path/to/my/page.html#map=2.59/39.26/53.07/-24.1/60&foo=bar, where foo
   /// is a custom parameter and bar is an arbitrary hash distinct from the map hash.
   /// `bool` or `String`
-  external dynamic get hash;
+  dynamic get hash => jsObject.hash;
 
   /// If `false`, no mouse, touch, or keyboard listeners will be attached to the map, so it will not respond to interaction.
-  external bool get interactive;
+  bool get interactive => jsObject.interactive;
 
   /// The HTML element in which Mapbox GL JS will render the map, or the element's string `id`. The specified element must have no children.
   /// `HTMLElement` or `String`
-  external dynamic get container;
+  dynamic get container => jsObject.container;
 
   /// The threshold, measured in degrees, that determines when the map's
   /// bearing will snap to north. For example, with a `bearingSnap` of 7, if the user rotates
   /// the map within 7 degrees of north, the map will automatically snap to exact north.
-  external num get bearingSnap;
+  num get bearingSnap => jsObject.bearingSnap;
 
   /// If `false`, the map's pitch (tilt) control with "drag to rotate" interaction will be disabled.
-  external bool get pitchWithRotate;
+  bool get pitchWithRotate => jsObject.pitchWithRotate;
 
   ///  The max number of pixels a user can shift the mouse pointer during a click for it to be considered a valid click (as opposed to a mouse drag).
-  external num get clickTolerance;
+  num get clickTolerance => jsObject.clickTolerance;
 
   /// If `true`, an {@link AttributionControl} will be added to the map.
-  external bool get attributionControl;
+  bool get attributionControl => jsObject.attributionControl;
 
   /// String or strings to show in an {@link AttributionControl}. Only applicable if `options.attributionControl` is `true`.
   /// `String` or `List<String>`
-  external dynamic get customAttribution;
+  dynamic get customAttribution => jsObject.customAttribution;
 
   /// A string representing the position of the Mapbox wordmark on the map. Valid options are `top-left`,`top-right`, `bottom-left`, `bottom-right`.
-  external String get logoPosition;
+  String get logoPosition => jsObject.logoPosition;
 
   /// If `true`, map creation will fail if the performance of Mapbox
   /// GL JS would be dramatically worse than expected (i.e. a software renderer would be used).
-  external bool get failIfMajorPerformanceCaveat;
+  bool get failIfMajorPerformanceCaveat =>
+      jsObject.failIfMajorPerformanceCaveat;
 
   /// If `true`, the map's canvas can be exported to a PNG using `map.getCanvas().toDataURL()`. This is `false` by default as a performance optimization.
-  external bool get preserveDrawingBuffer;
+  bool get preserveDrawingBuffer => jsObject.preserveDrawingBuffer;
 
   /// If `true`, the gl context will be created with MSAA antialiasing, which can be useful for antialiasing custom layers. this is `false` by default as a performance optimization.
-  external bool get antialias;
+  bool get antialias => jsObject.antialias;
 
   /// If `false`, the map won't attempt to re-request tiles once they expire per their HTTP `cacheControl`/`expires` headers.
-  external bool get refreshExpiredTiles;
+  bool get refreshExpiredTiles => jsObject.refreshExpiredTiles;
 
   /// If set, the map will be constrained to the given bounds.
-  external LngLatBounds get maxBounds;
+  LngLatBounds get maxBounds => LngLatBounds.fromJsObject(jsObject.maxBounds);
 
   /// If `true`, the "scroll to zoom" interaction is enabled. An `Object` value is passed as options to {@link ScrollZoomHandler#enable}.
-  external bool get scrollZoom;
+  bool get scrollZoom => jsObject.scrollZoom;
 
   /// The minimum zoom level of the map (0-24).
-  external num get minZoom;
+  num get minZoom => jsObject.minZoom;
 
   /// The maximum zoom level of the map (0-24).
-  external num get maxZoom;
+  num get maxZoom => jsObject.maxZoom;
 
   /// The minimum pitch of the map (0-60).
-  external num get minPitch;
+  num get minPitch => jsObject.minPitch;
 
   /// The maximum pitch of the map (0-60).
-  external num get maxPitch;
+  num get maxPitch => jsObject.maxPitch;
 
   ///  The map's Mapbox style. This must be an a JSON object conforming to
   ///  the schema described in the [Mapbox Style Specification](https://mapbox.com/mapbox-gl-style-spec/), or a URL to
@@ -1074,84 +1129,85 @@ class MapOptions {
   ///
   ///  Tilesets hosted with Mapbox can be style-optimized if you append `?optimize=true` to the end of your style URL, like `mapbox://styles/mapbox/streets-v11?optimize=true`.
   ///  Learn more about style-optimized vector tiles in our [API documentation](https://www.mapbox.com/api-documentation/maps/#retrieve-tiles).
-  external dynamic get style;
+  dynamic get style => jsObject.style;
 
   /// If `true`, the "box zoom" interaction is enabled (see {@link BoxZoomHandler}).
-  external bool get boxZoom;
+  bool get boxZoom => jsObject.boxZoom;
 
   /// If `true`, the "drag to rotate" interaction is enabled (see {@link DragRotateHandler}).
-  external bool get dragRotate;
+  bool get dragRotate => jsObject.dragRotate;
 
   /// If `true`, the "drag to pan" interaction is enabled. An `Object` value is passed as options to {@link DragPanHandler#enable}.
-  external dynamic get dragPan;
+  dynamic get dragPan => jsObject.dragPan;
 
   /// If `true`, keyboard shortcuts are enabled (see {@link KeyboardHandler}).
-  external bool get keyboard;
+  bool get keyboard => jsObject.keyboard;
 
   /// If `true`, the "double click to zoom" interaction is enabled (see {@link DoubleClickZoomHandler}).
-  external bool get doubleClickZoom;
+  bool get doubleClickZoom => jsObject.doubleClickZoom;
 
   /// If `true`, the "pinch to rotate and zoom" interaction is enabled. An `Object` value is passed as options to {@link TouchZoomRotateHandler#enable}.
-  external bool get touchZoomRotate;
+  bool get touchZoomRotate => jsObject.touchZoomRotate;
 
   /// If `true`, the map will automatically resize when the browser window resizes.
-  external bool get trackResize;
+  bool get trackResize => jsObject.trackResize;
 
   /// The inital geographical centerpoint of the map. If `center` is not specified in the constructor options, Mapbox GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to `[0, 0]` Note: Mapbox GL uses longitude, latitude coordinate order (as opposed to latitude, longitude) to match GeoJSON.
-  external LngLat get center;
+  LngLat get center => LngLat.fromJsObject(jsObject.center);
 
   /// The initial zoom level of the map. If `zoom` is not specified in the constructor options, Mapbox GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to `0`.
-  external num get zoom;
+  num get zoom => jsObject.zoom;
 
   /// The initial bearing (rotation) of the map, measured in degrees counter-clockwise from north. If `bearing` is not specified in the constructor options, Mapbox GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to `0`.
-  external num get bearing;
+  num get bearing => jsObject.bearing;
 
   /// The initial pitch (tilt) of the map, measured in degrees away from the plane of the screen (0-60). If `pitch` is not specified in the constructor options, Mapbox GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to `0`.
-  external num get pitch;
+  num get pitch => jsObject.pitch;
 
   /// The initial bounds of the map. If `bounds` is specified, it overrides `center` and `zoom` constructor options.
-  external LngLatBounds get bounds;
+  LngLatBounds get bounds => LngLatBounds.fromJsObject(jsObject.bounds);
 
   /// A [`fitBounds`](#map#fitbounds) options object to use _only_ when fitting the initial `bounds` provided above.
-  external dynamic get fitBoundsOptions;
+  dynamic get fitBoundsOptions => jsObject.fitBoundsOptions;
 
   /// If `true`, multiple copies of the world will be rendered side by side beyond -180 and 180 degrees longitude. If set to `false`:
   /// - When the map is zoomed out far enough that a single representation of the world does not fill the map's entire
   /// container, there will be blank space beyond 180 and -180 degrees longitude.
   /// - Features that cross 180 and -180 degrees longitude will be cut in two (with one portion on the right edge of the
   /// map and the other on the left edge of the map) at every zoom level.
-  external bool get renderWorldCopies;
+  bool get renderWorldCopies => jsObject.renderWorldCopies;
 
   /// The maximum number of tiles stored in the tile cache for a given source. If omitted, the cache will be dynamically sized based on the current viewport.
-  external num get maxTileCacheSize;
+  num get maxTileCacheSize => jsObject.maxTileCacheSize;
 
   /// Defines a CSS
   /// font-family for locally overriding generation of glyphs in the 'CJK Unified Ideographs', 'Hiragana', 'Katakana' and 'Hangul Syllables' ranges.
   /// In these ranges, font settings from the map's style will be ignored, except for font-weight keywords (light/regular/medium/bold).
   /// Set to `false`, to enable font settings from the map's style for these glyph ranges.  Note that [Mapbox Studio](https://studio.mapbox.com/) sets this value to `false` by default.
   /// The purpose of this option is to avoid bandwidth-intensive glyph server requests. (See [Use locally generated ideographs](https://www.mapbox.com/mapbox-gl-js/example/local-ideographs).)
-  external String get localIdeographFontFamily;
+  String get localIdeographFontFamily => jsObject.localIdeographFontFamily;
 
   /// A callback run before the MapboxMap makes a request for an external URL. The callback can be used to modify the url, set headers, or set the credentials property for cross-origin requests.
   /// Expected to return an object with a `url` property and optionally `headers` and `credentials` properties.
-  external RequestTransformFunction get transformRequest;
+  RequestTransformFunctionJsImpl get transformRequest =>
+      jsObject.transformRequest; //TODO: Remove JsImpl
 
   /// If `true`, Resource Timing API information will be collected for requests made by GeoJSON and Vector Tile web workers (this information is normally inaccessible from the main Javascript thread). Information will be returned in a `resourceTiming` property of relevant `data` events.
-  external bool get collectResourceTiming;
+  bool get collectResourceTiming => jsObject.collectResourceTiming;
 
   /// Controls the duration of the fade-in/fade-out animation for label collisions, in milliseconds. This setting affects all symbol layers. This setting does not affect the duration of runtime styling transitions or raster tile cross-fading.
-  external num get fadeDuration;
+  num get fadeDuration => jsObject.fadeDuration;
 
   /// If `true`, symbols from multiple sources can collide with each other during collision detection. If `false`, collision detection is run separately for the symbols in each source.
-  external bool get crossSourceCollisions;
+  bool get crossSourceCollisions => jsObject.crossSourceCollisions;
 
   /// If specified, map will use this token instead of the one defined in accessToken.
-  external String get accessToken;
+  String get accessToken => jsObject.accessToken;
 
   /// A patch to apply to the default localization table for UI strings, e.g. control tooltips. The `locale` object maps namespaced UI string IDs to translated strings in the target language; see `src/ui/default_locale.js` for an example with all supported string IDs. The object may specify all UI strings (thereby adding support for a new translation) or only a subset of strings (thereby patching the default translation table).
-  external dynamic get locale;
+  dynamic get locale => jsObject.locale;
 
-  external factory MapOptions({
+  factory MapOptions({
     dynamic hash,
     bool interactive,
     dynamic container,
@@ -1188,33 +1244,88 @@ class MapOptions {
     bool renderWorldCopies,
     num maxTileCacheSize,
     String localIdeographFontFamily,
-    RequestTransformFunction transformRequest,
+    RequestTransformFunctionJsImpl transformRequest, //TODO: Remove JsImpl
     bool collectResourceTiming,
     num fadeDuration,
     bool crossSourceCollisions,
     String accessToken,
     dynamic locale,
-  });
+  }) =>
+      MapOptions.fromJsObject(MapOptionsJsImpl(
+        //hash: hash,
+        interactive: interactive ?? true,
+        container: container,
+        bearingSnap: bearingSnap,
+        pitchWithRotate: pitchWithRotate ?? true,
+        clickTolerance: clickTolerance ?? true,
+        attributionControl: attributionControl ?? true,
+        customAttribution: customAttribution,
+        logoPosition: logoPosition ?? 'bottom-left',
+        failIfMajorPerformanceCaveat: failIfMajorPerformanceCaveat,
+        preserveDrawingBuffer: preserveDrawingBuffer,
+        antialias: antialias,
+        refreshExpiredTiles: refreshExpiredTiles,
+        maxBounds: maxBounds?.jsObject,
+        scrollZoom: scrollZoom ?? true,
+        minZoom: minZoom,
+        maxZoom: maxZoom,
+        minPitch: minPitch,
+        maxPitch: maxPitch,
+        style: style,
+        boxZoom: boxZoom,
+        dragRotate: dragRotate,
+        dragPan: dragPan ?? true,
+        keyboard: keyboard ?? true,
+        doubleClickZoom: doubleClickZoom ?? true,
+        touchZoomRotate: touchZoomRotate ?? true,
+        trackResize: trackResize ?? true,
+        center: center?.jsObject,
+        zoom: zoom,
+        bearing: bearing,
+        pitch: pitch,
+        bounds: bounds?.jsObject,
+        fitBoundsOptions: fitBoundsOptions,
+        renderWorldCopies: renderWorldCopies,
+        maxTileCacheSize: maxTileCacheSize,
+        localIdeographFontFamily: localIdeographFontFamily,
+        transformRequest: transformRequest,
+        collectResourceTiming: collectResourceTiming,
+        fadeDuration: fadeDuration,
+        crossSourceCollisions: crossSourceCollisions,
+        accessToken: accessToken,
+        locale: locale,
+      ));
+
+  /// Creates a new MapOptions from a [jsObject].
+  MapOptions.fromJsObject(MapOptionsJsImpl jsObject)
+      : super.fromJsObject(jsObject);
 }
 
-typedef RequestTransformFunction = RequestParameters Function(String url, String resourceType);
+class RequestParameters extends JsObjectWrapper<RequestParametersJsImpl> {
+  String get url => jsObject.url;
+  String get credentials => jsObject.credentials;
+  dynamic get headers => jsObject.headers;
+  String get method => jsObject.method;
+  bool get collectResourceTiming => jsObject.collectResourceTiming;
 
-@JS()
-@anonymous
-class RequestParameters {
-  String url;
-  String credentials;
-  dynamic headers;
-  String method;
-  bool collectResourceTiming;
-
-  external factory RequestParameters({
+  factory RequestParameters({
     String url,
     String credentials,
     dynamic headers,
     String method,
     bool collectResourceTiming,
-  });
+  }) =>
+      RequestParameters.fromJsObject(RequestParametersJsImpl(
+        url: url,
+        credentials: credentials,
+        headers: headers,
+        method: method,
+        collectResourceTiming: collectResourceTiming,
+      ));
+
+  /// Creates a new RequestParameters from a [jsObject].
+  RequestParameters.fromJsObject(RequestParametersJsImpl jsObject)
+      : super.fromJsObject(jsObject);
 }
 
 ///  Interface for interactive controls added to the map. This is a
@@ -1247,22 +1358,23 @@ class RequestParameters {
 ///   }
 /// }
 /// ```
-@JS()
-@anonymous
-abstract class IControl {
+class IControl extends JsObjectWrapper<IControlJsImpl> {
   ///  Register a control on the map and give it a chance to register event listeners
   ///  and resources. This method is called by {@link MapboxMap#addControl}
   ///  internally.
-  external HtmlElement onAdd(MapboxMap map);
+  HtmlElement onAdd(MapboxMap map) => jsObject.onRemove(map.jsObject);
 
   ///  Unregister a control on the map and give it a chance to detach event listeners
   ///  and resources. This method is called by {@link MapboxMap#removeControl}
   ///  internally.
-  external onRemove(MapboxMap map);
+  onRemove(MapboxMap map) => jsObject.onRemove(map.jsObject);
 
   ///  Optionally provide a default position for this control. If this method
   ///  is implemented and {@link MapboxMap#addControl} is called without the `position`
   ///  parameter, the value returned by getDefaultPosition will be used as the
   ///  control's position.
-  external String getDefaultPosition();
+  String getDefaultPosition() => jsObject.getDefaultPosition();
+
+  /// Creates a new IControl from a [jsObject].
+  IControl.fromJsObject(IControlJsImpl jsObject) : super.fromJsObject(jsObject);
 }

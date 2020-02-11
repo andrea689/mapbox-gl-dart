@@ -1,32 +1,30 @@
-@JS('mapboxgl')
 library mapboxgl.ui.handler.scroll_zoom;
 
 import 'dart:html';
 
-import 'package:js/js.dart';
+import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
-@JS()
-@anonymous
-abstract class ScrollZoomHandler {
+class ScrollZoomHandler extends JsObjectWrapper<ScrollZoomHandlerJsImpl> {
   ///  Set the zoom rate of a trackpad
   ///  @param {number} [zoomRate = 1/100]
-  external setZoomRate(num zoomRate);
+  setZoomRate(num zoomRate) => jsObject.setZoomRate(zoomRate);
 
   ///  Set the zoom rate of a mouse wheel
   ///  @param {number} [wheelZoomRate = 1/450]
-  external setWheelZoomRate(num wheelZoomRate);
+  setWheelZoomRate(num wheelZoomRate) =>
+      jsObject.setWheelZoomRate(wheelZoomRate);
 
   ///  Returns a Boolean indicating whether the "scroll to zoom" interaction is enabled.
   ///
   ///  @returns {boolean} `true` if the "scroll to zoom" interaction is enabled.
-  external bool isEnabled();
+  bool isEnabled() => jsObject.isEnabled();
 
   ///  Active state is turned on and off with every scroll wheel event and is set back to false before the map
   ///  render is called, so _active is not a good candidate for determining if a scroll zoom animation is in
   ///  progress.
-  external bool isActive();
+  bool isActive() => jsObject.isActive();
 
-  external bool isZooming();
+  bool isZooming() => jsObject.isZooming();
 
   ///  Enables the "scroll to zoom" interaction.
   ///
@@ -37,13 +35,17 @@ abstract class ScrollZoomHandler {
   ///    map.scrollZoom.enable();
   ///  @example
   ///   map.scrollZoom.enable({ around: 'center' })
-  external enable(dynamic options);
+  enable(dynamic options) => jsObject.enable(options);
 
   ///  Disables the "scroll to zoom" interaction.
   ///
   ///  @example
   ///    map.scrollZoom.disable();
-  external disable();
+  disable() => jsObject.disable();
 
-  external onWheel(WheelEvent e);
+  onWheel(WheelEvent e) => jsObject.onWheel(e);
+
+  /// Creates a new ScrollZoomHandler from a [jsObject].
+  ScrollZoomHandler.fromJsObject(ScrollZoomHandlerJsImpl jsObject)
+      : super.fromJsObject(jsObject);
 }

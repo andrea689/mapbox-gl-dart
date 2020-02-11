@@ -1,6 +1,5 @@
 import 'dart:html';
 
-import 'package:js/js.dart';
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 
 Marker marker;
@@ -26,7 +25,7 @@ void main() {
     ),
   ).setLngLat(LngLat(0, 0)).addTo(map);
 
-  marker.on('dragend', allowInterop(onDragEnd));
+  marker.on('dragend', onDragEnd);
 }
 
 void onDragEnd(_) {

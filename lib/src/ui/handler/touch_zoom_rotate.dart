@@ -1,17 +1,15 @@
-@JS('mapboxgl')
 library mapboxgl.ui.handler.touch_zoom_rotate;
 
 import 'dart:html';
 
-import 'package:js/js.dart';
+import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
-@JS()
-@anonymous
-abstract class TouchZoomRotateHandler {
+class TouchZoomRotateHandler
+    extends JsObjectWrapper<TouchZoomRotateHandlerJsImpl> {
   ///  Returns a Boolean indicating whether the "pinch to rotate and zoom" interaction is enabled.
   ///
   ///  @returns {boolean} `true` if the "pinch to rotate and zoom" interaction is enabled.
-  external bool isEnabled();
+  bool isEnabled() => jsObject.isEnabled();
 
   ///  Enables the "pinch to rotate and zoom" interaction.
   ///
@@ -22,27 +20,31 @@ abstract class TouchZoomRotateHandler {
   ///    map.touchZoomRotate.enable();
   ///  @example
   ///    map.touchZoomRotate.enable({ around: 'center' });
-  external enable(dynamic options);
+  enable(dynamic options) => jsObject.enable(options);
 
   ///  Disables the "pinch to rotate and zoom" interaction.
   ///
   ///  @example
   ///    map.touchZoomRotate.disable();
-  external disable();
+  disable() => jsObject.disable();
 
   ///  Disables the "pinch to rotate" interaction, leaving the "pinch to zoom"
   ///  interaction enabled.
   ///
   ///  @example
   ///    map.touchZoomRotate.disableRotation();
-  external disableRotation();
+  disableRotation() => jsObject.disableRotation();
 
   ///  Enables the "pinch to rotate" interaction.
   ///
   ///  @example
   ///    map.touchZoomRotate.enable();
   ///    map.touchZoomRotate.enableRotation();
-  external enableRotation();
+  enableRotation() => jsObject.enableRotation();
 
-  external onStart(TouchEvent e);
+  onStart(TouchEvent e) => jsObject.onStart(e);
+
+  /// Creates a new TouchZoomRotateHandler from a [jsObject].
+  TouchZoomRotateHandler.fromJsObject(TouchZoomRotateHandlerJsImpl jsObject)
+      : super.fromJsObject(jsObject);
 }

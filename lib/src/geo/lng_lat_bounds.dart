@@ -1,8 +1,7 @@
-@JS('mapboxgl')
 library mapboxgl.geo.lng_lat_bounds;
 
-import 'package:js/js.dart';
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
+import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
 ///  A `LngLatBounds` object represents a geographical bounding box,
 ///  defined by its southwest and northeast points in longitude and latitude.
@@ -19,33 +18,39 @@ import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 ///  var sw = new mapboxgl.LngLat(-73.9876, 40.7661);
 ///  var ne = new mapboxgl.LngLat(-73.9397, 40.8002);
 ///  var llb = new mapboxgl.LngLatBounds(sw, ne);
-@JS()
-class LngLatBounds {
-  external LngLat get sw;
-  external LngLat get ne;
+class LngLatBounds extends JsObjectWrapper<LngLatBoundsJsImpl> {
+  LngLat get sw => LngLat.fromJsObject(jsObject.sw);
+  LngLat get ne => LngLat.fromJsObject(jsObject.ne);
 
-  external factory LngLatBounds(
+  factory LngLatBounds(
     LngLat sw,
     LngLat ne,
-  );
+  ) =>
+      LngLatBounds.fromJsObject(LngLatBoundsJsImpl(
+        sw.jsObject,
+        ne.jsObject,
+      ));
 
   ///  Set the northeast corner of the bounding box
   ///
   ///  @param {LngLatLike} ne
   ///  @returns {LngLatBounds} `this`
-  external LngLatBounds setNorthEast(LngLat ne);
+  LngLatBounds setNorthEast(LngLat ne) =>
+      LngLatBounds.fromJsObject(jsObject.setNorthEast(ne.jsObject));
 
   ///  Set the southwest corner of the bounding box
   ///
   ///  @param {LngLatLike} sw
   ///  @returns {LngLatBounds} `this`
-  external LngLatBounds setSouthWest(LngLat sw);
+  LngLatBounds setSouthWest(LngLat sw) =>
+      LngLatBounds.fromJsObject(jsObject.setSouthWest(sw.jsObject));
 
   ///  Extend the bounds to include a given LngLat or LngLatBounds.
   ///
   ///  @param {LngLat|LngLatBounds} obj object to extend to
   ///  @returns {LngLatBounds} `this`
-  external LngLatBounds extend(dynamic obj);
+  LngLatBounds extend(dynamic obj) =>
+      LngLatBounds.fromJsObject(jsObject.extend(obj.jsObject));
 
   ///  Returns the geographical coordinate equidistant from the bounding box's corners.
   ///
@@ -53,47 +58,47 @@ class LngLatBounds {
   ///  @example
   ///  var llb = new mapboxgl.LngLatBounds([-73.9876, 40.7661], [-73.9397, 40.8002]);
   ///  llb.getCenter(); // = LngLat {lng: -73.96365, lat: 40.78315}
-  external LngLat getCenter();
+  LngLat getCenter() => LngLat.fromJsObject(jsObject.getCenter());
 
   ///  Returns the southwest corner of the bounding box.
   ///
   ///  @returns {LngLat} The southwest corner of the bounding box.
-  external LngLat getSouthWest();
+  LngLat getSouthWest() => LngLat.fromJsObject(jsObject.getSouthWest());
 
   ///  Returns the northeast corner of the bounding box.
   ///
   ///  @returns {LngLat} The northeast corner of the bounding box.
-  external LngLat getNorthEast();
+  LngLat getNorthEast() => LngLat.fromJsObject(jsObject.getNorthEast());
 
   ///  Returns the northwest corner of the bounding box.
   ///
   ///  @returns {LngLat} The northwest corner of the bounding box.
-  external LngLat getNorthWest();
+  LngLat getNorthWest() => LngLat.fromJsObject(jsObject.getNorthWest());
 
   ///  Returns the southeast corner of the bounding box.
   ///
   ///  @returns {LngLat} The southeast corner of the bounding box.
-  external LngLat getSouthEast();
+  LngLat getSouthEast() => LngLat.fromJsObject(jsObject.getSouthEast());
 
   ///  Returns the west edge of the bounding box.
   ///
   ///  @returns {number} The west edge of the bounding box.
-  external num getWest();
+  num getWest() => jsObject.getWest();
 
   ///  Returns the south edge of the bounding box.
   ///
   ///  @returns {number} The south edge of the bounding box.
-  external num getSouth();
+  num getSouth() => jsObject.getSouth();
 
   ///  Returns the east edge of the bounding box.
   ///
   ///  @returns {number} The east edge of the bounding box.
-  external num getEast();
+  num getEast() => jsObject.getEast();
 
   ///  Returns the north edge of the bounding box.
   ///
   ///  @returns {number} The north edge of the bounding box.
-  external num getNorth();
+  num getNorth() => jsObject.getNorth();
 
   ///  Returns the bounding box represented as an array.
   ///
@@ -102,7 +107,7 @@ class LngLatBounds {
   ///  @example
   ///  var llb = new mapboxgl.LngLatBounds([-73.9876, 40.7661], [-73.9397, 40.8002]);
   ///  llb.toArray(); // = [[-73.9876, 40.7661], [-73.9397, 40.8002]]
-  external List<List<num>> toArray();
+  List<List<num>> toArray() => jsObject.toArray();
 
   ///  Return the bounding box represented as a string.
   ///
@@ -111,18 +116,18 @@ class LngLatBounds {
   ///  @example
   ///  var llb = new mapboxgl.LngLatBounds([-73.9876, 40.7661], [-73.9397, 40.8002]);
   ///  llb.toString(); // = "LngLatBounds(LngLat(-73.9876, 40.7661), LngLat(-73.9397, 40.8002))"
-  external String toString();
+  String toString() => jsObject.toString();
 
   ///  Check if the bounding box is an empty/`null`-type box.
   ///
   ///  @returns {boolean} True if bounds have been defined, otherwise false.
-  external bool isEmpty();
+  bool isEmpty() => jsObject.isEmpty();
 
   ///  Check if the point is within the bounding box.
   ///
   ///  @param {LngLatLike} lnglat geographic point to check against.
   ///  @returns {boolean} True if the point is within the bounding box.
-  external bool contains(LngLat lnglat);
+  bool contains(LngLat lnglat) => jsObject.contains(lnglat.jsObject);
 
   ///  Converts an array to a `LngLatBounds` object.
   ///
@@ -136,5 +141,10 @@ class LngLatBounds {
   ///  var arr = [[-73.9876, 40.7661], [-73.9397, 40.8002]];
   ///  var llb = mapboxgl.LngLatBounds.convert(arr);
   ///  llb;   // = LngLatBounds {_sw: LngLat {lng: -73.9876, lat: 40.7661}, _ne: LngLat {lng: -73.9397, lat: 40.8002}}
-  external static LngLatBounds convert(dynamic input);
+  static LngLatBounds convert(dynamic input) =>
+      LngLatBounds.fromJsObject(LngLatBoundsJsImpl.convert(input));
+
+  /// Creates a new LngLatBounds from a [jsObject].
+  LngLatBounds.fromJsObject(LngLatBoundsJsImpl jsObject)
+      : super.fromJsObject(jsObject);
 }
