@@ -1,6 +1,5 @@
 library mapboxgl.util.evented;
 
-import 'dart:html';
 import 'dart:js';
 
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
@@ -13,7 +12,7 @@ class Event extends JsObjectWrapper<EventJsImpl> {
   LngLat get lngLat => LngLat.fromJsObject(jsObject.lngLat);
   List<Feature> get features =>
       jsObject.features.map((dynamic f) => Feature.fromJsObject(f)).toList();
-  Point get point => jsObject.point;
+  Point get point => Point.fromJsObject(jsObject.point);
 
   factory Event({
     String type,
@@ -25,7 +24,7 @@ class Event extends JsObjectWrapper<EventJsImpl> {
         type: type,
         lngLat: lngLat.jsObject,
         features: features.map((dynamic f) => f.jsObject).toList(),
-        point: point,
+        point: point.jsObject,
       ));
 
   /// Creates a new Event from a [jsObject].

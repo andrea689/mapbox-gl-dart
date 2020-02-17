@@ -1,8 +1,6 @@
 @JS('mapboxgl')
 library mapboxgl.interop.ui.camera;
 
-import 'dart:html';
-
 import 'package:js/js.dart';
 import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
@@ -52,14 +50,14 @@ class CameraOptionsJsImpl {
 class AnimationOptionsJsImpl {
   external num get duration;
   external num Function(num time) get easing;
-  external Point get offset;
+  external PointJsImpl get offset;
   external bool get animate;
   external bool get essential;
 
   external factory AnimationOptionsJsImpl({
     num duration,
     num Function(num time) easing,
-    Point offset,
+    PointJsImpl offset,
     bool animate,
     bool essential,
   });
@@ -119,7 +117,7 @@ abstract class CameraJsImpl extends EventedJsImpl {
   ///  @fires moveend
   ///  @returns {MapboxMap} `this`
   ///  @see [Navigate the map with game-like controls](https://www.mapbox.com/mapbox-gl-js/example/game-controls/)
-  external MapboxMapJsImpl panBy(Point offset,
+  external MapboxMapJsImpl panBy(PointJsImpl offset,
       [AnimationOptionsJsImpl options, dynamic eventData]);
 
   ///  Pans the map to the specified location, with an animated transition.
@@ -363,7 +361,8 @@ abstract class CameraJsImpl extends EventedJsImpl {
   ///    padding: {top: 10, bottom:25, left: 15, right: 5}
   ///  });
   ///  @see [Used by BoxZoomHandler](https://www.mapbox.com/mapbox-gl-js/api/#boxzoomhandler)
-  external MapboxMapJsImpl fitScreenCoordinates(Point p0, Point p1, num bearing,
+  external MapboxMapJsImpl fitScreenCoordinates(
+      PointJsImpl p0, PointJsImpl p1, num bearing,
       [dynamic options, dynamic eventData]);
 
   ///  Changes any combination of center, zoom, bearing, and pitch, without

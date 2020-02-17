@@ -3,6 +3,7 @@ library mapboxgl.interop;
 export 'geo/geojson_interop.dart';
 export 'geo/lng_lat_bounds_interop.dart';
 export 'geo/lng_lat_interop.dart';
+export 'geo/point_interop.dart';
 export 'js.dart';
 export 'style/evaluation_parameters_interop.dart';
 export 'style/layers/circle_layer_interop.dart';

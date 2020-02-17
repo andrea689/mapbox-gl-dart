@@ -1,7 +1,5 @@
 library mapboxgl.ui.camera;
 
-import 'dart:html';
-
 import 'package:js/js_util.dart';
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 import 'package:mapbox_gl_dart/src/interop/interop.dart';
@@ -60,7 +58,7 @@ class CameraOptions extends JsObjectWrapper<CameraOptionsJsImpl> {
 class AnimationOptions extends JsObjectWrapper<AnimationOptionsJsImpl> {
   num get duration => jsObject.duration;
   num Function(num time) get easing => jsObject.easing;
-  Point get offset => jsObject.offset;
+  Point get offset => Point.fromJsObject(jsObject.offset);
   bool get animate => jsObject.animate;
   bool get essential => jsObject.essential;
 
@@ -74,7 +72,7 @@ class AnimationOptions extends JsObjectWrapper<AnimationOptionsJsImpl> {
       AnimationOptions.fromJsObject(AnimationOptionsJsImpl(
         duration: duration,
         easing: easing,
-        offset: offset,
+        offset: offset.jsObject,
         animate: animate,
         essential: essential,
       ));
@@ -150,7 +148,7 @@ class Camera extends Evented {
   ///  @see [Navigate the map with game-like controls](https://www.mapbox.com/mapbox-gl-js/example/game-controls/)
   MapboxMap panBy(Point offset,
           [AnimationOptions options, dynamic eventData]) =>
-      MapboxMap.fromJsObject(jsObject.panBy(offset));
+      MapboxMap.fromJsObject(jsObject.panBy(offset.jsObject));
 
   ///  Pans the map to the specified location, with an animated transition.
   ///
@@ -341,8 +339,14 @@ class Camera extends Evented {
   ///  var newCameraTransform = map.cameraForBounds(bbox, {
   ///    padding: {top: 10, bottom:25, left: 15, right: 5}
   ///  });
-  CameraOptions cameraForBounds(LngLatBounds bounds, [CameraOptions options]) =>
-      CameraOptions.fromJsObject(jsObject.cameraForBounds(bounds.jsObject));
+  CameraOptions cameraForBounds(LngLatBounds bounds, [dynamic options]) {
+    if (options == null) {
+      return CameraOptions.fromJsObject(
+          jsObject.cameraForBounds(bounds.jsObject));
+    }
+    return CameraOptions.fromJsObject(jsObject.cameraForBounds(bounds.jsObject,
+        options is CameraOptions ? options.jsObject : jsify(options)));
+  }
 
   ///  Pans and zooms the map to contain its visible area within the specified geographical bounds.
   ///  This function will also reset the map's bearing to 0 if bearing is nonzero.
@@ -402,7 +406,8 @@ class Camera extends Evented {
   ///  @see [Used by BoxZoomHandler](https://www.mapbox.com/mapbox-gl-js/api/#boxzoomhandler)
   MapboxMap fitScreenCoordinates(Point p0, Point p1, num bearing,
           [dynamic options, dynamic eventData]) =>
-      MapboxMap.fromJsObject(jsObject.fitScreenCoordinates(p0, p1, bearing));
+      MapboxMap.fromJsObject(
+          jsObject.fitScreenCoordinates(p0.jsObject, p1.jsObject, bearing));
 
   ///  Changes any combination of center, zoom, bearing, and pitch, without
   ///  an animated transition. The map will retain its current values for any

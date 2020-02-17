@@ -250,7 +250,7 @@ class MapboxMapJsImpl extends CameraJsImpl {
   ///  @example
   ///  var coordinate = [-122.420679, 37.772537];
   ///  var point = map.project(coordinate);
-  external Point project(LngLatJsImpl lnglat);
+  external PointJsImpl project(LngLatJsImpl lnglat);
 
   ///  Returns a {@link LngLat} representing geographical coordinates that correspond
   ///  to the specified pixel coordinates.
@@ -262,7 +262,7 @@ class MapboxMapJsImpl extends CameraJsImpl {
   ///    // When the map is clicked, get the geographic coordinate.
   ///    var coordinate = map.unproject(e.point);
   ///  });
-  external LngLatJsImpl unproject(Point point);
+  external LngLatJsImpl unproject(PointJsImpl point);
 
   ///  Returns true if the map is panning, zooming, rotating, or pitching due to a camera animation or user gesture.
   ///  @example

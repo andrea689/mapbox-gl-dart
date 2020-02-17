@@ -1,8 +1,6 @@
 @JS('mapboxgl')
 library mapboxgl.interop.util.evented;
 
-import 'dart:html';
-
 import 'package:js/js.dart';
 import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
@@ -14,13 +12,13 @@ abstract class EventJsImpl {
   external String get type;
   external LngLatJsImpl get lngLat;
   external List<FeatureJsImpl> get features;
-  external Point get point;
+  external PointJsImpl get point;
 
   external factory EventJsImpl({
     String type,
     LngLatJsImpl lngLat,
     List<FeatureJsImpl> features,
-    Point point,
+    PointJsImpl point,
   });
 }
 

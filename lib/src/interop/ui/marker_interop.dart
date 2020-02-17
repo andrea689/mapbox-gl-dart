@@ -71,12 +71,12 @@ class MarkerJsImpl extends EventedJsImpl {
 
   ///  Get the marker's offset.
   ///  @returns {Point}
-  external Point getOffset();
+  external PointJsImpl getOffset();
 
   ///  Sets the offset of the marker
   ///  @param {PointLike} offset The offset in pixels as a {@link PointLike} object to apply relative to the element's center. Negatives indicate left and up.
   ///  @returns {Marker} `this`
-  external MarkerJsImpl setOffset(Point offset);
+  external MarkerJsImpl setOffset(PointJsImpl offset);
 
   ///  Sets the `draggable` property and functionality of the marker
   ///  @param {boolean} [shouldBeDraggable=false] Turns drag functionality on/off
@@ -120,7 +120,7 @@ class MarkerJsImpl extends EventedJsImpl {
 class MarkerOptionsJsImpl {
   external factory MarkerOptionsJsImpl({
     HtmlElement element,
-    Point offset,
+    PointJsImpl offset,
     String anchor,
     String color,
     bool draggable,

@@ -74,13 +74,13 @@ class Marker extends Evented {
 
   ///  Get the marker's offset.
   ///  @returns {Point}
-  Point getOffset() => jsObject.getOffset();
+  Point getOffset() => Point.fromJsObject(jsObject.getOffset());
 
   ///  Sets the offset of the marker
   ///  @param {PointLike} offset The offset in pixels as a {@link PointLike} object to apply relative to the element's center. Negatives indicate left and up.
   ///  @returns {Marker} `this`
   Marker setOffset(Point offset) =>
-      Marker.fromJsObject(jsObject.setOffset(offset));
+      Marker.fromJsObject(jsObject.setOffset(offset.jsObject));
 
   ///  Sets the `draggable` property and functionality of the marker
   ///  @param {boolean} [shouldBeDraggable=false] Turns drag functionality on/off
@@ -139,7 +139,7 @@ class MarkerOptions extends JsObjectWrapper<MarkerOptionsJsImpl> {
   }) =>
       MarkerOptions.fromJsObject(MarkerOptionsJsImpl(
         element: element,
-        offset: offset,
+        offset: offset.jsObject,
         anchor: anchor,
         color: color,
         draggable: draggable,

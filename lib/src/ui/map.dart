@@ -155,8 +155,8 @@ class MapboxMap extends Camera {
   ///  ];
   ///  // Set the map's max bounds.
   ///  map.setMaxBounds(bounds);
-  MapboxMap setMaxBounds(LngLatBounds bounds) =>
-      MapboxMap.fromJsObject(jsObject.setMaxBounds(bounds.jsObject));
+  MapboxMap setMaxBounds(LngLatBounds bounds) => MapboxMap.fromJsObject(
+      jsObject.setMaxBounds(bounds == null ? null : bounds.jsObject));
 
   ///  Sets or clears the map's minimum zoom level.
   ///  If the map's current zoom level is lower than the new minimum,
@@ -266,7 +266,8 @@ class MapboxMap extends Camera {
   ///  @example
   ///  var coordinate = [-122.420679, 37.772537];
   ///  var point = map.project(coordinate);
-  Point project(LngLat lnglat) => jsObject.project(lnglat.jsObject);
+  Point project(LngLat lnglat) =>
+      Point.fromJsObject(jsObject.project(lnglat.jsObject));
 
   ///  Returns a {@link LngLat} representing geographical coordinates that correspond
   ///  to the specified pixel coordinates.
@@ -279,7 +280,7 @@ class MapboxMap extends Camera {
   ///    var coordinate = map.unproject(e.point);
   ///  });
   LngLat unproject(Point point) =>
-      LngLat.fromJsObject(jsObject.unproject(point));
+      LngLat.fromJsObject(jsObject.unproject(point.jsObject));
 
   ///  Returns true if the map is panning, zooming, rotating, or pitching due to a camera animation or user gesture.
   ///  @example

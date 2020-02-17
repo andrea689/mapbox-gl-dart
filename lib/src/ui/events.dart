@@ -15,7 +15,7 @@ class MapMouseEvent extends JsObjectWrapper<MapMouseEventJsImpl> {
   MouseEvent get originalEvent => jsObject.originalEvent;
 
   /// The pixel coordinates of the mouse cursor, relative to the map and measured from the top left corner.
-  Point get point => jsObject.point;
+  Point get point => Point.fromJsObject(jsObject.point);
 
   /// The geographic location on the map of the mouse cursor.
   LngLat get lngLat => LngLat.fromJsObject(jsObject.lngLat);
@@ -53,11 +53,12 @@ class MapTouchEvent extends JsObjectWrapper<MapTouchEventJsImpl> {
 
   /// The pixel coordinates of the center of the touch event points, relative to the map and measured from the top left
   /// corner.
-  Point get point => jsObject.point;
+  Point get point => Point.fromJsObject(jsObject.point);
 
   ///  The array of pixel coordinates corresponding to a
   ///  [touch event's `touches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/touches) property.
-  List<Point> get points => jsObject.points;
+  List<Point> get points =>
+      jsObject.points.map((f) => Point.fromJsObject(f)).toList();
 
   ///  The geographical locations on the map corresponding to a
   ///  [touch event's `touches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/touches) property.

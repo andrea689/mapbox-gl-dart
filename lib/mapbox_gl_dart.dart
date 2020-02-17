@@ -6,6 +6,7 @@ library mapboxgl;
 export 'src/geo/geojson.dart';
 export 'src/geo/lng_lat.dart';
 export 'src/geo/lng_lat_bounds.dart';
+export 'src/geo/point.dart';
 export 'src/index.dart';
 export 'src/style/evaluation_parameters.dart';
 export 'src/style/layers/circle_layer.dart';

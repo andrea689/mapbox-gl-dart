@@ -18,7 +18,7 @@ abstract class MapMouseEventJsImpl {
   external MouseEvent get originalEvent;
 
   /// The pixel coordinates of the mouse cursor, relative to the map and measured from the top left corner.
-  external Point get point;
+  external PointJsImpl get point;
 
   /// The geographic location on the map of the mouse cursor.
   external LngLatJsImpl get lngLat;
@@ -54,11 +54,11 @@ abstract class MapTouchEventJsImpl {
 
   /// The pixel coordinates of the center of the touch event points, relative to the map and measured from the top left
   /// corner.
-  external Point get point;
+  external PointJsImpl get point;
 
   ///  The array of pixel coordinates corresponding to a
   ///  [touch event's `touches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/touches) property.
-  external List<Point> get points;
+  external List<PointJsImpl> get points;
 
   ///  The geographical locations on the map corresponding to a
   ///  [touch event's `touches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/touches) property.
