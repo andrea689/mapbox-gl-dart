@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Fix `setMinZoom` and `setMaxZoom`
+
 ## 0.1.1 (2020-02-21)
 
 * Add `Point` type and fixed all occurrences

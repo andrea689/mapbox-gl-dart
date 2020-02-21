@@ -173,7 +173,7 @@ class MapboxMap extends Camera {
   ///  @example
   ///  map.setMinZoom(12.25);
   MapboxMap setMinZoom([num minZoom]) =>
-      MapboxMap.fromJsObject(jsObject.setMinZoom());
+      MapboxMap.fromJsObject(jsObject.setMinZoom(minZoom));
 
   ///  Returns the map's minimum allowable zoom level.
   ///
@@ -192,7 +192,7 @@ class MapboxMap extends Camera {
   ///  @example
   ///  map.setMaxZoom(18.75);
   MapboxMap setMaxZoom([num maxZoom]) =>
-      MapboxMap.fromJsObject(jsObject.setMaxZoom());
+      MapboxMap.fromJsObject(jsObject.setMaxZoom(maxZoom));
 
   ///  Returns the map's maximum allowable zoom level.
   ///
