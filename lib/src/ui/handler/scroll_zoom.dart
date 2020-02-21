@@ -35,7 +35,7 @@ class ScrollZoomHandler extends JsObjectWrapper<ScrollZoomHandlerJsImpl> {
   ///    map.scrollZoom.enable();
   ///  @example
   ///   map.scrollZoom.enable({ around: 'center' })
-  enable(dynamic options) => jsObject.enable(options);
+  enable([dynamic options]) => jsObject.enable(options);
 
   ///  Disables the "scroll to zoom" interaction.
   ///

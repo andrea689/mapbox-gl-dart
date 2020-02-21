@@ -20,7 +20,7 @@ class TouchZoomRotateHandler
   ///    map.touchZoomRotate.enable();
   ///  @example
   ///    map.touchZoomRotate.enable({ around: 'center' });
-  enable(dynamic options) => jsObject.enable(options);
+  enable([dynamic options]) => jsObject.enable(options);
 
   ///  Disables the "pinch to rotate and zoom" interaction.
   ///

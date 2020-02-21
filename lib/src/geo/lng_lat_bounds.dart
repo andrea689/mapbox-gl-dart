@@ -19,9 +19,6 @@ import 'package:mapbox_gl_dart/src/interop/interop.dart';
 ///  var ne = new mapboxgl.LngLat(-73.9397, 40.8002);
 ///  var llb = new mapboxgl.LngLatBounds(sw, ne);
 class LngLatBounds extends JsObjectWrapper<LngLatBoundsJsImpl> {
-  LngLat get sw => LngLat.fromJsObject(jsObject.sw);
-  LngLat get ne => LngLat.fromJsObject(jsObject.ne);
-
   factory LngLatBounds(
     LngLat sw,
     LngLat ne,
