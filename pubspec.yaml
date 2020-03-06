@@ -1,5 +1,5 @@
 name: mapbox_gl_dart
-version: 0.1.1
+version: 0.1.2
 description: Mapbox-gl wrapper for Dart. Library to use Mapbox GL JS in your web Dart projects.
 homepage: https://github.com/andrea689/mapbox-gl-dart/
 environment:

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.1.2 (2020-03-06)
+
 * Add setter of `id` and `copyWith()` to `Feature`
 * Add `id` and `preventDefault()` to `Event`
 * Fix `setMinZoom()` and `setMaxZoom()`
