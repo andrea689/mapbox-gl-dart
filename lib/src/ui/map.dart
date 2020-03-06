@@ -1,6 +1,7 @@
 library mapboxgl.ui.map;
 
 import 'dart:html';
+import 'dart:js';
 import 'package:js/js_util.dart';
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 import 'package:mapbox_gl_dart/src/interop/interop.dart';
@@ -614,8 +615,10 @@ class MapboxMap extends Camera {
   ///
   ///  @see Use `HTMLImageElement`: [Add an icon to the map](https://www.mapbox.com/mapbox-gl-js/example/add-image/)
   ///  @see Use `ImageData`: [Add a generated icon to the map](https://www.mapbox.com/mapbox-gl-js/example/add-image-generated/)
-  addImage(String id, dynamic image, dynamic options) =>
-      jsObject.addImage(id, image, options);
+  addImage(String id, dynamic image, [Map<String, dynamic> options]) =>
+      options == null
+          ? jsObject.addImage(id, image)
+          : jsObject.addImage(id, image, jsify(options));
 
   ///  Update an existing image in a style. This image can be displayed on the map like any other icon in the style's
   ///  [sprite](https://docs.mapbox.com/help/glossary/sprite/) using the image's ID with
@@ -674,7 +677,8 @@ class MapboxMap extends Camera {
   ///  });
   ///
   ///  @see [Add an icon to the map](https://www.mapbox.com/mapbox-gl-js/example/add-image/)
-  loadImage(String url, Function callback) => jsObject.loadImage(url, callback);
+  loadImage(String url, Function callback) =>
+      jsObject.loadImage(url, allowInterop(callback));
 
   //////
   ///  Returns an Array of strings containing the IDs of all images currently available in the map.

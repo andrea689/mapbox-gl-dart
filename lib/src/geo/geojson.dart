@@ -25,21 +25,41 @@ class FeatureCollection extends JsObjectWrapper<FeatureCollectionJsImpl> {
 
 class Feature extends JsObjectWrapper<FeatureJsImpl> {
   num get id => jsObject.id;
+  set id(int id) {
+    jsObject.id = id;
+  }
+
   String get type => jsObject.type;
   Geometry get geometry => Geometry.fromJsObject(jsObject.geometry);
   Map<String, dynamic> get properties => dartifyMap(jsObject.properties);
   String get source => jsObject.source;
 
   factory Feature({
+    num id,
     Geometry geometry,
     Map<String, dynamic> properties,
     String source,
   }) =>
       Feature.fromJsObject(FeatureJsImpl(
         type: 'Feature',
+        id: id,
         geometry: geometry.jsObject,
-        properties: jsify(properties),
+        properties: properties == null ? jsify({}) : jsify(properties),
         source: source,
+      ));
+
+  Feature copyWith({
+    num id,
+    Geometry geometry,
+    Map<String, dynamic> properties,
+    String source,
+  }) =>
+      Feature.fromJsObject(FeatureJsImpl(
+        type: 'Feature',
+        id: id ?? this.id,
+        geometry: geometry != null ? geometry.jsObject : this.geometry.jsObject,
+        properties: jsify(properties) ?? jsify(this.properties),
+        source: source ?? this.source,
       ));
 
   /// Creates a new Feature from a [jsObject].

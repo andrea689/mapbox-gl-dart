@@ -8,6 +8,7 @@ import 'package:mapbox_gl_dart/src/interop/interop.dart';
 typedef Listener = dynamic Function(Event object);
 
 class Event extends JsObjectWrapper<EventJsImpl> {
+  String get id => jsObject.id;
   String get type => jsObject.type;
   LngLat get lngLat => LngLat.fromJsObject(jsObject.lngLat);
   List<Feature> get features =>
@@ -15,17 +16,21 @@ class Event extends JsObjectWrapper<EventJsImpl> {
   Point get point => Point.fromJsObject(jsObject.point);
 
   factory Event({
+    String id,
     String type,
     LngLat lngLat,
     List<Feature> features,
     Point point,
   }) =>
       Event.fromJsObject(EventJsImpl(
+        id: id,
         type: type,
         lngLat: lngLat.jsObject,
         features: features.map((dynamic f) => f.jsObject).toList(),
         point: point.jsObject,
       ));
+
+  preventDefault() => jsObject.preventDefault();
 
   /// Creates a new Event from a [jsObject].
   Event.fromJsObject(EventJsImpl jsObject) : super.fromJsObject(jsObject);

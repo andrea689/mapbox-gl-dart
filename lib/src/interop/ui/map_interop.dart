@@ -585,7 +585,7 @@ class MapboxMapJsImpl extends CameraJsImpl {
   ///
   ///  @see Use `HTMLImageElement`: [Add an icon to the map](https://www.mapbox.com/mapbox-gl-js/example/add-image/)
   ///  @see Use `ImageData`: [Add a generated icon to the map](https://www.mapbox.com/mapbox-gl-js/example/add-image-generated/)
-  external addImage(String id, dynamic image, dynamic options);
+  external addImage(String id, dynamic image, [dynamic options]);
 
   ///  Update an existing image in a style. This image can be displayed on the map like any other icon in the style's
   ///  [sprite](https://docs.mapbox.com/help/glossary/sprite/) using the image's ID with
@@ -644,7 +644,7 @@ class MapboxMapJsImpl extends CameraJsImpl {
   ///  });
   ///
   ///  @see [Add an icon to the map](https://www.mapbox.com/mapbox-gl-js/example/add-image/)
-  external loadImage(String url, Function callback);
+  external loadImage(String url, dynamic callback);
 
   //////
   ///  Returns an Array of strings containing the IDs of all images currently available in the map.
