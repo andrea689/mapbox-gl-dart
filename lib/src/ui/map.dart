@@ -401,11 +401,18 @@ class MapboxMap extends Camera {
   ///  @see [Highlight features within a bounding box](https://www.mapbox.com/mapbox-gl-js/example/using-box-queryrenderedfeatures/)
   ///  @see [Filter features within map view](https://www.mapbox.com/mapbox-gl-js/example/filter-features-within-map-view/)
   List<Feature> queryRenderedFeatures(dynamic geometry,
-          [Map<String, dynamic> options]) =>
-      jsObject
-          .queryRenderedFeatures(geometry, jsify(options))
+      [Map<String, dynamic> options]) {
+    if (options == null) {
+      return jsObject
+          .queryRenderedFeatures(geometry)
           .map((dynamic f) => Feature.fromJsObject(f))
           .toList();
+    }
+    return jsObject
+        .queryRenderedFeatures(geometry, jsify(options))
+        .map((dynamic f) => Feature.fromJsObject(f))
+        .toList();
+  }
 
   ///  Returns an array of [GeoJSON](http://geojson.org/)
   ///  [Feature objects](https://tools.ietf.org/html/rfc7946#section-3.2)
