@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.1.3 (2020-03-13)
 
 * Add `GeolocateControl`
 * Add `LogoControl`
