@@ -4,6 +4,7 @@
 
 * Add `GeolocateControl`
 * Add `LogoControl`
+* Add `NavigationControl`
 * Fix `queryRenderedFeatures()`
 
 ## 0.1.2 (2020-03-06)

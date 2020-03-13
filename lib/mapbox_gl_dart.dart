@@ -21,6 +21,7 @@ export 'src/style/style_image.dart';
 export 'src/ui/camera.dart';
 export 'src/ui/control/geolocate_control.dart';
 export 'src/ui/control/logo_control.dart';
+export 'src/ui/control/navigation_control.dart';
 export 'src/ui/events.dart';
 export 'src/ui/handler/box_zoom.dart';
 export 'src/ui/handler/dblclick_zoom.dart';
