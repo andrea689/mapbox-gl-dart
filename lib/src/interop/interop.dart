@@ -14,6 +14,7 @@ export 'style/sources/vector_source_interop.dart';
 export 'style/style_image_interop.dart';
 export 'style/style_interop.dart';
 export 'ui/camera_interop.dart';
+export 'ui/control/geolocate_control_interop.dart';
 export 'ui/events_interop.dart';
 export 'ui/handler/box_zoom_interop.dart';
 export 'ui/handler/dblclick_zoom_interop.dart';

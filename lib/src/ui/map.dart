@@ -89,8 +89,13 @@ class MapboxMap extends Camera {
   ///  // Add zoom and rotation controls to the map.
   ///  map.addControl(new NavigationControl());
   ///  @see [Display map navigation controls](https://www.mapbox.com/mapbox-gl-js/example/navigation/)
-  MapboxMap addControl(IControl control, [String position]) =>
-      MapboxMap.fromJsObject(jsObject.addControl(control.jsObject, position));
+  MapboxMap addControl(dynamic control, [String position]) {
+    if (position != null) {
+      return MapboxMap.fromJsObject(
+          jsObject.addControl(control.jsObject, position));
+    }
+    return MapboxMap.fromJsObject(jsObject.addControl(control.jsObject));
+  }
 
   ///  Removes the control from the map.
   ///
@@ -103,7 +108,7 @@ class MapboxMap extends Camera {
   ///  map.addControl(navigation);
   ///  // Remove zoom and rotation controls from the map.
   ///  map.removeControl(navigation);
-  MapboxMap removeControl(IControl control) =>
+  MapboxMap removeControl(dynamic control) =>
       MapboxMap.fromJsObject(jsObject.removeControl(control.jsObject));
 
   ///  Resizes the map according to the dimensions of its
@@ -1374,7 +1379,7 @@ class IControl extends JsObjectWrapper<IControlJsImpl> {
   ///  Register a control on the map and give it a chance to register event listeners
   ///  and resources. This method is called by {@link MapboxMap#addControl}
   ///  internally.
-  HtmlElement onAdd(MapboxMap map) => jsObject.onRemove(map.jsObject);
+  HtmlElement onAdd(MapboxMap map) => jsObject.onAdd(map.jsObject);
 
   ///  Unregister a control on the map and give it a chance to detach event listeners
   ///  and resources. This method is called by {@link MapboxMap#removeControl}

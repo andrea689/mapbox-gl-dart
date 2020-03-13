@@ -1,11 +1,13 @@
 library mapboxgl.util.evented;
 
+import 'dart:html';
 import 'dart:js';
 
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
 typedef Listener = dynamic Function(Event object);
+typedef GeoListener = dynamic Function(dynamic object);
 
 class Event extends JsObjectWrapper<EventJsImpl> {
   String get id => jsObject.id;
@@ -45,6 +47,15 @@ class Evented extends JsObjectWrapper<EventedJsImpl> {
   ///    extended with `target` and `type` properties.
   ///  @returns {Object} `this`
   MapboxMap on(String type, [dynamic layerIdOrListener, Listener listener]) {
+    if (this is GeolocateControl && layerIdOrListener is GeoListener) {
+      return MapboxMap.fromJsObject(
+        jsObject.on(type, allowInterop(
+          (dynamic position) {
+            layerIdOrListener(position);
+          },
+        )),
+      );
+    }
     if (layerIdOrListener is Listener) {
       return MapboxMap.fromJsObject(
         jsObject.on(type, allowInterop(
