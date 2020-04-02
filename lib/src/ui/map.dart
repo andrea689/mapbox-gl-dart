@@ -582,7 +582,16 @@ class MapboxMap extends Camera {
   ///  @see [Create a draggable point](https://www.mapbox.com/mapbox-gl-js/example/drag-a-point/)
   ///  @see [Animate a point](https://www.mapbox.com/mapbox-gl-js/example/animate-point-along-line/)
   ///  @see [Add live realtime data](https://www.mapbox.com/mapbox-gl-js/example/live-geojson/)
-  dynamic getSource(String id) => jsObject.getSource(id);
+  dynamic getSource(String id) {
+    var source = jsObject.getSource(id);
+    if (source is GeoJsonSourceJsImpl) {
+      return GeoJsonSource.fromJsObject(source);
+    }
+    if (source is VectorSourceJsImpl) {
+      return VectorSource.fromJsObject(source);
+    }
+    return source;
+  }
 
   ///  Add an image to the style. This image can be displayed on the map like any other icon in the style's
   ///  [sprite](https://docs.mapbox.com/help/glossary/sprite/) using the image's ID with

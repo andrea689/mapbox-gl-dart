@@ -12,4 +12,7 @@ class GeoJsonSourceJsImpl {
     String type,
     FeatureCollectionJsImpl data,
   });
+
+  external GeoJsonSourceJsImpl setData(
+      FeatureCollectionJsImpl featureCollection);
 }

@@ -7,10 +7,10 @@ import 'package:js/js.dart';
 @anonymous
 class FeatureCollectionJsImpl {
   external String get type;
-  external List<dynamic> get features;
+  external List<FeatureJsImpl> get features;
   external factory FeatureCollectionJsImpl({
     String type,
-    List<dynamic> features,
+    List<FeatureJsImpl> features,
   });
 }
 

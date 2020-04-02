@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.4 (2020-04-02)
+
+* Add `setData()` to `GeoJsonSource`
+* Fix returns of `map.getSource()`
+
 ## 0.1.3 (2020-03-13)
 
 * Add `GeolocateControl`
