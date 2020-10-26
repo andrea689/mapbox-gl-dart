@@ -7,7 +7,7 @@ import 'package:mapbox_gl_dart/src/utils.dart';
 class FeatureCollection extends JsObjectWrapper<FeatureCollectionJsImpl> {
   String get type => jsObject.type;
   List<Feature> get features =>
-      jsObject.features.map((f) => Feature.fromJsObject(f));
+      jsObject.features.map((f) => Feature.fromJsObject(f)).toList();
 
   factory FeatureCollection({
     List<Feature> features,
