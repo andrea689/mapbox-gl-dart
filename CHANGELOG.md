@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.5 (2020-06-03)
+
+* Add `Map` with `width`, `height` and `data` fields to define an image in `map.addImage()`
+
 ## 0.1.4 (2020-04-02)
 
 * Add `setData()` to `GeoJsonSource`

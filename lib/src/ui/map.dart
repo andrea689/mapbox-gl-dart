@@ -636,10 +636,14 @@ class MapboxMap extends Camera {
   ///
   ///  @see Use `HTMLImageElement`: [Add an icon to the map](https://www.mapbox.com/mapbox-gl-js/example/add-image/)
   ///  @see Use `ImageData`: [Add a generated icon to the map](https://www.mapbox.com/mapbox-gl-js/example/add-image-generated/)
-  addImage(String id, dynamic image, [Map<String, dynamic> options]) =>
-      options == null
-          ? jsObject.addImage(id, image)
-          : jsObject.addImage(id, image, jsify(options));
+  addImage(String id, dynamic image, [Map<String, dynamic> options]) {
+    if (image is Map) {
+      image = jsify(image);
+    }
+    return options == null
+        ? jsObject.addImage(id, image)
+        : jsObject.addImage(id, image, jsify(options));
+  }
 
   ///  Update an existing image in a style. This image can be displayed on the map like any other icon in the style's
   ///  [sprite](https://docs.mapbox.com/help/glossary/sprite/) using the image's ID with
