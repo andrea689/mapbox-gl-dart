@@ -45,6 +45,8 @@ You can find many examples in the [example](example) folder.
 
 ## Run example
 
+`pub global activate webdev`
+
 `webdev serve example:8081`
 
 Open browser to `localhost:8081`
