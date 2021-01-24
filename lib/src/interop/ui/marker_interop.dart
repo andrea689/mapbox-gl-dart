@@ -123,6 +123,7 @@ class MarkerOptionsJsImpl {
     HtmlElement element,
     PointJsImpl offset,
     String anchor,
+    num scale,
     String color,
     bool draggable,
     num rotation,
