@@ -23,8 +23,8 @@ import 'package:mapbox_gl_dart/src/interop/interop.dart';
 /// @see [Create a draggable Marker](https://www.mapbox.com/mapbox-gl-js/example/drag-a-marker/)
 class Marker extends Evented {
   final MarkerJsImpl jsObject;
-  factory Marker([MarkerOptions options]) =>
-      Marker.fromJsObject(MarkerJsImpl(options.jsObject));
+  factory Marker([Object options]) =>
+      Marker.fromJsObject(MarkerJsImpl(options));
 
   ///  Attaches the marker to a map
   ///  @param {MapboxMap} map
