@@ -16,11 +16,11 @@ abstract class EventJsImpl {
   external PointJsImpl get point;
 
   external factory EventJsImpl({
-    String id,
-    String type,
-    LngLatJsImpl lngLat,
-    List<FeatureJsImpl> features,
-    PointJsImpl point,
+    String? id,
+    String? type,
+    LngLatJsImpl? lngLat,
+    List<FeatureJsImpl?>? features,
+    PointJsImpl? point,
   });
 
   external preventDefault();
@@ -37,7 +37,7 @@ abstract class EventedJsImpl {
   ///  @returns {Object} `this`
   //external on(String type, Listener listener);
   external MapboxMapJsImpl on(String type,
-      [dynamic layerIdOrListener, ListenerJsImpl listener]);
+      [dynamic layerIdOrListener, ListenerJsImpl? listener]);
 
   ///  Removes a previously registered event listener.
   ///
@@ -46,7 +46,7 @@ abstract class EventedJsImpl {
   ///  @returns {Object} `this`
   //external off(String type, Listener listener);
   external MapboxMapJsImpl off(String type,
-      [dynamic layerIdOrListener, ListenerJsImpl listener]);
+      [dynamic layerIdOrListener, ListenerJsImpl? listener]);
 
   ///  Adds a listener that will be called only once to a specified event type.
   ///
@@ -71,5 +71,5 @@ abstract class EventedJsImpl {
   ///  @private
   ///  @returns {Object} `this`
   ///  @private
-  external setEventedParent([EventedJsImpl parent, dynamic data]);
+  external setEventedParent([EventedJsImpl? parent, dynamic data]);
 }

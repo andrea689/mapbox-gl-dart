@@ -64,13 +64,13 @@ abstract class StyleJsImpl extends EventedJsImpl {
   ///  ID `before`, or appended if `before` is omitted.
   ///  @param {string} [before] ID of an existing layer to insert before
   addLayer(dynamic layerObject,
-      [String before, StyleSetterOptionsJsImpl options]);
+      [String? before, StyleSetterOptionsJsImpl? options]);
 
   ///  Moves a layer to a different z-position. The layer will be inserted before the layer with
   ///  ID `before`, or appended if `before` is omitted.
   ///  @param {string} id  ID of the layer to move
   ///  @param {string} [before] ID of an existing layer to insert before
-  moveLayer(String id, [String before]);
+  moveLayer(String id, [String? before]);
 
   ///  Remove the layer with the given id from the style.
   ///
@@ -86,7 +86,7 @@ abstract class StyleJsImpl extends EventedJsImpl {
   ///  @returns {?Object} a layer, if one with the given `id` exists
   dynamic getLayer(String id);
 
-  setLayerZoomRange(String layerId, [num minzoom, num maxzoom]);
+  setLayerZoomRange(String layerId, [num? minzoom, num? maxzoom]);
 
   setFilter(String layerId, dynamic filter, StyleSetterOptionsJsImpl options);
 
@@ -111,7 +111,7 @@ abstract class StyleJsImpl extends EventedJsImpl {
 
   setFeatureState(dynamic target, dynamic state);
 
-  removeFeatureState(dynamic target, [String key]);
+  removeFeatureState(dynamic target, [String? key]);
 
   getFeatureState(dynamic target);
 

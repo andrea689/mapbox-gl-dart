@@ -7,7 +7,7 @@ class GeoJsonSource extends Source<GeoJsonSourceJsImpl> {
   FeatureCollection get data => FeatureCollection.fromJsObject(jsObject.data);
 
   factory GeoJsonSource({
-    FeatureCollection data,
+    required FeatureCollection data,
   }) =>
       GeoJsonSource.fromJsObject(GeoJsonSourceJsImpl(
         type: 'geojson',

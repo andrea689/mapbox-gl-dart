@@ -54,7 +54,7 @@ import 'package:mapbox_gl_dart/src/interop/interop.dart';
 class PopupJsImpl extends EventedJsImpl {
   external dynamic get options;
 
-  external factory PopupJsImpl([PopupOptionsJsImpl options]);
+  external factory PopupJsImpl([PopupOptionsJsImpl? options]);
 
   /// Adds the popup to a map.
   ///
@@ -121,7 +121,7 @@ class PopupJsImpl extends EventedJsImpl {
   ///
   /// @param html A string representing HTML content for the popup.
   /// @returns {Popup} `this`
-  external PopupJsImpl setHTML(String html);
+  external PopupJsImpl setHTML(String? html);
 
   /// Returns the popup's maximum width.
   ///
@@ -184,12 +184,12 @@ class PopupJsImpl extends EventedJsImpl {
 @anonymous
 class PopupOptionsJsImpl {
   external factory PopupOptionsJsImpl({
-    bool loseButton,
-    bool closeButton,
-    bool closeOnClick,
-    String anchor,
+    bool? loseButton,
+    bool? closeButton,
+    bool? closeOnClick,
+    String? anchor,
     dynamic offset,
-    String className,
-    String maxWidth,
+    String? className,
+    String? maxWidth,
   });
 }

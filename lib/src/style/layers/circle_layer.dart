@@ -2,18 +2,17 @@ library mapboxgl.style.layers.circle_layer;
 
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 import 'package:mapbox_gl_dart/src/interop/interop.dart';
-import 'package:meta/meta.dart';
 
 class CircleLayer extends Layer {
   String id;
 
   /// Source or String
   dynamic source;
-  CirclePaint paint;
+  CirclePaint? paint;
   dynamic sourceLayer;
 
   CircleLayer({
-    @required this.id,
+    required this.id,
     this.source,
     this.paint,
     this.sourceLayer,

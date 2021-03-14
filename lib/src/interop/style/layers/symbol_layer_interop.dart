@@ -32,10 +32,10 @@ class SymbolLayerJsImpl {
       dict['filter'] = symbolLayer.filter;
     }
     if (symbolLayer.layout != null) {
-      dict['layout'] = symbolLayer.layout.dict;
+      dict['layout'] = symbolLayer.layout!.dict;
     }
     if (symbolLayer.paint != null) {
-      dict['paint'] = symbolLayer.paint.dict;
+      dict['paint'] = symbolLayer.paint!.dict;
     }
     return dict;
   }

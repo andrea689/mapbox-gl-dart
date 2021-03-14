@@ -12,9 +12,9 @@ class NavigationControlOptionsJsImpl {
   external bool get visualizePitch;
 
   external factory NavigationControlOptionsJsImpl({
-    bool showCompass,
-    bool showZoom,
-    bool visualizePitch,
+    bool? showCompass,
+    bool? showZoom,
+    bool? visualizePitch,
   });
 }
 
