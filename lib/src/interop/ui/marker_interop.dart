@@ -24,7 +24,7 @@ import 'package:mapbox_gl_dart/src/interop/interop.dart';
 /// @see [Create a draggable Marker](https://www.mapbox.com/mapbox-gl-js/example/drag-a-marker/)
 @JS('Marker')
 class MarkerJsImpl extends EventedJsImpl {
-  external factory MarkerJsImpl([MarkerOptionsJsImpl options]);
+  external factory MarkerJsImpl([Object options]);
 
   ///  Attaches the marker to a map
   ///  @param {MapboxMap} map
@@ -118,10 +118,12 @@ class MarkerJsImpl extends EventedJsImpl {
 @JS()
 @anonymous
 class MarkerOptionsJsImpl {
+  external static String get scale;
   external factory MarkerOptionsJsImpl({
     HtmlElement element,
     PointJsImpl offset,
     String anchor,
+    num scale,
     String color,
     bool draggable,
     num rotation,
