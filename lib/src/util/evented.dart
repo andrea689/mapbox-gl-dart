@@ -18,17 +18,18 @@ class Event extends JsObjectWrapper<EventJsImpl> {
   Point get point => Point.fromJsObject(jsObject.point);
 
   factory Event({
-    String id,
-    String type,
-    LngLat lngLat,
-    List<Feature> features,
-    Point point,
+    String? id,
+    String? type,
+    required LngLat lngLat,
+    required List<Feature> features,
+    required Point point,
   }) =>
       Event.fromJsObject(EventJsImpl(
         id: id,
         type: type,
         lngLat: lngLat.jsObject,
-        features: features.map((dynamic f) => f.jsObject).toList(),
+        features: features.map((dynamic f) => f.jsObject).toList()
+            as List<FeatureJsImpl?>?,
         point: point.jsObject,
       ));
 
@@ -46,7 +47,7 @@ class Evented extends JsObjectWrapper<EventedJsImpl> {
   ///    The listener function is called with the data object passed to `fire`,
   ///    extended with `target` and `type` properties.
   ///  @returns {Object} `this`
-  MapboxMap on(String type, [dynamic layerIdOrListener, Listener listener]) {
+  MapboxMap on(String type, [dynamic layerIdOrListener, Listener? listener]) {
     if (this is GeolocateControl && layerIdOrListener is GeoListener) {
       return MapboxMap.fromJsObject(
         jsObject.on(type, allowInterop(
@@ -68,7 +69,7 @@ class Evented extends JsObjectWrapper<EventedJsImpl> {
     return MapboxMap.fromJsObject(
         jsObject.on(type, layerIdOrListener, allowInterop(
       (EventJsImpl object) {
-        listener(Event.fromJsObject(object));
+        listener!(Event.fromJsObject(object));
       },
     )));
   }
@@ -78,7 +79,7 @@ class Evented extends JsObjectWrapper<EventedJsImpl> {
   ///  @param {string} type The event type to remove listeners for.
   ///  @param {Function} listener The listener function to remove.
   ///  @returns {Object} `this`
-  MapboxMap off(String type, [dynamic layerIdOrListener, Listener listener]) {
+  MapboxMap off(String type, [dynamic layerIdOrListener, Listener? listener]) {
     if (layerIdOrListener is Listener) {
       return MapboxMap.fromJsObject(
         jsObject.off(type, allowInterop(
@@ -91,7 +92,7 @@ class Evented extends JsObjectWrapper<EventedJsImpl> {
     return MapboxMap.fromJsObject(
         jsObject.off(type, layerIdOrListener, allowInterop(
       (EventJsImpl object) {
-        listener(Event.fromJsObject(object));
+        listener!(Event.fromJsObject(object));
       },
     )));
   }
@@ -125,8 +126,8 @@ class Evented extends JsObjectWrapper<EventedJsImpl> {
   ///  @private
   ///  @returns {Object} `this`
   ///  @private
-  setEventedParent([Evented parent, dynamic data]) =>
-      jsObject.setEventedParent(parent.jsObject, data);
+  setEventedParent([Evented? parent, dynamic data]) =>
+      jsObject.setEventedParent(parent?.jsObject, data);
 
   /// Creates a new Evented from a [jsObject].
   Evented.fromJsObject(EventedJsImpl jsObject) : super.fromJsObject(jsObject);

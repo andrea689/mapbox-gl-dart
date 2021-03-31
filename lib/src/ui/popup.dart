@@ -53,7 +53,7 @@ class Popup extends Evented {
   dynamic get options => jsObject.options;
 
   final PopupJsImpl jsObject;
-  factory Popup([PopupOptions options]) {
+  factory Popup([PopupOptions? options]) {
     if (options != null) {
       return Popup.fromJsObject(PopupJsImpl(options.jsObject));
     }
@@ -127,7 +127,7 @@ class Popup extends Evented {
   ///
   /// @param html A string representing HTML content for the popup.
   /// @returns {Popup} `this`
-  Popup setHTML(String html) => Popup.fromJsObject(jsObject.setHTML(html));
+  Popup setHTML(String? html) => Popup.fromJsObject(jsObject.setHTML(html));
 
   /// Returns the popup's maximum width.
   ///
@@ -192,13 +192,13 @@ class Popup extends Evented {
 
 class PopupOptions extends JsObjectWrapper<PopupOptionsJsImpl> {
   factory PopupOptions({
-    bool loseButton,
-    bool closeButton,
-    bool closeOnClick,
-    String anchor,
+    bool? loseButton,
+    bool? closeButton,
+    bool? closeOnClick,
+    String? anchor,
     dynamic offset,
-    String className,
-    String maxWidth,
+    String? className,
+    String? maxWidth,
   }) =>
       PopupOptions.fromJsObject(PopupOptionsJsImpl(
         loseButton: loseButton,

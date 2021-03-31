@@ -2,20 +2,19 @@ library mapboxgl.style.layers.line_layer;
 
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 import 'package:mapbox_gl_dart/src/interop/interop.dart';
-import 'package:meta/meta.dart';
 
 class LineLayer extends Layer {
   String id;
 
   /// Source or String
   dynamic source;
-  String sourceLayer;
-  LinePaint paint;
-  LineLayout layout;
+  String? sourceLayer;
+  LinePaint? paint;
+  LineLayout? layout;
   dynamic filter;
 
   LineLayer({
-    @required this.id,
+    required this.id,
     this.source,
     this.sourceLayer,
     this.paint,
@@ -31,17 +30,17 @@ class LineLayer extends Layer {
 }
 
 class LinePaint {
-  num lineOpacity;
+  num? lineOpacity;
   dynamic lineColor;
-  List<num> lineTranslate;
-  String lineTranslateAnchor;
+  List<num>? lineTranslate;
+  String? lineTranslateAnchor;
   dynamic lineWidth;
-  num lineGapWidth;
-  num lineOffset;
-  num lineBlur;
-  List<num> lineDasharray;
-  String linePattern;
-  String lineGradient;
+  num? lineGapWidth;
+  num? lineOffset;
+  num? lineBlur;
+  List<num>? lineDasharray;
+  String? linePattern;
+  String? lineGradient;
 
   LinePaint({
     this.lineOpacity,
@@ -63,12 +62,12 @@ class LinePaint {
 }
 
 class LineLayout {
-  String lineCap;
-  String lineJoin;
-  num lineMiterLimit;
-  num lineRoundLimit;
-  num lineSortKey;
-  String visibility;
+  String? lineCap;
+  String? lineJoin;
+  num? lineMiterLimit;
+  num? lineRoundLimit;
+  num? lineSortKey;
+  String? visibility;
 
   LineLayout({
     this.lineCap,

@@ -10,9 +10,9 @@ class NavigationControlOptions
   bool get visualizePitch => jsObject.visualizePitch;
 
   factory NavigationControlOptions({
-    bool showCompass,
-    bool showZoom,
-    bool visualizePitch,
+    bool? showCompass,
+    bool? showZoom,
+    bool? visualizePitch,
   }) =>
       NavigationControlOptions.fromJsObject(NavigationControlOptionsJsImpl(
         showCompass: showCompass,

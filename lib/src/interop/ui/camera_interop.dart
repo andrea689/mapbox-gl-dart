@@ -25,11 +25,11 @@ class CameraOptionsJsImpl {
   external LngLatJsImpl get around;
 
   external factory CameraOptionsJsImpl({
-    LngLatJsImpl center,
-    num zoom,
-    num bearing,
-    num pitch,
-    LngLatJsImpl around,
+    LngLatJsImpl? center,
+    num? zoom,
+    num? bearing,
+    num? pitch,
+    LngLatJsImpl? around,
   });
 }
 
@@ -55,11 +55,11 @@ class AnimationOptionsJsImpl {
   external bool get essential;
 
   external factory AnimationOptionsJsImpl({
-    num duration,
-    num Function(num time) easing,
-    PointJsImpl offset,
-    bool animate,
-    bool essential,
+    num? duration,
+    num Function(num time)? easing,
+    PointJsImpl? offset,
+    bool? animate,
+    bool? essential,
   });
 }
 
@@ -80,10 +80,10 @@ class PaddingOptionsJsImpl {
   external num get right;
 
   external factory PaddingOptionsJsImpl({
-    num top,
-    num bottom,
-    num left,
-    num right,
+    num? top,
+    num? bottom,
+    num? left,
+    num? right,
   });
 }
 
@@ -118,7 +118,7 @@ abstract class CameraJsImpl extends EventedJsImpl {
   ///  @returns {MapboxMap} `this`
   ///  @see [Navigate the map with game-like controls](https://www.mapbox.com/mapbox-gl-js/example/game-controls/)
   external MapboxMapJsImpl panBy(PointJsImpl offset,
-      [AnimationOptionsJsImpl options, dynamic eventData]);
+      [AnimationOptionsJsImpl? options, dynamic eventData]);
 
   ///  Pans the map to the specified location, with an animated transition.
   ///
@@ -130,7 +130,7 @@ abstract class CameraJsImpl extends EventedJsImpl {
   ///  @fires moveend
   ///  @returns {MapboxMap} `this`
   external MapboxMapJsImpl panTo(LngLatJsImpl lnglat,
-      [AnimationOptionsJsImpl options, dynamic eventData]);
+      [AnimationOptionsJsImpl? options, dynamic eventData]);
 
   ///  Returns the map's current zoom level.
   ///
@@ -169,7 +169,7 @@ abstract class CameraJsImpl extends EventedJsImpl {
   ///  @fires zoomend
   ///  @returns {MapboxMap} `this`
   external MapboxMapJsImpl zoomTo(num zoom,
-      [AnimationOptionsJsImpl options, dynamic eventData]);
+      [AnimationOptionsJsImpl? options, dynamic eventData]);
 
   ///  Increases the map's zoom level by 1.
   ///
@@ -184,7 +184,7 @@ abstract class CameraJsImpl extends EventedJsImpl {
   ///  @fires zoomend
   ///  @returns {MapboxMap} `this`
   external MapboxMapJsImpl zoomIn(
-      [AnimationOptionsJsImpl options, dynamic eventData]);
+      [AnimationOptionsJsImpl? options, dynamic eventData]);
 
   ///  Decreases the map's zoom level by 1.
   ///
@@ -199,7 +199,7 @@ abstract class CameraJsImpl extends EventedJsImpl {
   ///  @fires zoomend
   ///  @returns {MapboxMap} `this`
   external MapboxMapJsImpl zoomOut(
-      [AnimationOptionsJsImpl options, dynamic eventData]);
+      [AnimationOptionsJsImpl? options, dynamic eventData]);
 
   ///  Returns the map's current bearing. The bearing is the compass direction that is \"up\"; for example, a bearing
   ///  of 90° orients the map so that east is up.
@@ -236,7 +236,7 @@ abstract class CameraJsImpl extends EventedJsImpl {
   ///  @fires moveend
   ///  @returns {MapboxMap} `this`
   external MapboxMapJsImpl rotateTo(num bearing,
-      [AnimationOptionsJsImpl options, dynamic eventData]);
+      [AnimationOptionsJsImpl? options, dynamic eventData]);
 
   ///  Rotates the map so that north is up (0° bearing), with an animated transition.
   ///
@@ -247,7 +247,7 @@ abstract class CameraJsImpl extends EventedJsImpl {
   ///  @fires moveend
   ///  @returns {MapboxMap} `this`
   external MapboxMapJsImpl resetNorth(
-      [AnimationOptionsJsImpl options, dynamic eventData]);
+      [AnimationOptionsJsImpl? options, dynamic eventData]);
 
   ///  Rotates and pitches the map so that north is up (0° bearing) and pitch is 0°, with an animated transition.
   ///
@@ -258,7 +258,7 @@ abstract class CameraJsImpl extends EventedJsImpl {
   ///  @fires moveend
   ///  @returns {MapboxMap} `this`
   external MapboxMapJsImpl resetNorthPitch(
-      [AnimationOptionsJsImpl options, dynamic eventData]);
+      [AnimationOptionsJsImpl? options, dynamic eventData]);
 
   ///  Snaps the map so that north is up (0° bearing), if the current bearing is close enough to it (i.e. within the
   ///  `bearingSnap` threshold).
@@ -270,7 +270,7 @@ abstract class CameraJsImpl extends EventedJsImpl {
   ///  @fires moveend
   ///  @returns {MapboxMap} `this`
   external MapboxMapJsImpl snapToNorth(
-      [AnimationOptionsJsImpl options, dynamic eventData]);
+      [AnimationOptionsJsImpl? options, dynamic eventData]);
 
   ///  Returns the map's current pitch (tilt).
   ///
@@ -305,7 +305,7 @@ abstract class CameraJsImpl extends EventedJsImpl {
   ///    padding: {top: 10, bottom:25, left: 15, right: 5}
   ///  });
   external CameraOptionsJsImpl cameraForBounds(LngLatBoundsJsImpl bounds,
-      [CameraOptionsJsImpl options]);
+      [CameraOptionsJsImpl? options]);
 
   ///  Pans and zooms the map to contain its visible area within the specified geographical bounds.
   ///  This function will also reset the map's bearing to 0 if bearing is nonzero.
@@ -332,7 +332,7 @@ abstract class CameraJsImpl extends EventedJsImpl {
   ///  });
   ///  @see [Fit a map to a bounding box](https://www.mapbox.com/mapbox-gl-js/example/fitbounds/)
   external MapboxMapJsImpl fitBounds(LngLatBoundsJsImpl bounds,
-      [dynamic options, dynamic eventData]);
+      [dynamic? options, dynamic eventData]);
 
   ///  Pans, rotates and zooms the map to to fit the box made by points p0 and p1
   ///  once the map is rotated to the specified bearing. To zoom without rotating,

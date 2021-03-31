@@ -2,23 +2,22 @@ library mapboxgl.style.layers.symbol_layer;
 
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 import 'package:mapbox_gl_dart/src/interop/interop.dart';
-import 'package:meta/meta.dart';
 
 class SymbolLayer extends Layer {
   String id;
-  String metadata;
+  String? metadata;
 
   /// Source or String
   dynamic source;
-  String sourceLayer;
-  num minZoom;
-  num maxZoom;
+  String? sourceLayer;
+  num? minZoom;
+  num? maxZoom;
   dynamic filter;
-  SymbolLayout layout;
-  SymbolPaint paint;
+  SymbolLayout? layout;
+  SymbolPaint? paint;
 
   SymbolLayer({
-    @required this.id,
+    required this.id,
     this.metadata,
     this.source,
     this.sourceLayer,
@@ -37,20 +36,20 @@ class SymbolLayer extends Layer {
 }
 
 class SymbolPaint {
-  num iconOpacity;
-  String iconColor;
-  String iconHaloColor;
-  num iconHaloWidth;
-  num iconHaloBlur;
-  List<num> iconTranslate;
-  String iconTranslateAnchor;
-  num textOpacity;
-  String textColor;
-  String textHaloColor;
-  num textHaloWidth;
-  num textHaloBlur;
-  List<num> textTranslate;
-  String textTranslateAnchor;
+  num? iconOpacity;
+  String? iconColor;
+  String? iconHaloColor;
+  num? iconHaloWidth;
+  num? iconHaloBlur;
+  List<num>? iconTranslate;
+  String? iconTranslateAnchor;
+  num? textOpacity;
+  String? textColor;
+  String? textHaloColor;
+  num? textHaloWidth;
+  num? textHaloBlur;
+  List<num>? textTranslate;
+  String? textTranslateAnchor;
 
   SymbolPaint({
     this.iconOpacity,
@@ -75,46 +74,46 @@ class SymbolPaint {
 }
 
 class SymbolLayout {
-  bool symbolAvoidEdges;
-  num symbolSortKey;
-  String symbolZOrder;
-  bool iconAllowOverlap;
-  bool iconIgnorePlacement;
-  bool iconOptional;
-  String iconRotationAlignment;
-  num iconSize;
-  String iconTextFit;
-  List<num> iconFitPadding;
+  bool? symbolAvoidEdges;
+  num? symbolSortKey;
+  String? symbolZOrder;
+  bool? iconAllowOverlap;
+  bool? iconIgnorePlacement;
+  bool? iconOptional;
+  String? iconRotationAlignment;
+  num? iconSize;
+  String? iconTextFit;
+  List<num>? iconFitPadding;
   dynamic iconImage;
-  num iconRotate;
-  num iconPadding;
-  bool iconKeepUpright;
-  List<num> iconOffset;
-  String iconAnchor;
-  String iconPitchAlignment;
-  String textPitchAlignment;
-  String textRotationAlignment;
-  String textField;
-  List<String> textFont;
-  num textSize;
-  num textMaxWidth;
-  num textLineHeight;
-  num textLetterSpacing;
-  String textJustify;
-  num textRadialOffset;
-  List<String> textVariableAnchor;
-  String textAnchor;
-  num textMaxAngle;
-  List<String> textWritingMode;
-  num textRotate;
-  num textPadding;
-  bool textKeepUpright;
-  String textTransform;
-  List<num> textOffset;
-  bool textAllowOverlap;
-  bool textIgnorePlacement;
-  bool textOptional;
-  String visibility;
+  num? iconRotate;
+  num? iconPadding;
+  bool? iconKeepUpright;
+  List<num>? iconOffset;
+  String? iconAnchor;
+  String? iconPitchAlignment;
+  String? textPitchAlignment;
+  String? textRotationAlignment;
+  String? textField;
+  List<String>? textFont;
+  num? textSize;
+  num? textMaxWidth;
+  num? textLineHeight;
+  num? textLetterSpacing;
+  String? textJustify;
+  num? textRadialOffset;
+  List<String>? textVariableAnchor;
+  String? textAnchor;
+  num? textMaxAngle;
+  List<String>? textWritingMode;
+  num? textRotate;
+  num? textPadding;
+  bool? textKeepUpright;
+  String? textTransform;
+  List<num>? textOffset;
+  bool? textAllowOverlap;
+  bool? textIgnorePlacement;
+  bool? textOptional;
+  String? visibility;
 
   SymbolLayout({
     this.symbolAvoidEdges,

@@ -81,8 +81,8 @@ class MapboxMapJsImpl extends CameraJsImpl {
   ///  // Add zoom and rotation controls to the map.
   ///  map.addControl(new NavigationControl());
   ///  @see [Display map navigation controls](https://www.mapbox.com/mapbox-gl-js/example/navigation/)
-  external MapboxMapJsImpl addControl(IControlJsImpl control,
-      [String position]);
+  external MapboxMapJsImpl addControl(IControlJsImpl? control,
+      [String? position]);
 
   ///  Removes the control from the map.
   ///
@@ -95,7 +95,7 @@ class MapboxMapJsImpl extends CameraJsImpl {
   ///  map.addControl(navigation);
   ///  // Remove zoom and rotation controls from the map.
   ///  map.removeControl(navigation);
-  external MapboxMapJsImpl removeControl(IControlJsImpl control);
+  external MapboxMapJsImpl removeControl(IControlJsImpl? control);
 
   ///  Resizes the map according to the dimensions of its
   ///  `container` element.
@@ -145,7 +145,7 @@ class MapboxMapJsImpl extends CameraJsImpl {
   ///  ];
   ///  // Set the map's max bounds.
   ///  map.setMaxBounds(bounds);
-  external MapboxMapJsImpl setMaxBounds(LngLatBoundsJsImpl bounds);
+  external MapboxMapJsImpl setMaxBounds(LngLatBoundsJsImpl? bounds);
 
   ///  Sets or clears the map's minimum zoom level.
   ///  If the map's current zoom level is lower than the new minimum,
@@ -161,7 +161,7 @@ class MapboxMapJsImpl extends CameraJsImpl {
   ///  @returns {MapboxMap} `this`
   ///  @example
   ///  map.setMinZoom(12.25);
-  external MapboxMapJsImpl setMinZoom([num minZoom]);
+  external MapboxMapJsImpl setMinZoom([num? minZoom]);
 
   ///  Returns the map's minimum allowable zoom level.
   ///
@@ -179,7 +179,7 @@ class MapboxMapJsImpl extends CameraJsImpl {
   ///  @returns {MapboxMap} `this`
   ///  @example
   ///  map.setMaxZoom(18.75);
-  external MapboxMapJsImpl setMaxZoom([num maxZoom]);
+  external MapboxMapJsImpl setMaxZoom([num? maxZoom]);
 
   ///  Returns the map's maximum allowable zoom level.
   ///
@@ -195,7 +195,7 @@ class MapboxMapJsImpl extends CameraJsImpl {
   ///  @param {number | null | undefined} minPitch The minimum pitch to set (0-60).
   ///    If `null` or `undefined` is provided, the function removes the current minimum pitch (i.e. sets it to 0).
   ///  @returns {MapboxMap} `this`
-  external MapboxMapJsImpl setMinPitch([num minPitch]);
+  external MapboxMapJsImpl setMinPitch([num? minPitch]);
 
   ///  Returns the map's minimum allowable pitch.
   ///
@@ -209,7 +209,7 @@ class MapboxMapJsImpl extends CameraJsImpl {
   ///  @param {number | null | undefined} maxPitch The maximum pitch to set.
   ///    If `null` or `undefined` is provided, the function removes the current maximum pitch (sets it to 60).
   ///  @returns {MapboxMap} `this`
-  external MapboxMapJsImpl setMaxPitch([num maxPitch]);
+  external MapboxMapJsImpl setMaxPitch([num? maxPitch]);
 
   ///  Returns the map's maximum allowable pitch.
   ///
@@ -240,7 +240,7 @@ class MapboxMapJsImpl extends CameraJsImpl {
   ///  @example
   ///  map.setRenderWorldCopies(true);
   ///  @see [Render world copies](https://docs.mapbox.com/mapbox-gl-js/example/render-world-copies/)
-  external MapboxMapJsImpl setRenderWorldCopies([bool renderWorldCopies]);
+  external MapboxMapJsImpl setRenderWorldCopies([bool? renderWorldCopies]);
 
   ///  Returns a {@link Point} representing pixel coordinates, relative to the map's `container`,
   ///  that correspond to the specified geographical location.
@@ -692,7 +692,7 @@ class MapboxMapJsImpl extends CameraJsImpl {
   ///  @see [Create and style clusters](https://www.mapbox.com/mapbox-gl-js/example/cluster/)
   ///  @see [Add a vector tile source](https://www.mapbox.com/mapbox-gl-js/example/vector-source/)
   ///  @see [Add a WMS source](https://www.mapbox.com/mapbox-gl-js/example/wms/)
-  external MapboxMapJsImpl addLayer(dynamic layer, [String beforeId]);
+  external MapboxMapJsImpl addLayer(dynamic layer, [String? beforeId]);
 
   ///  Moves a layer to a different z-position.
   ///
@@ -767,7 +767,7 @@ class MapboxMapJsImpl extends CameraJsImpl {
   ///  @see [Highlight features containing similar data](https://www.mapbox.com/mapbox-gl-js/example/query-similar-features/)
   ///  @see [Create a timeline animation](https://www.mapbox.com/mapbox-gl-js/example/timeline-animation/)
   external MapboxMapJsImpl setFilter(String layerId, dynamic filter,
-      [StyleSetterOptionsJsImpl options]);
+      [StyleSetterOptionsJsImpl? options]);
 
   ///  Returns the filter applied to the specified style layer.
   ///
@@ -790,7 +790,7 @@ class MapboxMapJsImpl extends CameraJsImpl {
   ///  @see [Adjust a layer's opacity](https://www.mapbox.com/mapbox-gl-js/example/adjust-layer-opacity/)
   ///  @see [Create a draggable point](https://www.mapbox.com/mapbox-gl-js/example/drag-a-point/)
   external setPaintProperty(String layerId, String name, dynamic value,
-      [StyleSetterOptionsJsImpl options]);
+      [StyleSetterOptionsJsImpl? options]);
 
   ///  Returns the value of a paint property in the specified style layer.
   ///
@@ -811,7 +811,7 @@ class MapboxMapJsImpl extends CameraJsImpl {
   ///  map.setLayoutProperty('my-layer', 'visibility', 'none');
   external MapboxMapJsImpl setLayoutProperty(
       String layerId, String name, dynamic value,
-      [StyleSetterOptionsJsImpl options]);
+      [StyleSetterOptionsJsImpl? options]);
 
   ///  Returns the value of a layout property in the specified style layer.
   ///
@@ -865,7 +865,7 @@ class MapboxMapJsImpl extends CameraJsImpl {
   ///  @param {string} `target.sourceLayer` (optional) /// For vector tile sources, the sourceLayer is
   ///   required.*
   ///  @param {string} key (optional) The key in the feature state to reset.
-  external removeFeatureState(dynamic target, [String key]);
+  external removeFeatureState(dynamic target, [String? key]);
 
   ///  Gets the state of a feature.
   ///  Features are identified by their `id` attribute, which must be an integer or a string that can be
@@ -1163,46 +1163,46 @@ class MapOptionsJsImpl {
 
   external factory MapOptionsJsImpl({
     dynamic hash,
-    bool interactive,
+    bool? interactive,
     dynamic container,
-    num bearingSnap,
-    bool pitchWithRotate,
-    bool clickTolerance,
-    bool attributionControl,
+    num? bearingSnap,
+    bool? pitchWithRotate,
+    bool? clickTolerance,
+    bool? attributionControl,
     dynamic customAttribution,
-    String logoPosition,
-    bool failIfMajorPerformanceCaveat,
-    bool preserveDrawingBuffer,
-    bool antialias,
-    bool refreshExpiredTiles,
-    LngLatBoundsJsImpl maxBounds,
-    bool scrollZoom,
-    num minZoom,
-    num maxZoom,
-    num minPitch,
-    num maxPitch,
+    String? logoPosition,
+    bool? failIfMajorPerformanceCaveat,
+    bool? preserveDrawingBuffer,
+    bool? antialias,
+    bool? refreshExpiredTiles,
+    LngLatBoundsJsImpl? maxBounds,
+    bool? scrollZoom,
+    num? minZoom,
+    num? maxZoom,
+    num? minPitch,
+    num? maxPitch,
     dynamic style,
-    bool boxZoom,
-    bool dragRotate,
+    bool? boxZoom,
+    bool? dragRotate,
     dynamic dragPan,
-    bool keyboard,
-    bool doubleClickZoom,
-    bool touchZoomRotate,
-    bool trackResize,
-    LngLatJsImpl center,
-    num zoom,
-    num bearing,
-    num pitch,
-    LngLatBoundsJsImpl bounds,
+    bool? keyboard,
+    bool? doubleClickZoom,
+    bool? touchZoomRotate,
+    bool? trackResize,
+    LngLatJsImpl? center,
+    num? zoom,
+    num? bearing,
+    num? pitch,
+    LngLatBoundsJsImpl? bounds,
     dynamic fitBoundsOptions,
-    bool renderWorldCopies,
-    num maxTileCacheSize,
-    String localIdeographFontFamily,
-    RequestTransformFunctionJsImpl transformRequest,
-    bool collectResourceTiming,
-    num fadeDuration,
-    bool crossSourceCollisions,
-    String accessToken,
+    bool? renderWorldCopies,
+    num? maxTileCacheSize,
+    String? localIdeographFontFamily,
+    RequestTransformFunctionJsImpl? transformRequest,
+    bool? collectResourceTiming,
+    num? fadeDuration,
+    bool? crossSourceCollisions,
+    String? accessToken,
     dynamic locale,
   });
 }
@@ -1213,18 +1213,18 @@ typedef RequestTransformFunctionJsImpl = RequestParametersJsImpl Function(
 @JS()
 @anonymous
 class RequestParametersJsImpl {
-  String url;
-  String credentials;
-  dynamic headers;
-  String method;
-  bool collectResourceTiming;
+  String? url;
+  String? credentials;
+  dynamic? headers;
+  String? method;
+  bool? collectResourceTiming;
 
   external factory RequestParametersJsImpl({
-    String url,
-    String credentials,
+    String? url,
+    String? credentials,
     dynamic headers,
-    String method,
-    bool collectResourceTiming,
+    String? method,
+    bool? collectResourceTiming,
   });
 }
 

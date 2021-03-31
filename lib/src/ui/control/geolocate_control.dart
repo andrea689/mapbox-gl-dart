@@ -13,11 +13,11 @@ class GeolocateControlOptions
   bool get showUserLocation => jsObject.showUserLocation;
 
   factory GeolocateControlOptions({
-    PositionOptions positionOptions,
+    required PositionOptions positionOptions,
     dynamic fitBoundsOptions,
-    bool trackUserLocation,
-    bool showAccuracyCircle,
-    bool showUserLocation,
+    bool? trackUserLocation,
+    bool? showAccuracyCircle,
+    bool? showUserLocation,
   }) =>
       GeolocateControlOptions.fromJsObject(GeolocateControlOptionsJsImpl(
         positionOptions: positionOptions.jsObject,
@@ -38,9 +38,9 @@ class PositionOptions extends JsObjectWrapper<PositionOptionsJsImpl> {
   num get timeout => jsObject.timeout;
 
   factory PositionOptions({
-    bool enableHighAccuracy,
-    num maximumAge,
-    num timeout,
+    bool? enableHighAccuracy,
+    num? maximumAge,
+    num? timeout,
   }) =>
       PositionOptions.fromJsObject(PositionOptionsJsImpl(
         enableHighAccuracy: enableHighAccuracy,

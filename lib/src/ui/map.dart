@@ -89,7 +89,7 @@ class MapboxMap extends Camera {
   ///  // Add zoom and rotation controls to the map.
   ///  map.addControl(new NavigationControl());
   ///  @see [Display map navigation controls](https://www.mapbox.com/mapbox-gl-js/example/navigation/)
-  MapboxMap addControl(dynamic control, [String position]) {
+  MapboxMap addControl(dynamic control, [String? position]) {
     if (position != null) {
       return MapboxMap.fromJsObject(
           jsObject.addControl(control.jsObject, position));
@@ -161,8 +161,8 @@ class MapboxMap extends Camera {
   ///  ];
   ///  // Set the map's max bounds.
   ///  map.setMaxBounds(bounds);
-  MapboxMap setMaxBounds(LngLatBounds bounds) => MapboxMap.fromJsObject(
-      jsObject.setMaxBounds(bounds == null ? null : bounds.jsObject));
+  MapboxMap setMaxBounds(LngLatBounds? bounds) =>
+      MapboxMap.fromJsObject(jsObject.setMaxBounds(bounds?.jsObject));
 
   ///  Sets or clears the map's minimum zoom level.
   ///  If the map's current zoom level is lower than the new minimum,
@@ -178,7 +178,7 @@ class MapboxMap extends Camera {
   ///  @returns {MapboxMap} `this`
   ///  @example
   ///  map.setMinZoom(12.25);
-  MapboxMap setMinZoom([num minZoom]) =>
+  MapboxMap setMinZoom([num? minZoom]) =>
       MapboxMap.fromJsObject(jsObject.setMinZoom(minZoom));
 
   ///  Returns the map's minimum allowable zoom level.
@@ -197,7 +197,7 @@ class MapboxMap extends Camera {
   ///  @returns {MapboxMap} `this`
   ///  @example
   ///  map.setMaxZoom(18.75);
-  MapboxMap setMaxZoom([num maxZoom]) =>
+  MapboxMap setMaxZoom([num? maxZoom]) =>
       MapboxMap.fromJsObject(jsObject.setMaxZoom(maxZoom));
 
   ///  Returns the map's maximum allowable zoom level.
@@ -214,7 +214,7 @@ class MapboxMap extends Camera {
   ///  @param {number | null | undefined} minPitch The minimum pitch to set (0-60).
   ///    If `null` or `undefined` is provided, the function removes the current minimum pitch (i.e. sets it to 0).
   ///  @returns {MapboxMap} `this`
-  MapboxMap setMinPitch([num minPitch]) =>
+  MapboxMap setMinPitch([num? minPitch]) =>
       MapboxMap.fromJsObject(jsObject.setMinPitch());
 
   ///  Returns the map's minimum allowable pitch.
@@ -229,7 +229,7 @@ class MapboxMap extends Camera {
   ///  @param {number | null | undefined} maxPitch The maximum pitch to set.
   ///    If `null` or `undefined` is provided, the function removes the current maximum pitch (sets it to 60).
   ///  @returns {MapboxMap} `this`
-  MapboxMap setMaxPitch([num maxPitch]) =>
+  MapboxMap setMaxPitch([num? maxPitch]) =>
       MapboxMap.fromJsObject(jsObject.setMaxPitch());
 
   ///  Returns the map's maximum allowable pitch.
@@ -261,7 +261,7 @@ class MapboxMap extends Camera {
   ///  @example
   ///  map.setRenderWorldCopies(true);
   ///  @see [Render world copies](https://docs.mapbox.com/mapbox-gl-js/example/render-world-copies/)
-  MapboxMap setRenderWorldCopies([bool renderWorldCopies]) =>
+  MapboxMap setRenderWorldCopies([bool? renderWorldCopies]) =>
       MapboxMap.fromJsObject(jsObject.setRenderWorldCopies(renderWorldCopies));
 
   ///  Returns a {@link Point} representing pixel coordinates, relative to the map's `container`,
@@ -406,7 +406,7 @@ class MapboxMap extends Camera {
   ///  @see [Highlight features within a bounding box](https://www.mapbox.com/mapbox-gl-js/example/using-box-queryrenderedfeatures/)
   ///  @see [Filter features within map view](https://www.mapbox.com/mapbox-gl-js/example/filter-features-within-map-view/)
   List<Feature> queryRenderedFeatures(dynamic geometry,
-      [Map<String, dynamic> options]) {
+      [Map<String, dynamic>? options]) {
     if (options == null) {
       return jsObject
           .queryRenderedFeatures(geometry)
@@ -636,7 +636,7 @@ class MapboxMap extends Camera {
   ///
   ///  @see Use `HTMLImageElement`: [Add an icon to the map](https://www.mapbox.com/mapbox-gl-js/example/add-image/)
   ///  @see Use `ImageData`: [Add a generated icon to the map](https://www.mapbox.com/mapbox-gl-js/example/add-image-generated/)
-  addImage(String id, dynamic image, [Map<String, dynamic> options]) {
+  addImage(String id, dynamic image, [Map<String, dynamic>? options]) {
     if (image is Map) {
       image = jsify(image);
     }
@@ -751,7 +751,7 @@ class MapboxMap extends Camera {
   ///  @see [Create and style clusters](https://www.mapbox.com/mapbox-gl-js/example/cluster/)
   ///  @see [Add a vector tile source](https://www.mapbox.com/mapbox-gl-js/example/vector-source/)
   ///  @see [Add a WMS source](https://www.mapbox.com/mapbox-gl-js/example/wms/)
-  MapboxMap addLayer(dynamic layer, [String beforeId]) {
+  MapboxMap addLayer(dynamic layer, [String? beforeId]) {
     if (layer is Layer) {
       return MapboxMap.fromJsObject(jsObject.addLayer(layer.jsObject));
     }
@@ -835,7 +835,7 @@ class MapboxMap extends Camera {
   ///  @see [Highlight features containing similar data](https://www.mapbox.com/mapbox-gl-js/example/query-similar-features/)
   ///  @see [Create a timeline animation](https://www.mapbox.com/mapbox-gl-js/example/timeline-animation/)
   MapboxMap setFilter(String layerId, dynamic filter,
-          [StyleSetterOptions options]) =>
+          [StyleSetterOptions? options]) =>
       MapboxMap.fromJsObject(jsObject.setFilter(layerId, filter));
 
   ///  Returns the filter applied to the specified style layer.
@@ -859,7 +859,7 @@ class MapboxMap extends Camera {
   ///  @see [Adjust a layer's opacity](https://www.mapbox.com/mapbox-gl-js/example/adjust-layer-opacity/)
   ///  @see [Create a draggable point](https://www.mapbox.com/mapbox-gl-js/example/drag-a-point/)
   setPaintProperty(String layerId, String name, dynamic value,
-          [StyleSetterOptions options]) =>
+          [StyleSetterOptions? options]) =>
       jsObject.setPaintProperty(layerId, name, jsify(value));
 
   ///  Returns the value of a paint property in the specified style layer.
@@ -881,7 +881,7 @@ class MapboxMap extends Camera {
   ///  @example
   ///  map.setLayoutProperty('my-layer', 'visibility', 'none');
   MapboxMap setLayoutProperty(String layerId, String name, dynamic value,
-          [StyleSetterOptions options]) =>
+          [StyleSetterOptions? options]) =>
       MapboxMap.fromJsObject(jsObject.setLayoutProperty(layerId, name, value));
 
   ///  Returns the value of a layout property in the specified style layer.
@@ -938,7 +938,7 @@ class MapboxMap extends Camera {
   ///  @param {string} `target.sourceLayer` (optional) /// For vector tile sources, the sourceLayer is
   ///   required.*
   ///  @param {string} key (optional) The key in the feature state to reset.
-  removeFeatureState(dynamic target, [String key]) =>
+  removeFeatureState(dynamic target, [String? key]) =>
       jsObject.removeFeatureState(target);
 
   ///  Gets the state of a feature.
@@ -1239,46 +1239,46 @@ class MapOptions extends JsObjectWrapper<MapOptionsJsImpl> {
 
   factory MapOptions({
     dynamic hash,
-    bool interactive,
+    bool? interactive,
     dynamic container,
-    num bearingSnap,
-    bool pitchWithRotate,
-    bool clickTolerance,
-    bool attributionControl,
+    num? bearingSnap,
+    bool? pitchWithRotate,
+    bool? clickTolerance,
+    bool? attributionControl,
     dynamic customAttribution,
-    String logoPosition,
-    bool failIfMajorPerformanceCaveat,
-    bool preserveDrawingBuffer,
-    bool antialias,
-    bool refreshExpiredTiles,
-    LngLatBounds maxBounds,
-    bool scrollZoom,
-    num minZoom,
-    num maxZoom,
-    num minPitch,
-    num maxPitch,
+    String? logoPosition,
+    bool? failIfMajorPerformanceCaveat,
+    bool? preserveDrawingBuffer,
+    bool? antialias,
+    bool? refreshExpiredTiles,
+    LngLatBounds? maxBounds,
+    bool? scrollZoom,
+    num? minZoom,
+    num? maxZoom,
+    num? minPitch,
+    num? maxPitch,
     dynamic style,
-    bool boxZoom,
-    bool dragRotate,
+    bool? boxZoom,
+    bool? dragRotate,
     dynamic dragPan,
-    bool keyboard,
-    bool doubleClickZoom,
-    bool touchZoomRotate,
-    bool trackResize,
-    LngLat center,
-    num zoom,
-    num bearing,
-    num pitch,
-    LngLatBounds bounds,
+    bool? keyboard,
+    bool? doubleClickZoom,
+    bool? touchZoomRotate,
+    bool? trackResize,
+    LngLat? center,
+    num? zoom,
+    num? bearing,
+    num? pitch,
+    LngLatBounds? bounds,
     dynamic fitBoundsOptions,
-    bool renderWorldCopies,
-    num maxTileCacheSize,
-    String localIdeographFontFamily,
-    RequestTransformFunctionJsImpl transformRequest, //TODO: Remove JsImpl
-    bool collectResourceTiming,
-    num fadeDuration,
-    bool crossSourceCollisions,
-    String accessToken,
+    bool? renderWorldCopies,
+    num? maxTileCacheSize,
+    String? localIdeographFontFamily,
+    RequestTransformFunctionJsImpl? transformRequest, //TODO: Remove JsImpl
+    bool? collectResourceTiming,
+    num? fadeDuration,
+    bool? crossSourceCollisions,
+    String? accessToken,
     dynamic locale,
   }) =>
       MapOptions.fromJsObject(MapOptionsJsImpl(
@@ -1332,18 +1332,18 @@ class MapOptions extends JsObjectWrapper<MapOptionsJsImpl> {
 }
 
 class RequestParameters extends JsObjectWrapper<RequestParametersJsImpl> {
-  String get url => jsObject.url;
-  String get credentials => jsObject.credentials;
-  dynamic get headers => jsObject.headers;
-  String get method => jsObject.method;
-  bool get collectResourceTiming => jsObject.collectResourceTiming;
+  String? get url => jsObject.url;
+  String? get credentials => jsObject.credentials;
+  dynamic? get headers => jsObject.headers;
+  String? get method => jsObject.method;
+  bool? get collectResourceTiming => jsObject.collectResourceTiming;
 
   factory RequestParameters({
-    String url,
-    String credentials,
+    String? url,
+    String? credentials,
     dynamic headers,
-    String method,
-    bool collectResourceTiming,
+    String? method,
+    bool? collectResourceTiming,
   }) =>
       RequestParameters.fromJsObject(RequestParametersJsImpl(
         url: url,

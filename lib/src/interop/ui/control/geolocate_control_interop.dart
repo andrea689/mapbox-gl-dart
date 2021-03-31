@@ -14,11 +14,11 @@ class GeolocateControlOptionsJsImpl {
   external bool get showUserLocation;
 
   external factory GeolocateControlOptionsJsImpl({
-    PositionOptionsJsImpl positionOptions,
+    PositionOptionsJsImpl? positionOptions,
     dynamic fitBoundsOptions,
-    bool trackUserLocation,
-    bool showAccuracyCircle,
-    bool showUserLocation,
+    bool? trackUserLocation,
+    bool? showAccuracyCircle,
+    bool? showUserLocation,
   });
 }
 
@@ -30,9 +30,9 @@ class PositionOptionsJsImpl {
   external num get timeout;
 
   external factory PositionOptionsJsImpl({
-    bool enableHighAccuracy,
-    num maximumAge,
-    num timeout,
+    bool? enableHighAccuracy,
+    num? maximumAge,
+    num? timeout,
   });
 }
 

@@ -2,14 +2,14 @@ import 'dart:html';
 
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 
-Marker marker;
-HtmlElement coordinates;
+late Marker marker;
+late HtmlElement coordinates;
 
 void main() {
   Mapbox.accessToken =
       'pk.eyJ1IjoiYW5kcmVhNjg5IiwiYSI6ImNrNGlsYjhyZDBuYXoza213aWphOGNjZmoifQ.maw_5NsXejG1DoOeOi6hlQ';
 
-  coordinates = querySelector('#coordinates');
+  coordinates = querySelector('#coordinates') as HtmlElement;
   var map = MapboxMap(
     MapOptions(
       container: 'map',

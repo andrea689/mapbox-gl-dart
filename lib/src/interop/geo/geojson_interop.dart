@@ -24,11 +24,11 @@ class FeatureJsImpl {
   external dynamic get properties;
   external String get source;
   external factory FeatureJsImpl({
-    num id,
-    String type,
+    num? id,
+    String? type,
     GeometryJsImpl geometry,
-    dynamic properties,
-    String source,
+    dynamic? properties,
+    String? source,
   });
 }
 
@@ -38,7 +38,7 @@ class GeometryJsImpl {
   external String get type;
   external dynamic get coordinates;
   external factory GeometryJsImpl({
-    String type,
+    String? type,
     dynamic coordinates,
   });
 }

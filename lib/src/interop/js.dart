@@ -14,4 +14,4 @@ abstract class JsObjectWrapper<T> {
 }
 
 @JS('Object.keys')
-external List<String> objectKeys(Object obj);
+external List<String> objectKeys(Object? obj);

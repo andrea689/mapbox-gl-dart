@@ -10,7 +10,7 @@ class FeatureCollection extends JsObjectWrapper<FeatureCollectionJsImpl> {
       jsObject.features.map((f) => Feature.fromJsObject(f)).toList();
 
   factory FeatureCollection({
-    List<Feature> features,
+    required List<Feature> features,
   }) {
     return FeatureCollection.fromJsObject(FeatureCollectionJsImpl(
       type: 'FeatureCollection',
@@ -25,7 +25,7 @@ class FeatureCollection extends JsObjectWrapper<FeatureCollectionJsImpl> {
 
 class Feature extends JsObjectWrapper<FeatureJsImpl> {
   num get id => jsObject.id;
-  set id(int id) {
+  set id(num id) {
     jsObject.id = id;
   }
 
@@ -35,10 +35,10 @@ class Feature extends JsObjectWrapper<FeatureJsImpl> {
   String get source => jsObject.source;
 
   factory Feature({
-    num id,
-    Geometry geometry,
-    Map<String, dynamic> properties,
-    String source,
+    num? id,
+    required Geometry geometry,
+    Map<String, dynamic>? properties,
+    String? source,
   }) =>
       Feature.fromJsObject(FeatureJsImpl(
         type: 'Feature',
@@ -49,16 +49,17 @@ class Feature extends JsObjectWrapper<FeatureJsImpl> {
       ));
 
   Feature copyWith({
-    num id,
-    Geometry geometry,
-    Map<String, dynamic> properties,
-    String source,
+    num? id,
+    Geometry? geometry,
+    Map<String, dynamic>? properties,
+    String? source,
   }) =>
       Feature.fromJsObject(FeatureJsImpl(
         type: 'Feature',
         id: id ?? this.id,
         geometry: geometry != null ? geometry.jsObject : this.geometry.jsObject,
-        properties: jsify(properties) ?? jsify(this.properties),
+        properties:
+            properties != null ? jsify(properties) : jsify(this.properties),
         source: source ?? this.source,
       ));
 
@@ -71,7 +72,7 @@ class Geometry extends JsObjectWrapper<GeometryJsImpl> {
   dynamic get coordinates => jsObject.coordinates;
 
   factory Geometry({
-    String type,
+    String? type,
     dynamic coordinates,
   }) =>
       Geometry.fromJsObject(GeometryJsImpl(

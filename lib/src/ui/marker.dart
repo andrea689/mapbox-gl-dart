@@ -23,8 +23,8 @@ import 'package:mapbox_gl_dart/src/interop/interop.dart';
 /// @see [Create a draggable Marker](https://www.mapbox.com/mapbox-gl-js/example/drag-a-marker/)
 class Marker extends Evented {
   final MarkerJsImpl jsObject;
-  factory Marker([MarkerOptions options]) =>
-      Marker.fromJsObject(MarkerJsImpl(options.jsObject));
+  factory Marker([MarkerOptions? options]) =>
+      Marker.fromJsObject(MarkerJsImpl(options?.jsObject));
 
   ///  Attaches the marker to a map
   ///  @param {MapboxMap} map
@@ -128,18 +128,18 @@ class Marker extends Evented {
 
 class MarkerOptions extends JsObjectWrapper<MarkerOptionsJsImpl> {
   factory MarkerOptions({
-    HtmlElement element,
-    Point offset,
-    String anchor,
-    String color,
-    bool draggable,
-    num rotation,
-    String rotationAlignment,
-    String pitchAlignment,
+    HtmlElement? element,
+    Point? offset,
+    String? anchor,
+    String? color,
+    bool? draggable,
+    num? rotation,
+    String? rotationAlignment,
+    String? pitchAlignment,
   }) =>
       MarkerOptions.fromJsObject(MarkerOptionsJsImpl(
         element: element,
-        offset: offset.jsObject,
+        offset: offset?.jsObject,
         anchor: anchor,
         color: color,
         draggable: draggable,

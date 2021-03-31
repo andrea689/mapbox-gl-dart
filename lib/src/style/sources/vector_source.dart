@@ -4,12 +4,12 @@ import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
 class VectorSource extends Source<VectorSourceJsImpl> {
-  String get url => jsObject.url;
-  List<String> get tiles => jsObject.tiles;
+  String? get url => jsObject.url;
+  List<String>? get tiles => jsObject.tiles;
 
   factory VectorSource({
-    String url,
-    List<String> tiles,
+    String? url,
+    List<String>? tiles,
   }) {
     if (url != null && tiles != null) {
       throw Exception('Specify only one between url and tiles');
