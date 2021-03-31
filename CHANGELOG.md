@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0-nullsafety.0 (2021-03-31)
+
+* **BREAKING**: opt into null safety
+
 ## 0.1.5 (2020-06-03)
 
 * Add `Map` with `width`, `height` and `data` fields to define an image in `map.addImage()`
