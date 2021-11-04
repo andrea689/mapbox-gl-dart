@@ -753,9 +753,10 @@ class MapboxMap extends Camera {
   ///  @see [Add a WMS source](https://www.mapbox.com/mapbox-gl-js/example/wms/)
   MapboxMap addLayer(dynamic layer, [String beforeId]) {
     if (layer is Layer) {
-      return MapboxMap.fromJsObject(jsObject.addLayer(layer.jsObject));
+      return MapboxMap.fromJsObject(
+          jsObject.addLayer(layer.jsObject, beforeId));
     }
-    return MapboxMap.fromJsObject(jsObject.addLayer(jsify(layer)));
+    return MapboxMap.fromJsObject(jsObject.addLayer(jsify(layer), beforeId));
   }
 
   //jsObject.addLayer(layer.jsObject ?? jsify(layer));
