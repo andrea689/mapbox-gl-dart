@@ -1215,7 +1215,7 @@ typedef RequestTransformFunctionJsImpl = RequestParametersJsImpl Function(
 class RequestParametersJsImpl {
   String? url;
   String? credentials;
-  dynamic? headers;
+  dynamic headers;
   String? method;
   bool? collectResourceTiming;
 

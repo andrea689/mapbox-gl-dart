@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.0 (2021-11-06)
+
+* Add null safety [#13](https://github.com/andrea689/mapbox-gl-dart/pull/13)
+* Fixed issue with beforeId in addLayer [#15](https://github.com/andrea689/mapbox-gl-dart/pull/15)
+
 ## 0.2.0-nullsafety.0 (2021-03-31)
 
 * **BREAKING**: opt into null safety

@@ -332,7 +332,7 @@ abstract class CameraJsImpl extends EventedJsImpl {
   ///  });
   ///  @see [Fit a map to a bounding box](https://www.mapbox.com/mapbox-gl-js/example/fitbounds/)
   external MapboxMapJsImpl fitBounds(LngLatBoundsJsImpl bounds,
-      [dynamic? options, dynamic eventData]);
+      [dynamic options, dynamic eventData]);
 
   ///  Pans, rotates and zooms the map to to fit the box made by points p0 and p1
   ///  once the map is rotated to the specified bearing. To zoom without rotating,

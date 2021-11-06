@@ -1335,7 +1335,7 @@ class MapOptions extends JsObjectWrapper<MapOptionsJsImpl> {
 class RequestParameters extends JsObjectWrapper<RequestParametersJsImpl> {
   String? get url => jsObject.url;
   String? get credentials => jsObject.credentials;
-  dynamic? get headers => jsObject.headers;
+  dynamic get headers => jsObject.headers;
   String? get method => jsObject.method;
   bool? get collectResourceTiming => jsObject.collectResourceTiming;
 

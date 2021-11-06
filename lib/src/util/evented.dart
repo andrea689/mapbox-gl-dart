@@ -1,6 +1,5 @@
 library mapboxgl.util.evented;
 
-import 'dart:html';
 import 'dart:js';
 
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
