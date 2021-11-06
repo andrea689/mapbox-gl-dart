@@ -20,7 +20,7 @@ class CircleLayerJsImpl {
       dict['source-layer'] = circleLayer.sourceLayer;
     }
     if (circleLayer.paint != null) {
-      dict['paint'] = circleLayer.paint.dict;
+      dict['paint'] = circleLayer.paint!.dict;
     }
     return dict;
   }

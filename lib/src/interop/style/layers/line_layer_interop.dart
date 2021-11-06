@@ -19,10 +19,10 @@ class LineLayerJsImpl {
       dict['source-layer'] = lineLayer.sourceLayer;
     }
     if (lineLayer.paint != null) {
-      dict['paint'] = lineLayer.paint.dict;
+      dict['paint'] = lineLayer.paint!.dict;
     }
     if (lineLayer.layout != null) {
-      dict['layout'] = lineLayer.layout.dict;
+      dict['layout'] = lineLayer.layout!.dict;
     }
     if (lineLayer.filter != null) {
       dict['filter'] = lineLayer.filter;

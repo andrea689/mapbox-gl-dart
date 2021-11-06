@@ -9,8 +9,8 @@ class VectorSourceJsImpl {
   external String get url;
   external List<String> get tiles;
   external factory VectorSourceJsImpl({
-    String type,
-    String url,
-    List<String> tiles,
+    String? type,
+    String? url,
+    List<String>? tiles,
   });
 }

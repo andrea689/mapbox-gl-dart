@@ -15,10 +15,10 @@ Future<void> makeRequest() async {
 }
 
 void requestComplete(HttpRequest request) {
-  DivElement examples = querySelector('#examples');
+  DivElement examples = querySelector('#examples') as DivElement;
   switch (request.status) {
     case 200:
-      for (var obj in json.decode(request.responseText)) {
+      for (var obj in json.decode(request.responseText!)) {
         AnchorElement link = AnchorElement(href: '${obj['folder']}/index.html');
         link.text = obj['title'];
         link.className = 'list-group-item list-group-item-action';
@@ -36,6 +36,6 @@ void requestComplete(HttpRequest request) {
 }
 
 void removeSpinner() {
-  DivElement spinner = querySelector('#spinner');
+  DivElement spinner = querySelector('#spinner') as DivElement;
   spinner.remove();
 }

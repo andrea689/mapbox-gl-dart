@@ -70,14 +70,14 @@ class Style extends JsObjectWrapper<StyleJsImpl> {
   ///  Add a layer to the map style. The layer will be inserted before the layer with
   ///  ID `before`, or appended if `before` is omitted.
   ///  @param {string} [before] ID of an existing layer to insert before
-  addLayer(dynamic layerObject, [String before, StyleSetterOptions options]) =>
+  addLayer(dynamic layerObject, [String? before, StyleSetterOptions? options]) =>
       jsObject.addLayer(layerObject);
 
   ///  Moves a layer to a different z-position. The layer will be inserted before the layer with
   ///  ID `before`, or appended if `before` is omitted.
   ///  @param {string} id  ID of the layer to move
   ///  @param {string} [before] ID of an existing layer to insert before
-  moveLayer(String id, [String before]) => jsObject.moveLayer(id);
+  moveLayer(String id, [String? before]) => jsObject.moveLayer(id);
 
   ///  Remove the layer with the given id from the style.
   ///
@@ -93,7 +93,7 @@ class Style extends JsObjectWrapper<StyleJsImpl> {
   ///  @returns {?Object} a layer, if one with the given `id` exists
   dynamic getLayer(String id) => jsObject.getLayer(id);
 
-  setLayerZoomRange(String layerId, [num minzoom, num maxzoom]) =>
+  setLayerZoomRange(String layerId, [num? minzoom, num? maxzoom]) =>
       jsObject.setLayerZoomRange(layerId);
 
   setFilter(String layerId, dynamic filter, StyleSetterOptions options) =>
@@ -125,7 +125,7 @@ class Style extends JsObjectWrapper<StyleJsImpl> {
   setFeatureState(dynamic target, dynamic state) =>
       jsObject.setFeatureState(target, state);
 
-  removeFeatureState(dynamic target, [String key]) =>
+  removeFeatureState(dynamic target, [String? key]) =>
       jsObject.removeFeatureState(target);
 
   getFeatureState(dynamic target) => jsObject.getFeatureState(target);
