@@ -17,14 +17,14 @@ class FeatureCollectionJsImpl {
 @JS()
 @anonymous
 class FeatureJsImpl {
-  external num get id;
-  external set id(num id);
+  external dynamic get id;
+  external set id(dynamic id);
   external String get type;
   external GeometryJsImpl get geometry;
   external dynamic get properties;
   external String get source;
   external factory FeatureJsImpl({
-    num? id,
+    dynamic id,
     String? type,
     GeometryJsImpl geometry,
     dynamic properties,
