@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1 (2021-11-09)
+
+* Feature id as dynamic - Add promoteId to GeoJsonSource - update to mapbox-gl-js v2.5.1 [#16](https://github.com/andrea689/mapbox-gl-dart/pull/16)
+  
 ## 0.2.0 (2021-11-06)
 
 * Add null safety [#13](https://github.com/andrea689/mapbox-gl-dart/pull/13)
