@@ -8,8 +8,8 @@ You must include [Mapbox GL JS](https://github.com/mapbox/mapbox-gl-js) into you
 to be able to use this package.
 
 ```html
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet'/>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.1mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css' rel='stylesheet'/>
 ```
 
 In the body add a container for the map.

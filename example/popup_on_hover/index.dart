@@ -16,12 +16,14 @@ void main() {
   map.on('load', (_) {
     map.addSource('places', {
       'type': 'geojson',
+      'promoteId': 'id',
       'data': {
         'type': 'FeatureCollection',
         'features': [
           {
             'type': 'Feature',
             'properties': {
+              'id': 123,
               'description':
                   '<strong>Make it Mount Pleasant</strong><p>Make it Mount Pleasant is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.</p>',
               'icon': 'theatre'
@@ -34,6 +36,7 @@ void main() {
           {
             'type': 'Feature',
             'properties': {
+              'id': 'hello',
               'description':
                   '<strong>Mad Men Season Five Finale Watch Party</strong><p>Head to Lounge 201 (201 Massachusetts Avenue NE) Sunday for a Mad Men Season Five Finale Watch Party, complete with 60s costume contest, Mad Men trivia, and retro food and drink. 8:00-11:00 p.m. \$10 general admission, \$20 admission and two hour open bar.</p>',
               'icon': 'theatre'
@@ -147,6 +150,8 @@ void main() {
       ),
     );
     map.on('mouseenter', 'places', (e) {
+      print(e.features[0].id);
+
       // Change the cursor style as a UI indicator.
       map.getCanvas().style.cursor = 'pointer';
 

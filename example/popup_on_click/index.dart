@@ -15,6 +15,7 @@ void main() {
 
   map.on('load', (_) {
     var featureSource = GeoJsonSource(
+      promoteId: 'id',
       data: FeatureCollection(features: []),
     );
 
@@ -56,8 +57,8 @@ void main() {
     var features = FeatureCollection(
       features: [
         Feature(
-          id: 123,
           properties: {
+            'id': 123,
             'description':
                 '<strong>Make it Mount Pleasant</strong><p><a href="http://www.mtpleasantdc.com/makeitmtpleasant" target="_blank" title="Opens in a new window">Make it Mount Pleasant</a> is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.</p>',
             'icon': 'theatre',
@@ -68,8 +69,8 @@ void main() {
           ),
         ),
         Feature(
-          id: 'hello',
           properties: {
+            'id': 'hello',
             'description':
                 '<strong>Mad Men Season Five Finale Watch Party</strong><p>Head to Lounge 201 (201 Massachusetts Avenue NE) Sunday for a <a href="http://madmens5finale.eventbrite.com/" target="_blank" title="Opens in a new window">Mad Men Season Five Finale Watch Party</a>, complete with 60s costume contest, Mad Men trivia, and retro food and drink. 8:00-11:00 p.m. \$10 general admission, \$20 admission and two hour open bar.</p>',
             'icon': 'theatre',

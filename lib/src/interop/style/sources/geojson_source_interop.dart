@@ -8,8 +8,10 @@ import 'package:mapbox_gl_dart/src/interop/interop.dart';
 @anonymous
 class GeoJsonSourceJsImpl {
   external FeatureCollectionJsImpl get data;
+  external String get promoteId;
   external factory GeoJsonSourceJsImpl({
     String? type,
+    String? promoteId,
     FeatureCollectionJsImpl data,
   });
 
