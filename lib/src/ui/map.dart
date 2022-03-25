@@ -5,6 +5,7 @@ import 'dart:js';
 import 'package:js/js_util.dart';
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 import 'package:mapbox_gl_dart/src/interop/interop.dart';
+import 'package:mapbox_gl_dart/src/utils.dart';
 
 ///  The `MapboxMap` object represents the map on your page. It exposes methods
 ///  and properties that enable you to programmatically change the map,
@@ -1220,8 +1221,10 @@ class MapOptions extends JsObjectWrapper<MapOptionsJsImpl> {
 
   /// A callback run before the MapboxMap makes a request for an external URL. The callback can be used to modify the url, set headers, or set the credentials property for cross-origin requests.
   /// Expected to return an object with a `url` property and optionally `headers` and `credentials` properties.
-  RequestTransformFunctionJsImpl get transformRequest =>
-      jsObject.transformRequest; //TODO: Remove JsImpl
+  RequestTransformFunction? get transformRequest =>
+      jsObject.transformRequest != null
+          ? allowInterop(jsObject.transformRequest)
+          : null;
 
   /// If `true`, Resource Timing API information will be collected for requests made by GeoJSON and Vector Tile web workers (this information is normally inaccessible from the main Javascript thread). Information will be returned in a `resourceTiming` property of relevant `data` events.
   bool get collectResourceTiming => jsObject.collectResourceTiming;
@@ -1275,7 +1278,7 @@ class MapOptions extends JsObjectWrapper<MapOptionsJsImpl> {
     bool? renderWorldCopies,
     num? maxTileCacheSize,
     String? localIdeographFontFamily,
-    RequestTransformFunctionJsImpl? transformRequest, //TODO: Remove JsImpl
+    RequestTransformFunction? transformRequest,
     bool? collectResourceTiming,
     num? fadeDuration,
     bool? crossSourceCollisions,
@@ -1319,7 +1322,8 @@ class MapOptions extends JsObjectWrapper<MapOptionsJsImpl> {
         renderWorldCopies: renderWorldCopies,
         maxTileCacheSize: maxTileCacheSize,
         localIdeographFontFamily: localIdeographFontFamily,
-        transformRequest: transformRequest,
+        transformRequest:
+            transformRequest != null ? allowInterop(transformRequest) : null,
         collectResourceTiming: collectResourceTiming,
         fadeDuration: fadeDuration,
         crossSourceCollisions: crossSourceCollisions,
@@ -1332,17 +1336,23 @@ class MapOptions extends JsObjectWrapper<MapOptionsJsImpl> {
       : super.fromJsObject(jsObject);
 }
 
+typedef RequestTransformFunction = RequestParameters? Function(
+    String url, String resourceType);
+
 class RequestParameters extends JsObjectWrapper<RequestParametersJsImpl> {
   String? get url => jsObject.url;
-  String? get credentials => jsObject.credentials;
-  dynamic get headers => jsObject.headers;
+  String get credentials => jsObject.credentials;
+  Map<String, dynamic>? get headers => dartifyMap(jsObject.headers);
   String? get method => jsObject.method;
   bool? get collectResourceTiming => jsObject.collectResourceTiming;
+  set collectResourceTiming(bool? collectResourceTiming) {
+    jsObject.collectResourceTiming = collectResourceTiming;
+  }
 
   factory RequestParameters({
     String? url,
-    String? credentials,
-    dynamic headers,
+    required String credentials,
+    Map<String, dynamic>? headers,
     String? method,
     bool? collectResourceTiming,
   }) =>

@@ -1143,8 +1143,7 @@ class MapOptionsJsImpl {
 
   /// A callback run before the MapboxMap makes a request for an external URL. The callback can be used to modify the url, set headers, or set the credentials property for cross-origin requests.
   /// Expected to return an object with a `url` property and optionally `headers` and `credentials` properties.
-  external RequestTransformFunctionJsImpl
-      get transformRequest; //TODO: Remove JsImpl
+  external dynamic get transformRequest;
 
   /// If `true`, Resource Timing API information will be collected for requests made by GeoJSON and Vector Tile web workers (this information is normally inaccessible from the main Javascript thread). Information will be returned in a `resourceTiming` property of relevant `data` events.
   external bool get collectResourceTiming;
@@ -1198,7 +1197,7 @@ class MapOptionsJsImpl {
     bool? renderWorldCopies,
     num? maxTileCacheSize,
     String? localIdeographFontFamily,
-    RequestTransformFunctionJsImpl? transformRequest,
+    dynamic transformRequest,
     bool? collectResourceTiming,
     num? fadeDuration,
     bool? crossSourceCollisions,
@@ -1207,21 +1206,19 @@ class MapOptionsJsImpl {
   });
 }
 
-typedef RequestTransformFunctionJsImpl = RequestParametersJsImpl Function(
-    String url, String resourceType);
-
 @JS()
 @anonymous
 class RequestParametersJsImpl {
-  String? url;
-  String? credentials;
-  dynamic headers;
-  String? method;
-  bool? collectResourceTiming;
+  external String? get url;
+  external String get credentials;
+  external dynamic get headers;
+  external String? get method;
+  external bool? get collectResourceTiming;
+  external set collectResourceTiming(bool? collectResourceTiming);
 
   external factory RequestParametersJsImpl({
     String? url,
-    String? credentials,
+    String credentials,
     dynamic headers,
     String? method,
     bool? collectResourceTiming,

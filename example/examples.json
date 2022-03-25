@@ -18,5 +18,9 @@
     {
         "title": "Display a popup on hover",
         "folder": "popup_on_hover"
+    },
+    {
+        "title": "Use transform request",
+        "folder": "transform_request"
     }
 ]
