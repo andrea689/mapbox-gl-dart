@@ -19,6 +19,7 @@ export 'src/style/sources/vector_source.dart';
 export 'src/style/style.dart';
 export 'src/style/style_image.dart';
 export 'src/ui/camera.dart';
+export 'src/ui/control/attribution_control.dart';
 export 'src/ui/control/geolocate_control.dart';
 export 'src/ui/control/logo_control.dart';
 export 'src/ui/control/navigation_control.dart';
