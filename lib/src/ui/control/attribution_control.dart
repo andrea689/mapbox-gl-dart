@@ -17,9 +17,13 @@ class AttributionControlOptions extends JsObjectWrapper<AttributionControlOption
         customAttribution: customAttribution,
       ));
 
+  /// Creates a new NavigationControlOptions from a [jsObject].
   AttributionControlOptions.fromJsObject(AttributionControlOptionsJsImpl jsObject) : super.fromJsObject(jsObject);
 }
 
+/// An 'AttributionControl' control presents the map's attribution information.
+///
+/// https://docs.mapbox.com/mapbox-gl-js/api/markers/#attributioncontrol
 class AttributionControl extends JsObjectWrapper<AttributionControlJsImpl> {
   AttributionControlOptions get options => AttributionControlOptions.fromJsObject(jsObject.options);
 
@@ -30,5 +34,6 @@ class AttributionControl extends JsObjectWrapper<AttributionControlJsImpl> {
 
   onRemove() => jsObject.onRemove();
 
+  /// Creates a new MapOptions from a [jsObject].
   AttributionControl.fromJsObject(AttributionControlJsImpl jsObject) : super.fromJsObject(jsObject);
 }
