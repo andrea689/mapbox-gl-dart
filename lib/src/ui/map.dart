@@ -590,6 +590,9 @@ class MapboxMap extends Camera {
     if (source is VectorSourceJsImpl) {
       return VectorSource.fromJsObject(source);
     }
+    if (source is ImageSourceJsImpl) {
+      return ImageSource.fromJsObject(source);
+    }
     return source;
   }
 
