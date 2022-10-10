@@ -4,6 +4,7 @@ import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
 class GeoJsonSource extends Source<GeoJsonSourceJsImpl> {
+  static const type = 'geojson';
   FeatureCollection get data => FeatureCollection.fromJsObject(jsObject.data);
   String? get promoteId => jsObject.promoteId;
 
@@ -26,7 +27,7 @@ class GeoJsonSource extends Source<GeoJsonSourceJsImpl> {
 
   @override
   get dict => {
-        'type': 'geojson',
+        'type': type,
         'promoteId': promoteId,
         'data': data.jsObject,
       };

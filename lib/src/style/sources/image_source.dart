@@ -4,6 +4,7 @@ import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
 class ImageSource extends Source<ImageSourceJsImpl> {
+  static const type = 'image';
   String? get url => jsObject.url;
   dynamic get coordinates => jsObject.coordinates;
 
@@ -34,7 +35,7 @@ class ImageSource extends Source<ImageSourceJsImpl> {
   @override
   get dict {
     Map<String, dynamic> dict = {
-      'type': 'image',
+      'type': type,
     };
     if (url != null) {
       dict['url'] = url;
