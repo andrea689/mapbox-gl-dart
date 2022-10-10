@@ -11,7 +11,7 @@ class ImageSource extends Source<ImageSourceJsImpl> {
     required String url,
     dynamic coordinates,
   }) {
-    if (coordinates != null) {
+    if (coordinates == null) {
       throw Exception('Specify coordinates');
     }
     if ((coordinates as List?)?.length != 4) {
