@@ -1,6 +1,7 @@
 library mapboxgl.interop;
 
 export 'geo/geojson_interop.dart';
+export 'geo/image_options_interop.dart';
 export 'geo/lng_lat_bounds_interop.dart';
 export 'geo/lng_lat_interop.dart';
 export 'geo/point_interop.dart';
@@ -10,6 +11,7 @@ export 'style/layers/circle_layer_interop.dart';
 export 'style/layers/line_layer_interop.dart';
 export 'style/layers/symbol_layer_interop.dart';
 export 'style/sources/geojson_source_interop.dart';
+export 'style/sources/image_source_interop.dart';
 export 'style/sources/vector_source_interop.dart';
 export 'style/style_image_interop.dart';
 export 'style/style_interop.dart';

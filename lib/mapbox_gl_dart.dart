@@ -4,6 +4,7 @@
 library mapboxgl;
 
 export 'src/geo/geojson.dart';
+export 'src/geo/image_options.dart';
 export 'src/geo/lng_lat.dart';
 export 'src/geo/lng_lat_bounds.dart';
 export 'src/geo/point.dart';
@@ -14,6 +15,7 @@ export 'src/style/layers/layer.dart';
 export 'src/style/layers/line_layer.dart';
 export 'src/style/layers/symbol_layer.dart';
 export 'src/style/sources/geojson_source.dart';
+export 'src/style/sources/image_source.dart';
 export 'src/style/sources/source.dart';
 export 'src/style/sources/vector_source.dart';
 export 'src/style/style.dart';
