@@ -1,7 +1,7 @@
-import 'dart:html';
 import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 
 void main() {
+  bool isPlaying = true;
   Mapbox.accessToken =
       'pk.eyJ1IjoiYW5kcmVhNjg5IiwiYSI6ImNrNGlsYjhyZDBuYXoza213aWphOGNjZmoifQ.maw_5NsXejG1DoOeOi6hlQ';
 
@@ -31,16 +31,14 @@ void main() {
 
     map.addLayer(
         {'id': 'canvas-layer', 'type': 'raster', 'source': 'canvas-source'});
-
-    final playBtn = querySelector('.playBtn') as HtmlElement;
-    playBtn.onClick.listen((event) {
-      final source = map.getSource('canvas-source') as CanvasSource?;
-      source?.play();
-    });
-    final pauseBtn = querySelector('.pauseBtn') as HtmlElement;
-    pauseBtn.onClick.listen((event) {
-      final source = map.getSource('canvas-source') as CanvasSource?;
+  });
+  map.on('click', (_) {
+    final source = map.getSource('canvas-source') as CanvasSource?;
+    if (isPlaying) {
       source?.pause();
-    });
+    } else {
+      source?.play();
+    }
+    isPlaying = !isPlaying;
   });
 }
