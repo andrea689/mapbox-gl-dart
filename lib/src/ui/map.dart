@@ -584,13 +584,19 @@ class MapboxMap extends Camera {
   ///  @see [Add live realtime data](https://www.mapbox.com/mapbox-gl-js/example/live-geojson/)
   dynamic getSource(String id) {
     var source = jsObject.getSource(id);
-    if (source is GeoJsonSourceJsImpl) {
-      return GeoJsonSource.fromJsObject(source);
+    switch (source?.type) {
+      case ImageSource.type:
+        if (source?.canvas != null) {
+          return CanvasSource.fromJsObject(source);
+        }
+        return ImageSource.fromJsObject(source);
+      case VectorSource.type:
+        return VectorSource.fromJsObject(source);
+      case VideoSource.type:
+        return VideoSource.fromJsObject(source);
+      default:
+        return GeoJsonSource.fromJsObject(source);
     }
-    if (source is VectorSourceJsImpl) {
-      return VectorSource.fromJsObject(source);
-    }
-    return source;
   }
 
   ///  Add an image to the style. This image can be displayed on the map like any other icon in the style's

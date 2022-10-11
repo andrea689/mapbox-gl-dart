@@ -4,6 +4,7 @@ import 'package:mapbox_gl_dart/mapbox_gl_dart.dart';
 import 'package:mapbox_gl_dart/src/interop/interop.dart';
 
 class VectorSource extends Source<VectorSourceJsImpl> {
+  static const type = 'vector';
   String? get url => jsObject.url;
   List<String>? get tiles => jsObject.tiles;
 
@@ -21,7 +22,7 @@ class VectorSource extends Source<VectorSourceJsImpl> {
       ));
     }
     return VectorSource.fromJsObject(VectorSourceJsImpl(
-      type: 'vector',
+      type: type,
       tiles: tiles,
     ));
   }
@@ -33,7 +34,7 @@ class VectorSource extends Source<VectorSourceJsImpl> {
   @override
   get dict {
     Map<String, dynamic> dict = {
-      'type': 'vector',
+      'type': type,
     };
     if (url != null) {
       dict['url'] = url;

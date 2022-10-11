@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Display a canvas source</title>
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script defer type="application/javascript" src="index.dart.js"></script>
+    <style type="text/css">
+      body {
+        margin: 20px;
+      }
+
+      #map {
+        height: 450px;
+      }
+
+      div.wrapper {
+        margin: 0 auto;
+        max-width: 800px;
+        text-align: center;
+        font-style: italic;
+      }
+
+      .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <div class="wrapper">
+        <canvas id="canvasID" width="400" height="400"
+          >Canvas not supported</canvas
+        >
+        <div id="map"></div>
+        <p>
+          Example of the
+          <a href="https://github.com/andrea689/mapbox-gl-dart"
+            >mapbox-gl-dart</a
+          >
+        </p>
+      </div>
+    </div>
+  </body>
+  <script>
+    //Animation from https://javascript.tutorials24x7.com/blog/how-to-draw-animated-circles-in-html5-canvas
+    const canvas = document.getElementById("canvasID");
+    const ctx = canvas.getContext("2d");
+    const circles = [];
+    const radius = 20;
+    if (ctx) {
+      canvas.style.display = "none";
+    }
+
+    function Circle(x, y, dx, dy, radius, color) {
+      this.x = x;
+      this.y = y;
+      this.dx = dx;
+      this.dy = dy;
+
+      this.radius = radius;
+
+      this.draw = function () {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+        ctx.strokeStyle = color;
+        ctx.stroke();
+      };
+
+      this.update = function () {
+        if (this.x + this.radius > 400 || this.x - this.radius < 0) {
+          this.dx = -this.dx;
+        }
+
+        if (this.y + this.radius > 400 || this.y - this.radius < 0) {
+          this.dy = -this.dy;
+        }
+
+        this.x += this.dx;
+        this.y += this.dy;
+
+        this.draw();
+      };
+    }
+
+    for (let i = 0; i < 5; i++) {
+      const color =
+        "#" + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6);
+      const x = Math.random() * (400 - radius * 2) + radius;
+      const y = Math.random() * (400 - radius * 2) + radius;
+
+      const dx = (Math.random() - 0.5) * 2;
+      const dy = (Math.random() - 0.5) * 2;
+
+      circles.push(new Circle(x, y, dx, dy, radius, color));
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      ctx.clearRect(0, 0, 400, 400);
+
+      for (let r = 0; r < 5; r++) {
+        circles[r].update();
+      }
+    }
+
+    animate();
+  </script>
+</html>
