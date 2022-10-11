@@ -14,6 +14,7 @@ export 'src/style/layers/circle_layer.dart';
 export 'src/style/layers/layer.dart';
 export 'src/style/layers/line_layer.dart';
 export 'src/style/layers/symbol_layer.dart';
+export 'src/style/sources/canvas_source.dart';
 export 'src/style/sources/geojson_source.dart';
 export 'src/style/sources/image_source.dart';
 export 'src/style/sources/source.dart';

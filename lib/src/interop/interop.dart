@@ -10,6 +10,7 @@ export 'style/evaluation_parameters_interop.dart';
 export 'style/layers/circle_layer_interop.dart';
 export 'style/layers/line_layer_interop.dart';
 export 'style/layers/symbol_layer_interop.dart';
+export 'style/sources/canvas_source_interop.dart';
 export 'style/sources/geojson_source_interop.dart';
 export 'style/sources/image_source_interop.dart';
 export 'style/sources/vector_source_interop.dart';
