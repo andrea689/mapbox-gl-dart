@@ -19,6 +19,7 @@ export 'src/style/sources/geojson_source.dart';
 export 'src/style/sources/image_source.dart';
 export 'src/style/sources/source.dart';
 export 'src/style/sources/vector_source.dart';
+export 'src/style/sources/video_source.dart';
 export 'src/style/style.dart';
 export 'src/style/style_image.dart';
 export 'src/ui/camera.dart';

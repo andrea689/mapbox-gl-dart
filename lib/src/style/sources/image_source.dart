@@ -20,7 +20,7 @@ class ImageSource extends Source<ImageSourceJsImpl> {
           'Image coordinates must be an array of four longitude latitude pairs');
     }
     return ImageSource.fromJsObject(ImageSourceJsImpl(
-      type: 'image',
+      type: type,
       url: url,
       coordinates: coordinates,
     ));

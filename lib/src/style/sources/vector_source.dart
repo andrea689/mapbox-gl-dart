@@ -22,7 +22,7 @@ class VectorSource extends Source<VectorSourceJsImpl> {
       ));
     }
     return VectorSource.fromJsObject(VectorSourceJsImpl(
-      type: 'vector',
+      type: type,
       tiles: tiles,
     ));
   }

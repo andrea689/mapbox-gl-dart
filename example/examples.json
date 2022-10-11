@@ -22,5 +22,9 @@
     {
         "title": "Display a canvas source",
         "folder": "canvas_source"
+    },
+    {
+        "title": "Display a video source",
+        "folder": "video_source"
     }
 ]

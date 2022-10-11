@@ -584,7 +584,6 @@ class MapboxMap extends Camera {
   ///  @see [Add live realtime data](https://www.mapbox.com/mapbox-gl-js/example/live-geojson/)
   dynamic getSource(String id) {
     var source = jsObject.getSource(id);
-
     switch (source?.type) {
       case ImageSource.type:
         if (source?.canvas != null) {
@@ -593,6 +592,8 @@ class MapboxMap extends Camera {
         return ImageSource.fromJsObject(source);
       case VectorSource.type:
         return VectorSource.fromJsObject(source);
+      case VideoSource.type:
+        return VideoSource.fromJsObject(source);
       default:
         return GeoJsonSource.fromJsObject(source);
     }

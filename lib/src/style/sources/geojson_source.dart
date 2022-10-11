@@ -13,7 +13,7 @@ class GeoJsonSource extends Source<GeoJsonSourceJsImpl> {
     String? promoteId,
   }) =>
       GeoJsonSource.fromJsObject(GeoJsonSourceJsImpl(
-        type: 'geojson',
+        type: type,
         promoteId: promoteId,
         data: data.jsObject,
       ));
