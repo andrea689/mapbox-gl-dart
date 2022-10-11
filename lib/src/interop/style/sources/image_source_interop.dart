@@ -16,4 +16,5 @@ class ImageSourceJsImpl {
   });
 
   external ImageSourceJsImpl updateImage(ImageOptionsJsImpl imageOptions);
+  external ImageSourceJsImpl setCoordinates(dynamic coordinates);
 }

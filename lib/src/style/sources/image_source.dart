@@ -26,11 +26,14 @@ class ImageSource extends Source<ImageSourceJsImpl> {
     ));
   }
 
-  ImageSource.fromJsObject(ImageSourceJsImpl jsObject)
-      : super.fromJsObject(jsObject);
-
   ImageSource updateImage(ImageOptions imageOptions) =>
       ImageSource.fromJsObject(jsObject.updateImage(imageOptions.jsObject));
+
+  ImageSource setCoordinates(dynamic coordinates) =>
+      ImageSource.fromJsObject(jsObject.setCoordinates(coordinates));
+
+  ImageSource.fromJsObject(ImageSourceJsImpl jsObject)
+      : super.fromJsObject(jsObject);
 
   @override
   get dict {
