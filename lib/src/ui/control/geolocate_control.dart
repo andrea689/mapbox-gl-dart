@@ -11,6 +11,7 @@ class GeolocateControlOptions
   bool get trackUserLocation => jsObject.trackUserLocation;
   bool get showAccuracyCircle => jsObject.showAccuracyCircle;
   bool get showUserLocation => jsObject.showUserLocation;
+  bool get showUserHeading => jsObject.showUserHeading;
 
   factory GeolocateControlOptions({
     required PositionOptions positionOptions,
@@ -18,6 +19,7 @@ class GeolocateControlOptions
     bool? trackUserLocation,
     bool? showAccuracyCircle,
     bool? showUserLocation,
+    bool? showUserHeading,
   }) =>
       GeolocateControlOptions.fromJsObject(GeolocateControlOptionsJsImpl(
         positionOptions: positionOptions.jsObject,
@@ -25,6 +27,7 @@ class GeolocateControlOptions
         trackUserLocation: trackUserLocation,
         showAccuracyCircle: showAccuracyCircle,
         showUserLocation: showUserLocation,
+        showUserHeading: showUserHeading,
       ));
 
   /// Creates a new MapOptions from a [jsObject].
