@@ -12,6 +12,7 @@ class GeolocateControlOptionsJsImpl {
   external bool get trackUserLocation;
   external bool get showAccuracyCircle;
   external bool get showUserLocation;
+  external bool get showUserHeading;
 
   external factory GeolocateControlOptionsJsImpl({
     PositionOptionsJsImpl? positionOptions,
@@ -19,6 +20,7 @@ class GeolocateControlOptionsJsImpl {
     bool? trackUserLocation,
     bool? showAccuracyCircle,
     bool? showUserLocation,
+    bool? showUserHeading,
   });
 }
 
