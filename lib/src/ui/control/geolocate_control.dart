@@ -38,9 +38,9 @@ class PositionOptions extends JsObjectWrapper<PositionOptionsJsImpl> {
   num get timeout => jsObject.timeout;
 
   factory PositionOptions({
-    bool? enableHighAccuracy,
-    num? maximumAge,
-    num? timeout,
+    bool? enableHighAccuracy = false,
+    num? maximumAge = 0,
+    num? timeout = double.infinity,
   }) =>
       PositionOptions.fromJsObject(PositionOptionsJsImpl(
         enableHighAccuracy: enableHighAccuracy,
